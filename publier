@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+"""Copie une page HTML dans site/<nom>/index.html, prête à être servie par GitHub Pages.
+
+Usage : ./publier fichier.html nom [--secret]
+
+- Une page sans <!doctype> (format des artefacts claude.ai) reçoit l'en-tête qui lui manque.
+- Toute page reçoit <meta name="robots" content="noindex"> : rien n'est indexé par les moteurs.
+- --secret ajoute un suffixe aléatoire au nom (site/<nom>-a1b2c3d4/) : l'adresse ne se devine pas.
+  Ce n'est pas une protection : quiconque a le lien lit la page.
+Le script ne fait ni commit ni push.
+"""
+import pathlib, re, secrets, sys
+
+args = [a for a in sys.argv[1:] if not a.startswith("--")]
+if len(args) != 2:
+    sys.exit(__doc__)
+src, name = pathlib.Path(args[0]), args[1]
+if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", name):
+    sys.exit("nom : minuscules, chiffres et traits d'union")
+if "--secret" in sys.argv:
+    name += "-" + secrets.token_hex(4)
+
+html = src.read_text(encoding="utf-8")
+noindex = '<meta name="robots" content="noindex, nofollow">'
+if re.match(r"\s*<!doctype", html, re.I):
+    if "robots" not in html:
+        html = re.sub(r"(<head[^>]*>)", r"\1\n" + noindex, html, count=1, flags=re.I)
+else:
+    html = ("<!doctype html>\n<html lang=\"fr\">\n<head>\n<meta charset=\"utf-8\">\n"
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, viewport-fit=cover\">\n"
+            f"{noindex}\n<style>*,*::before,*::after{{box-sizing:border-box}}body{{margin:0}}"
+            "img{max-width:100%}[hidden]{display:none!important}</style>\n</head>\n<body>\n"
+            f"{html}\n</body>\n</html>\n")
+
+out = pathlib.Path(__file__).resolve().parent / "site" / name / "index.html"
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(html, encoding="utf-8")
+print(f"site/{name}/index.html")
+print(f"https://bonben.github.io/partage/{name}/  (après commit et push)")
