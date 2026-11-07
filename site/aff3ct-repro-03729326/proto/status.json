@@ -1,0 +1,37 @@
+[
+ {
+  "id": "afisiadis2014-scf",
+  "status": "reproduced",
+  "verification": "pending"
+ },
+ {
+  "id": "chandesris2018-dscf",
+  "status": "reproduced",
+  "verification": "pending"
+ },
+ {
+  "id": "elkelesh2018-bpl",
+  "status": "not-reproduced",
+  "verification": "pending"
+ },
+ {
+  "id": "ercan2020-fast-dscf",
+  "status": "reproduced",
+  "verification": "pending"
+ },
+ {
+  "id": "geiselhart2021-aed",
+  "status": "reproduced",
+  "verification": "pending"
+ },
+ {
+  "id": "johannsen2023-scal",
+  "status": "close",
+  "verification": "pending"
+ },
+ {
+  "id": "pillet2020-scanl-fig2",
+  "status": "reproduced",
+  "verification": "pending"
+ }
+]

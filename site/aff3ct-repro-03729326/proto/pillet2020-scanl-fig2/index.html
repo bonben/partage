@@ -1,0 +1,95 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pillet, Fig. 2</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#fbfbf8;--fg:#1b1d1f;--muted:#5b6066;--line:#d9dcd6;--panel:#f1f2ee;--accent:#1f78b4;
+--ok:#33a02c;--close:#ff7f00;--ko:#e31a1c;--nd:#6a3d9a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;
+--line:#33373c;--panel:#1d2024;--accent:#a6cee3;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;--line:#33373c;--panel:#1d2024;--accent:#a6cee3;
+color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0;
+padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;padding-block:28px 64px}
+h1{font-size:1.5rem;line-height:1.25;text-wrap:balance;margin:.2em 0 .3em}
+h2{font-size:1.05rem;margin:2em 0 .6em;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+a{color:var(--accent)}
+.eyebrow{font:12px/1.4 "IBM Plex Mono",ui-monospace,monospace;color:var(--muted);letter-spacing:.04em}
+.muted{color:var(--muted)}
+.status{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12.5px;color:#fff;white-space:nowrap}
+.pill.reproduced{background:var(--ok)}.pill.close{background:var(--close)}.pill.not-reproduced{background:var(--ko)}
+.pill.no-data{background:var(--nd)}
+.figure{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}.plot .frame{fill:none;stroke:var(--muted)}
+.plot .tick{fill:var(--muted);font:11px "IBM Plex Mono",monospace}.plot .axis{fill:var(--fg);font:12px sans-serif}
+.legend{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.legend .sw{display:inline-block;width:14px;height:4px;margin-right:6px;vertical-align:middle}
+.key{font-size:12.5px;color:var(--muted);margin-top:6px}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:0}dt{color:var(--muted)}dd{margin:0}
+.assume{background:var(--panel);border-left:3px solid var(--close);padding:10px 16px 10px 28px;border-radius:4px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;overflow-x:auto;
+font:12.5px/1.5 "IBM Plex Mono",ui-monospace,monospace}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.btn{display:inline-block;padding:9px 16px;border-radius:6px;text-decoration:none;font-weight:600;
+border:1px solid var(--accent)}
+.draft{background:var(--panel);border:1px dashed var(--close);border-radius:6px;padding:8px 12px;font-size:13.5px;margin-bottom:18px}
+.btn.primary{background:var(--accent);color:var(--bg)}.btn.secondary{color:var(--accent)}
+@media (max-width:520px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
+</style></head><body><main>
+<div class="draft">Prototype: the aff3ct/repro repository does not exist yet, so the GitHub buttons lead nowhere for now. Statuses are computed from the data.</div><div class="eyebrow"><a href="../index.html">AFF3CT REPRODUCED</a> · pillet2020-scanl-fig2</div>
+<h1>SCAN list decoding of polar codes</h1>
+<div>C. Pillet, C. Condo, V. Bioglio. <em>IEEE International Conference on Communications (ICC), 2020</em>. <a href="https://arxiv.org/abs/2001.11283">arXiv:2001.11283</a> <span class="muted">(bibliographic data not yet checked)</span></div>
+<div class="status"><svg xmlns="http://www.w3.org/2000/svg" width="134" height="20" role="img" aria-label="AFF3CT: reproduced"><rect width="52" height="20" fill="#000000"/><rect x="52" width="82" height="20" fill="#33a02c"/><g fill="#ffffff" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11"><text x="26" y="14" text-anchor="middle">AFF3CT</text><text x="93" y="14" text-anchor="middle">reproduced</text></g></svg><span>Target: <strong>Fig. 2</strong></span>
+<span>Verification: <strong>pending</strong>. Awaiting the authors.</span></div>
+
+<h2>Paper against AFF3CT</h2>
+<div class="figure"><svg viewBox="0 0 640 420" class="plot" role="img" aria-label="Fig. 2"><line x1="64" x2="624" y1="374.0" y2="374.0" class="grid"/><text x="58" y="378.0" class="tick" text-anchor="end">1e-4</text><line x1="64" x2="624" y1="284.0" y2="284.0" class="grid"/><text x="58" y="288.0" class="tick" text-anchor="end">1e-3</text><line x1="64" x2="624" y1="194.0" y2="194.0" class="grid"/><text x="58" y="198.0" class="tick" text-anchor="end">1e-2</text><line x1="64" x2="624" y1="104.0" y2="104.0" class="grid"/><text x="58" y="108.0" class="tick" text-anchor="end">1e-1</text><line x1="64" x2="624" y1="14.0" y2="14.0" class="grid"/><text x="58" y="18.0" class="tick" text-anchor="end">1e0</text><line x1="64.0" x2="64.0" y1="14" y2="374" class="grid"/><text x="64.0" y="390" class="tick" text-anchor="middle">2</text><line x1="176.0" x2="176.0" y1="14" y2="374" class="grid"/><text x="176.0" y="390" class="tick" text-anchor="middle">2.5</text><line x1="288.0" x2="288.0" y1="14" y2="374" class="grid"/><text x="288.0" y="390" class="tick" text-anchor="middle">3</text><line x1="400.0" x2="400.0" y1="14" y2="374" class="grid"/><text x="400.0" y="390" class="tick" text-anchor="middle">3.5</text><line x1="512.0" x2="512.0" y1="14" y2="374" class="grid"/><text x="512.0" y="390" class="tick" text-anchor="middle">4</text><line x1="624.0" x2="624.0" y1="14" y2="374" class="grid"/><text x="624.0" y="390" class="tick" text-anchor="middle">4.5</text><rect x="64" y="14" width="560" height="360" class="frame"/><text x="344" y="412" class="axis" text-anchor="middle">Eb/N0 (dB)</text><text x="14" y="194" class="axis" text-anchor="middle" transform="rotate(-90 14 194)">FER</text><path d="M64.0,86.1 L176.0,124.4 L288.0,174.0 L400.0,233.1 L512.0,297.5 L624.0,364.4" fill="none" stroke="var(--fg)" stroke-width="2"/><rect x="60.0" y="72.9" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 2 dB, 2.00e-01</title></rect><rect x="172.0" y="116.8" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 2.5 dB, 6.50e-02</title></rect><rect x="284.0" y="169.3" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 3 dB, 1.70e-02</title></rect><rect x="396.0" y="225.8" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 3.5 dB, 4.00e-03</title></rect><rect x="508.0" y="293.9" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 4 dB, 7.00e-04</title></rect><rect x="620.0" y="354.2" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 4.5 dB, 1.50e-04</title></rect><path d="M64.0,77.5 L176.0,117.2 L288.0,172.6 L400.0,229.0 L512.0,294.7 L624.0,362.6" fill="none" stroke="#fb9a99" stroke-width="2"/><rect x="60.0" y="65.8" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 2 dB, 2.40e-01</title></rect><rect x="172.0" y="111.2" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 2.5 dB, 7.50e-02</title></rect><rect x="284.0" y="162.9" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 3 dB, 2.00e-02</title></rect><rect x="396.0" y="218.7" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 3.5 dB, 4.80e-03</title></rect><rect x="508.0" y="291.2" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 4 dB, 7.50e-04</title></rect><rect x="620.0" y="349.3" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCAN T=1 (paper): 4.5 dB, 1.70e-04</title></rect><path d="M64.0,85.9 L176.0,129.2 L288.0,185.3 L400.0,241.8 L512.0,306.4 L624.0,368.5" fill="none" stroke="#a6cee3" stroke-width="2"/><rect x="60.0" y="72.9" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 2 dB, 2.00e-01</title></rect><rect x="172.0" y="116.8" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 2.5 dB, 6.50e-02</title></rect><rect x="284.0" y="174.2" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 3 dB, 1.50e-02</title></rect><rect x="396.0" y="233.3" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 3.5 dB, 3.30e-03</title></rect><rect x="508.0" y="296.8" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 4 dB, 6.50e-04</title></rect><rect x="620.0" y="356.8" width="8" height="8" fill="#a6cee3" stroke="var(--bg)" stroke-width="1"><title>SCAN T=2 (paper): 4.5 dB, 1.40e-04</title></rect><path d="M64.0,101.7 L176.0,147.3 L288.0,200.6 L400.0,256.5 L512.0,310.5 L624.0,368.5" fill="none" stroke="#1f78b4" stroke-width="2"/><rect x="60.0" y="96.3" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 2 dB, 1.10e-01</title></rect><rect x="172.0" y="133.0" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 2.5 dB, 4.30e-02</title></rect><rect x="284.0" y="190.0" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 3 dB, 1.00e-02</title></rect><rect x="396.0" y="245.8" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 3.5 dB, 2.40e-03</title></rect><rect x="508.0" y="307.1" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 4 dB, 5.00e-04</title></rect><rect x="620.0" y="356.8" width="8" height="8" fill="#1f78b4" stroke="var(--bg)" stroke-width="1"><title>SCAN T=10 (paper): 4.5 dB, 1.40e-04</title></rect><path d="M64.0,83.5 L176.0,129.1 L288.0,184.7 L400.0,245.0 L512.0,299.7 L624.0,349.3" fill="none" stroke="#6a3d9a" stroke-width="2"/><rect x="60.0" y="77.0" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 2 dB, 1.80e-01</title></rect><rect x="172.0" y="127.1" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 2.5 dB, 5.00e-02</title></rect><rect x="284.0" y="176.8" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 3 dB, 1.40e-02</title></rect><rect x="396.0" y="231.0" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 3.5 dB, 3.50e-03</title></rect><rect x="508.0" y="291.2" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 4 dB, 7.50e-04</title></rect><rect x="620.0" y="342.9" width="8" height="8" fill="#6a3d9a" stroke="var(--bg)" stroke-width="1"><title>BP T=40 (paper): 4.5 dB, 2.00e-04</title></rect></svg><ul class="legend"><li><span class="sw" style="background:var(--fg)"></span>SC</li><li><span class="sw" style="background:#fb9a99"></span>SCAN T=1</li><li><span class="sw" style="background:#a6cee3"></span>SCAN T=2</li><li><span class="sw" style="background:#1f78b4"></span>SCAN T=10</li><li><span class="sw" style="background:#6a3d9a"></span>BP T=40</li></ul>
+<div class="key">Squares: values read off the paper. Lines: AFF3CT (dashed: baseline). Hover a square for its value.</div></div>
+<div class="table-wrap"><table><thead><tr><th>Curve</th><th class="n">Points</th><th class="n">Mean gap</th>
+<th class="n">Max gap</th><th>Status</th></tr></thead><tbody>
+<tr><td>SC</td><td class="n">5</td><td class="n">-0.02 dB</td><td class="n">0.05 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+<tr><td>SCAN T=1</td><td class="n">5</td><td class="n">-0.04 dB</td><td class="n">0.07 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+<tr><td>SCAN T=2</td><td class="n">5</td><td class="n">-0.06 dB</td><td class="n">0.10 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+<tr><td>SCAN T=10</td><td class="n">5</td><td class="n">-0.06 dB</td><td class="n">0.11 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+<tr><td>BP T=40</td><td class="n">5</td><td class="n">-0.03 dB</td><td class="n">0.08 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+</tbody></table></div>
+<p class="muted">Gap: Eb/N0 of AFF3CT minus Eb/N0 of the paper at the same error rate (positive: AFF3CT worse).
+Reproduced within 0.15 dB, close within 0.3 dB.</p>
+
+
+<h2>What the paper does not say</h2>
+<p>These parameters had to be assumed. If one of them is wrong, the correction is what we need most.</p>
+<ol class="assume"><li>SCAN decisions u_i = HD(lambda_0 + beta_0) on the leaves (non-systematic code, eq. (4)).</li><li>Min-sum f for SCAN and BP (unscaled for BP).</li><li>BP: 40 iterations without early termination, flooding schedule as in AFF3CT.</li></ol>
+
+<h2>Setup</h2>
+<dl><dt>code</dt><dd>polar (256, 128), 5G reliability sequence, non-systematic</dd><dt>decoders</dt><dd>SC, SCAN T = 1, 2, 10, BP T = 40</dd><dt>channel</dt><dd>BPSK, AWGN</dd><dt>metric</dt><dd>BLER</dd><dt>AFF3CT</dt><dd>branch polar-decoders-overnight (91c1ea747); curves produced by: aff3ct, run_bler_pillet.sh)</dd></dl>
+
+<h2>For the authors</h2>
+<p>Does AFF3CT reproduce your result? One click opens a short form on GitHub (aff3ct/repro).
+A correction of an assumption counts as a verification: we rerun and you check again.</p>
+<div class="actions"><a class="btn primary" href="https://github.com/aff3ct/repro/issues/new?template=verification.yml&amp;entry=pillet2020-scanl-fig2&amp;verdict=confirm&amp;title=%5Bpillet2020-scanl-fig2%5D+confirm">Yes, it reproduces our result</a>
+<a class="btn secondary" href="https://github.com/aff3ct/repro/issues/new?template=verification.yml&amp;entry=pillet2020-scanl-fig2&amp;verdict=correct+an+assumption&amp;title=%5Bpillet2020-scanl-fig2%5D+correct+an+assumption">Correct an assumption or contest</a></div>
+
+<h2>Replay</h2>
+<pre># SC
+aff3ct -C POLAR -N 256 -K 128 --enc-fb-gen-method 5G -m 2.0 -M 4.5 -s 0.5 -e 300 --ter-freq 0 --dec-type SC --dec-implem NAIVE --enc-no-sys
+# SCAN T=1
+aff3ct -C POLAR -N 256 -K 128 --enc-fb-gen-method 5G -m 2.0 -M 4.5 -s 0.5 -e 300 --ter-freq 0 --dec-type SCAN --dec-implem FAST --dec-simd INTER --dec-ite 1 --enc-no-sys
+# SCAN T=2
+aff3ct -C POLAR -N 256 -K 128 --enc-fb-gen-method 5G -m 2.0 -M 4.5 -s 0.5 -e 300 --ter-freq 0 --dec-type SCAN --dec-implem FAST --dec-simd INTER --dec-ite 2 --enc-no-sys
+# SCAN T=10
+aff3ct -C POLAR -N 256 -K 128 --enc-fb-gen-method 5G -m 2.0 -M 4.5 -s 0.5 -e 300 --ter-freq 0 --dec-type SCAN --dec-implem FAST --dec-simd INTER --dec-ite 10 --enc-no-sys
+# BP T=40
+aff3ct -C POLAR -K 128 -N 256 --enc-no-sys --enc-fb-gen-method 5G -m 2.0 -M 4.5 -s 0.5 -e 100 -n 20000000 --sim-stop-time 120 --dec-type BP --dec-implem FAST --dec-simd INTER -i 40 --dec-bp-stop NONE --dec-bp-alpha 1</pre>
+
+<h2>Cite</h2>
+<p>Permanent link: <a href="https://aff3ct.github.io/repro/pillet2020-scanl-fig2/">https://aff3ct.github.io/repro/pillet2020-scanl-fig2/</a>. Badge: <code>badge.svg</code> next to this page.</p>
+<pre>\href{https://aff3ct.github.io/repro/pillet2020-scanl-fig2/}{\includegraphics[height=1.6ex]{aff3ct-badge}} Reproduced with AFF3CT: https://aff3ct.github.io/repro/pillet2020-scanl-fig2/</pre>
+</main></body></html>

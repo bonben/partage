@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>AFF3CT Reproduced</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+/* Note de conception : une colonne de lecture, encadrés pour les décisions et les chiffres, tableaux sobres. */
+:root {
+  --bg: #fbfbf8; --fg: #1b1d1f; --muted: #5b6066; --line: #d9dcd6; --panel: #f1f2ee;
+  --accent: #1f78b4; --ok: #33a02c; --close: #ff7f00; --ko: #e31a1c;
+  --display: "IBM Plex Serif", Georgia, serif; --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #15171a; --fg: #e8e9e6; --muted: #a3a8ad; --line: #33373c; --panel: #1d2024; --accent: #a6cee3; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #15171a; --fg: #e8e9e6; --muted: #a3a8ad; --line: #33373c; --panel: #1d2024; --accent: #a6cee3; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font: 16px/1.62 var(--body); margin: 0;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+main { max-width: 720px; margin: 0 auto; padding-block: 36px 80px; }
+h1 { font: 600 2rem/1.18 var(--display); text-wrap: balance; margin: .25em 0 .4em; }
+h2 { font: 600 1.3rem/1.3 var(--display); text-wrap: balance; margin: 2.2em 0 .5em; }
+h3 { font: 600 1rem/1.4 var(--body); margin: 1.6em 0 .3em; }
+p, li { max-width: 68ch; }
+a { color: var(--accent); }
+code { font: .88em var(--mono); background: var(--panel); padding: 1px 5px; border-radius: 4px; }
+.eyebrow { font: 500 12px/1.4 var(--mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.lede { font-size: 1.1rem; color: var(--fg); }
+.muted { color: var(--muted); }
+.box { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 18px; margin: 1.2em 0; }
+.box h3 { margin-top: 0; }
+.decide { border-left: 4px solid var(--close); }
+.links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin: 18px 0 6px; }
+.links a { font-weight: 600; }
+.table-wrap { overflow-x: auto; margin: 1em 0; }
+table { border-collapse: collapse; width: 100%; font-size: 14.5px; }
+th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 600 12px/1.3 var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: .05em; }
+.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pill { display: inline-block; padding: 1px 9px; border-radius: 999px; font-size: 12.5px; color: #fff; white-space: nowrap; }
+.pill.ok { background: var(--ok); } .pill.close { background: var(--close); } .pill.ko { background: var(--ko); }
+ol.flow { padding-left: 1.3em; } ol.flow li { margin: .35em 0; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px; overflow-x: auto;
+  font: 13px/1.5 var(--mono); }
+</style>
+
+<main>
+<div class="eyebrow">Note de conception · AFF3CT · 7 novembre 2026 · pilote local, rien de publié</div>
+<h1>AFF3CT Reproduced : les résultats FEC publiés, rejoués et tamponnés par leurs auteurs</h1>
+<p class="lede">L'idée : pour chaque papier de codage canal reproduit dans AFF3CT, obtenir le tampon de ses auteurs,
+le rejouer chaque semaine contre la version de développement, et lui donner une page permanente et un badge que les
+auteurs citent. Les agents font le gros du travail (revue, reproduction, vérification) ; l'humain garde la main sur
+ce qui sort (mails, validations).</p>
+<div class="links">
+  <a href="proto/">Prototype du site (7 entrées)</a>
+  <span class="muted">Dépôt local : <code>~/Projects/aff3ct-repro</code></span>
+</div>
+
+<h2>Pourquoi</h2>
+<ul>
+  <li><strong>Une raison d'agir pour les auteurs.</strong> Un auteur qui valide la reproduction de son papier y gagne
+  un badge, une page et un résultat qui reste rejouable ; AFF3CT y gagne une citation, et ses étudiants comme
+  utilisateurs.</li>
+  <li><strong>Personne ne le fait pour le FEC.</strong> Les badges ACM « Results Reproduced », ReScience C et Papers
+  with Code existent ailleurs ; aucun ne couvre le codage canal avec une chaîne de simulation commune.</li>
+  <li><strong>AFF3CT en a déjà la moitié.</strong> Le Hall of Fame du site marque déjà en bleu les résultats
+  « reproductibles avec AFF3CT », et le comparateur BER/FER lit le dépôt <code>error_rate_references</code>. Le
+  projet en est la suite : des reproductions vérifiées, versionnées et rejouées.</li>
+  <li><strong>C'est faisable par agents.</strong> Dans la nuit du 6 au 7 novembre, la piste polaire a reproduit
+  7 figures de 7 papiers, avec les décodeurs qui manquaient ; ce sont les premières entrées du pilote.</li>
+</ul>
+
+<h2>Ce que voit un auteur</h2>
+<p>Une page par figure reproduite (voir le prototype). Elle montre :</p>
+<ul>
+  <li>ses courbes (lues sur la figure publiée) superposées à celles d'AFF3CT, et l'écart en dB à chaque point ;</li>
+  <li>la liste des paramètres que son papier ne donne pas et qu'il a fallu supposer : c'est la partie la plus utile
+  pour lui, et pour nous ;</li>
+  <li>les lignes de commande exactes et la version d'AFF3CT ;</li>
+  <li>deux boutons, « ça reproduit notre résultat » et « corriger une hypothèse ou contester », qui ouvrent un
+  formulaire GitHub prérempli. Il n'y a ni serveur ni compte à créer ailleurs que sur GitHub.</li>
+</ul>
+<p>Une correction compte comme une vérification : on relance avec sa valeur et on lui redemande. Le cas « non
+reproduit » devient ainsi une invitation à répondre plutôt qu'un reproche.</p>
+
+<h2>Organisation</h2>
+<h3>Un dépôt à part, pas une branche par papier</h3>
+<p>Un dépôt <code>aff3ct/repro</code> (nom à choisir) avec un dossier par figure reproduite :</p>
+<pre>papers/&lt;id&gt;/paper.yaml   métadonnées, code et canal, courbes, hypothèses, critère, vérification
+papers/&lt;id&gt;/ref/         valeurs lues sur l'article
+papers/&lt;id&gt;/aff3ct/      courbes produites par AFF3CT (commande exacte en en-tête)
+papers/&lt;id&gt;/inputs/     fichiers nécessaires (ensemble gelé, automorphismes...)
+tools/repro.py           check | compare | run | site</pre>
+<p>Plusieurs papiers partagent un même décodeur (cette nuit, le DSCF sert à Chandesris et à Ercan), et une branche par
+papier divergerait vite de <code>develop</code>. Le code va donc dans AFF3CT par des PR normales, regroupées par
+fonctionnalité ; le dépôt de reproduction ne contient que des configurations et des données, et chaque entrée note la
+version d'AFF3CT qui a produit ses courbes.</p>
+
+<h3>Un statut calculé, jamais écrit à la main</h3>
+<p>Pour chaque point de l'article, on mesure l'écart horizontal à la courbe AFF3CT au même taux d'erreur
+(interpolation linéaire en Eb/N0, logarithmique en FER). Une entrée est <span class="pill ok">reproduite</span> si
+tous ses points sont à 0,15 dB ou moins, <span class="pill close">proche</span> à 0,3 dB, <span class="pill ko">non
+reproduite</span> au-delà. La lecture d'une figure en échelle logarithmique est précise à un facteur 1,3 environ, soit
+0,05 à 0,1 dB sur une courbe raide : d'où 0,15 dB par défaut. Les courbes de référence (SC, SCL de base) sont tracées
+et mesurées mais ne décident pas du statut.</p>
+
+<h3>Une CI chaque semaine</h3>
+<ul>
+  <li>Le samedi, la CI compile AFF3CT <code>develop</code> et rejoue chaque entrée en mode court (50 erreurs par
+  point, 120 s maximum).</li>
+  <li>Elle compare au stockage par un test statistique : un point échoue quand le log du FER s'écarte de plus de 4
+  écarts types (erreurs de trame poissonniennes des deux côtés). Un écart fixe en dB ne marche pas : avec 50
+  erreurs, le bruit seul dépasse 0,1 dB.</li>
+  <li>Elle recalcule aussi le statut contre l'article : un changement fait échouer la CI.</li>
+  <li>Elle publie ensuite les pages.</li>
+  <li>Elle tourne sur un runner auto-hébergé, les runners GitHub étant trop lents pour des simulations.</li>
+  <li>C'est aussi une régression scientifique pour AFF3CT, qui manque aujourd'hui : les tests actuels comparent des
+  sorties, pas des résultats publiés.</li>
+</ul>
+
+<h3>Le tampon</h3>
+<ul>
+  <li>Permalien par entrée (<code>aff3ct.github.io/repro/&lt;id&gt;/</code>) et badge SVG à mettre dans le papier ou
+  la présentation.</li>
+  <li>Chaque vérification d'auteur est archivée sur Zenodo (DOI), pour que le lien survive au site.</li>
+  <li>Papiers en préparation : même chaîne sur une entrée privée (dépôt ou branche privée), badge figé sur une version
+  et publié avec le papier. L'embargo est nécessaire : en double aveugle, rien ne doit être public avant
+  l'acceptation.</li>
+</ul>
+
+<h2>Le flux, par agents</h2>
+<ol class="flow">
+  <li><strong>Revue de littérature</strong> par famille (LDPC, turbo, polaire, BCH et RS, codes produits), en
+  commençant par les codes déjà dans AFF3CT et les décodeurs des normes 5G et 6G. Sortie : une liste priorisée de
+  figures reproductibles, avec ce que chaque papier donne et ne donne pas.</li>
+  <li><strong>Reproduction</strong> par un agent : décodeur manquant (PR AFF3CT), simulations, entrée complète avec
+  ses hypothèses.</li>
+  <li><strong>Vérification indépendante</strong> par un second agent, qui n'a pas vu le travail du premier : il relit
+  l'article et les hypothèses, rejoue l'entrée et signale tout désaccord.</li>
+  <li><strong>Contact</strong> : un mail par entrée, préparé dans Roustam, relu et envoyé par Mathieu, par lots
+  de 5 à 10.</li>
+  <li><strong>Réponse de l'auteur</strong> par le formulaire ; correction éventuelle et nouveau tour.</li>
+  <li><strong>Fusion</strong> dans le dépôt, CI hebdomadaire, page et badge.</li>
+</ol>
+
+<h2>Garde-fous, appris pendant la nuit</h2>
+<ul>
+  <li><strong>Erreurs silencieuses.</strong> Une option mal nommée (<code>--fbg-gen-method</code>) n'est qu'un
+  avertissement <code>(WW)</code> dans AFF3CT : une campagne entière a tourné en GA au lieu de 5G sans que je le
+  voie. Le lanceur du dépôt refuse donc tout résultat accompagné d'un <code>(WW)</code>. Il faudrait aussi un mode
+  strict dans AFF3CT lui-même.</li>
+  <li><strong>Statut calculé.</strong> Sur les 7 entrées, le calcul a corrigé deux de mes verdicts de la nuit :
+  Afisiadis passe de « proche » à « reproduit » (0,13 dB), et Johannsen de « reproduit » à « proche », AFF3CT étant
+  0,17 dB <em>meilleur</em> (simulation en flottant, l'article quantifie sur 6 bits). Un agent qui juge à l'œil se
+  trompe dans les deux sens.</li>
+  <li><strong>Ton.</strong> « Non reproduit » s'écrit avec les hypothèses testées et les causes probables, sans
+  conclure que l'article est faux. L'exemple d'Elkelesh (BP-List) : la cause la plus probable est une convention de
+  graphe que l'article ne précise pas.</li>
+  <li><strong>Mails.</strong> Des centaines de mails rédigés par IA à des chercheurs abîmeraient la réputation de
+  Mathieu et d'AFF3CT. La règle : peu de mails, personnalisés, signés et envoyés par un humain. L'adresse vient de
+  l'article ou de la page de l'auteur, une seule relance au maximum, et on retire l'entrée de la liste de contact sur
+  simple demande.</li>
+  <li><strong>Métadonnées.</strong> Titre, DOI et lieu de publication sont marqués « non vérifiés » tant qu'un humain
+  ne les a pas contrôlés : un agent se trompe facilement de version d'un papier.</li>
+</ul>
+
+<h2>Le pilote, aujourd'hui</h2>
+<p>Le dépôt local contient le format, l'outil (<code>check</code>, <code>compare</code>, <code>run</code>,
+<code>site</code>), la CI, le formulaire d'auteur et 7 entrées tirées de la nuit des décodeurs polaires.</p>
+<div class="table-wrap"><table>
+<thead><tr><th>Entrée</th><th>Figure</th><th class="n">Écart max</th><th>Statut calculé</th></tr></thead>
+<tbody>
+<tr><td>Chandesris et al. 2018, D-SCFlip</td><td>Fig. 6</td><td class="n">0,05 dB</td><td><span class="pill ok">reproduit</span></td></tr>
+<tr><td>Ercan et al. 2020, Fast-DSCF</td><td>Fig. 13</td><td class="n">0,05 dB</td><td><span class="pill ok">reproduit</span></td></tr>
+<tr><td>Afisiadis et al. 2014, SCFlip</td><td>Fig. 8</td><td class="n">0,13 dB</td><td><span class="pill ok">reproduit</span></td></tr>
+<tr><td>Pillet et al. 2020, SCAN et BP</td><td>Fig. 2</td><td class="n">0,11 dB</td><td><span class="pill ok">reproduit</span></td></tr>
+<tr><td>Geiselhart et al. 2021, AE-SC</td><td>Fig. 4</td><td class="n">0,07 dB</td><td><span class="pill ok">reproduit</span></td></tr>
+<tr><td>Johannsen et al. 2023, AE-SC</td><td>Fig. 4</td><td class="n">0,17 dB</td><td><span class="pill close">proche</span></td></tr>
+<tr><td>Elkelesh et al. 2018, BP-List</td><td>Fig. 1</td><td class="n">0,44 dB</td><td><span class="pill ko">non reproduit</span></td></tr>
+</tbody></table></div>
+<p class="muted">Écart max sur les courbes qui décident du statut. Le rejeu complet de l'entrée Pillet en mode court
+prend 1,4 s sur 8 cœurs de berthier et retombe sur les courbes stockées (30 points, aucun au-delà de 4 écarts types) ;
+un décalage injecté de 0,2 dB est détecté.</p>
+
+<div class="box"><h3>Ce qui manque avant d'écrire au premier auteur</h3>
+<ul>
+  <li>Les décodeurs de la branche <code>polar-decoders-overnight</code> ne sont pas dans <code>develop</code> : tant
+  qu'ils n'y sont pas, la CI ne peut pas rejouer ces entrées contre <code>develop</code>.</li>
+  <li>Le dépôt GitHub n'existe pas ; les boutons du prototype ne mènent nulle part pour l'instant.</li>
+  <li>Les métadonnées des 7 papiers sont à vérifier.</li>
+  <li>Un runner auto-hébergé est à choisir (berthier pour commencer ?).</li>
+</ul></div>
+
+<h2>Décisions à prendre</h2>
+<div class="box decide">
+<ol>
+  <li><strong>Gouvernance</strong> : en parler à Adrien, Camille et Romain avant toute chose publique ; c'est une
+  orientation du projet.</li>
+  <li><strong>Nom et hébergement</strong> : <code>aff3ct/repro</code> sur GitHub, pages sur
+  <code>aff3ct.github.io/repro</code> ?</li>
+  <li><strong>Critère</strong> : 0,15 dB pour « reproduit », 0,3 dB pour « proche », écart symétrique (être meilleur
+  que l'article compte aussi) ?</li>
+  <li><strong>Périmètre</strong> : seulement les codes et canaux déjà dans AFF3CT, ou aussi ceux qu'il faut ajouter
+  (comme cette nuit pour les constructions I<sub>min</sub>) ?</li>
+  <li><strong>Premiers auteurs</strong> : parmi Chandesris, Ercan, Pillet, Geiselhart et Elkelesh, lesquels contacter
+  en premier ? (Pillet et Ercan sont probablement les plus enclins à répondre.)</li>
+</ol>
+</div>
+
+<h2>Coût</h2>
+<ul>
+  <li><strong>Calcul.</strong> Une entrée à N = 256 se rejoue en secondes, une entrée SC-Flip à N = 1024 en quelques
+  minutes. Les décodeurs lents (BP-List complet : 0,2 s par trame) demandent un rejeu mensuel ou un mode court
+  limité aux SNR élevés.</li>
+  <li><strong>Agents.</strong> Ordre de grandeur de la nuit : une heure d'agent par figure quand le décodeur existe,
+  quelques heures quand il faut l'écrire, plus la vérification indépendante.</li>
+  <li><strong>Humain.</strong> Relire et envoyer les mails, puis trancher les cas contestés. Le reste est
+  automatisé.</li>
+</ul>
+</main>
+
+</body>
+</html>

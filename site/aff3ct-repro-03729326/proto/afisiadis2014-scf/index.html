@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Afisiadis, Fig. 8</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#fbfbf8;--fg:#1b1d1f;--muted:#5b6066;--line:#d9dcd6;--panel:#f1f2ee;--accent:#1f78b4;
+--ok:#33a02c;--close:#ff7f00;--ko:#e31a1c;--nd:#6a3d9a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;
+--line:#33373c;--panel:#1d2024;--accent:#a6cee3;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;--line:#33373c;--panel:#1d2024;--accent:#a6cee3;
+color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0;
+padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;padding-block:28px 64px}
+h1{font-size:1.5rem;line-height:1.25;text-wrap:balance;margin:.2em 0 .3em}
+h2{font-size:1.05rem;margin:2em 0 .6em;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+a{color:var(--accent)}
+.eyebrow{font:12px/1.4 "IBM Plex Mono",ui-monospace,monospace;color:var(--muted);letter-spacing:.04em}
+.muted{color:var(--muted)}
+.status{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12.5px;color:#fff;white-space:nowrap}
+.pill.reproduced{background:var(--ok)}.pill.close{background:var(--close)}.pill.not-reproduced{background:var(--ko)}
+.pill.no-data{background:var(--nd)}
+.figure{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}.plot .frame{fill:none;stroke:var(--muted)}
+.plot .tick{fill:var(--muted);font:11px "IBM Plex Mono",monospace}.plot .axis{fill:var(--fg);font:12px sans-serif}
+.legend{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.legend .sw{display:inline-block;width:14px;height:4px;margin-right:6px;vertical-align:middle}
+.key{font-size:12.5px;color:var(--muted);margin-top:6px}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:0}dt{color:var(--muted)}dd{margin:0}
+.assume{background:var(--panel);border-left:3px solid var(--close);padding:10px 16px 10px 28px;border-radius:4px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;overflow-x:auto;
+font:12.5px/1.5 "IBM Plex Mono",ui-monospace,monospace}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.btn{display:inline-block;padding:9px 16px;border-radius:6px;text-decoration:none;font-weight:600;
+border:1px solid var(--accent)}
+.draft{background:var(--panel);border:1px dashed var(--close);border-radius:6px;padding:8px 12px;font-size:13.5px;margin-bottom:18px}
+.btn.primary{background:var(--accent);color:var(--bg)}.btn.secondary{color:var(--accent)}
+@media (max-width:520px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
+</style></head><body><main>
+<div class="draft">Prototype: the aff3ct/repro repository does not exist yet, so the GitHub buttons lead nowhere for now. Statuses are computed from the data.</div><div class="eyebrow"><a href="../index.html">AFF3CT REPRODUCED</a> · afisiadis2014-scf</div>
+<h1>A low-complexity improved successive cancellation decoder for polar codes</h1>
+<div>O. Afisiadis, A. Balatsoukas-Stimming, A. Burg. <em>Asilomar Conference on Signals, Systems and Computers, 2014</em>. <a href="https://arxiv.org/abs/1412.5501">arXiv:1412.5501</a> <span class="muted">(bibliographic data not yet checked)</span></div>
+<div class="status"><svg xmlns="http://www.w3.org/2000/svg" width="134" height="20" role="img" aria-label="AFF3CT: reproduced"><rect width="52" height="20" fill="#000000"/><rect x="52" width="82" height="20" fill="#33a02c"/><g fill="#ffffff" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11"><text x="26" y="14" text-anchor="middle">AFF3CT</text><text x="93" y="14" text-anchor="middle">reproduced</text></g></svg><span>Target: <strong>Fig. 8</strong></span>
+<span>Verification: <strong>pending</strong>. Awaiting the authors.</span></div>
+
+<h2>Paper against AFF3CT</h2>
+<div class="figure"><svg viewBox="0 0 640 420" class="plot" role="img" aria-label="Fig. 8"><line x1="64" x2="624" y1="374.0" y2="374.0" class="grid"/><text x="58" y="378.0" class="tick" text-anchor="end">1e-6</text><line x1="64" x2="624" y1="314.0" y2="314.0" class="grid"/><text x="58" y="318.0" class="tick" text-anchor="end">1e-5</text><line x1="64" x2="624" y1="254.0" y2="254.0" class="grid"/><text x="58" y="258.0" class="tick" text-anchor="end">1e-4</text><line x1="64" x2="624" y1="194.0" y2="194.0" class="grid"/><text x="58" y="198.0" class="tick" text-anchor="end">1e-3</text><line x1="64" x2="624" y1="134.0" y2="134.0" class="grid"/><text x="58" y="138.0" class="tick" text-anchor="end">1e-2</text><line x1="64" x2="624" y1="74.0" y2="74.0" class="grid"/><text x="58" y="78.0" class="tick" text-anchor="end">1e-1</text><line x1="64" x2="624" y1="14.0" y2="14.0" class="grid"/><text x="58" y="18.0" class="tick" text-anchor="end">1e0</text><line x1="64.0" x2="64.0" y1="14" y2="374" class="grid"/><text x="64.0" y="390" class="tick" text-anchor="middle">2</text><line x1="250.7" x2="250.7" y1="14" y2="374" class="grid"/><text x="250.7" y="390" class="tick" text-anchor="middle">2.5</text><line x1="437.3" x2="437.3" y1="14" y2="374" class="grid"/><text x="437.3" y="390" class="tick" text-anchor="middle">3</text><line x1="624.0" x2="624.0" y1="14" y2="374" class="grid"/><text x="624.0" y="390" class="tick" text-anchor="middle">3.5</text><rect x="64" y="14" width="560" height="360" class="frame"/><text x="344" y="412" class="axis" text-anchor="middle">Eb/N0 (dB)</text><text x="14" y="194" class="axis" text-anchor="middle" transform="rotate(-90 14 194)">FER</text><path d="M64.0,77.7 L157.3,100.9 L250.7,128.2 L344.0,155.6 L437.3,191.3 L530.7,223.0 L624.0,263.3" fill="none" stroke="var(--fg)" stroke-width="2"/><rect x="60.0" y="65.2" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 2 dB, 1.20e-01</title></rect><rect x="246.7" y="116.2" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 2.5 dB, 1.70e-02</title></rect><rect x="433.3" y="183.2" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 3 dB, 1.30e-03</title></rect><rect x="620.0" y="259.3" width="8" height="8" fill="var(--fg)" stroke="var(--bg)" stroke-width="1"><title>SC (paper): 3.5 dB, 7.00e-05</title></rect><path d="M64.0,105.2 L157.3,133.2 L250.7,177.1 L344.0,214.9 L437.3,259.6 L530.7,309.7 L624.0,358.8" fill="none" stroke="#fb9a99" stroke-width="2"/><rect x="60.0" y="108.3" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCFlip T=32 (paper): 2 dB, 2.30e-02</title></rect><rect x="246.7" y="183.2" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCFlip T=32 (paper): 2.5 dB, 1.30e-03</title></rect><rect x="433.3" y="281.4" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCFlip T=32 (paper): 3 dB, 3.00e-05</title></rect><rect x="620.0" y="370.0" width="8" height="8" fill="#fb9a99" stroke="var(--bg)" stroke-width="1"><title>SCFlip T=32 (paper): 3.5 dB, 1.00e-06</title></rect></svg><ul class="legend"><li><span class="sw" style="background:var(--fg)"></span>SC</li><li><span class="sw" style="background:#fb9a99"></span>SCFlip T=32</li></ul>
+<div class="key">Squares: values read off the paper. Lines: AFF3CT (dashed: baseline). Hover a square for its value.</div></div>
+<div class="table-wrap"><table><thead><tr><th>Curve</th><th class="n">Points</th><th class="n">Mean gap</th>
+<th class="n">Max gap</th><th>Status</th></tr></thead><tbody>
+<tr><td>SC</td><td class="n">3</td><td class="n">-0.03 dB</td><td class="n">0.07 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+<tr><td>SCFlip T=32</td><td class="n">3</td><td class="n">+0.09 dB</td><td class="n">0.13 dB</td><td><span class="pill reproduced">reproduced</span></td></tr>
+</tbody></table></div>
+<p class="muted">Gap: Eb/N0 of AFF3CT minus Eb/N0 of the paper at the same error rate (positive: AFF3CT worse).
+Reproduced within 0.15 dB, close within 0.3 dB.</p>
+
+
+<h2>What the paper does not say</h2>
+<p>These parameters had to be assumed. If one of them is wrong, the correction is what we need most.</p>
+<ol class="assume"><li>CRC polynomial: 0x8005 (16-IBM); the paper does not give it.</li><li>Frozen set: Gaussian approximation at each simulated Eb/N0 (AFF3CT default); the paper does not give its construction.</li><li>R = 1/2 counts the CRC as information for SCF (K = 512 + 16), SC is simulated without CRC (K = 512).</li><li>T = 32 counts the additional attempts.</li></ol>
+
+<h2>Setup</h2>
+<dl><dt>code</dt><dd>polar N = 1024, R = 1/2, 16-bit CRC</dd><dt>decoders</dt><dd>SC, SCFlip T = 32</dd><dt>channel</dt><dd>BPSK, AWGN</dd><dt>metric</dt><dd>FER</dd><dt>AFF3CT</dt><dd>branch polar-decoders-overnight (91c1ea747); curves produced by: aff3ct-scf-1c8ff7c</dd></dl>
+
+<h2>For the authors</h2>
+<p>Does AFF3CT reproduce your result? One click opens a short form on GitHub (aff3ct/repro).
+A correction of an assumption counts as a verification: we rerun and you check again.</p>
+<div class="actions"><a class="btn primary" href="https://github.com/aff3ct/repro/issues/new?template=verification.yml&amp;entry=afisiadis2014-scf&amp;verdict=confirm&amp;title=%5Bafisiadis2014-scf%5D+confirm">Yes, it reproduces our result</a>
+<a class="btn secondary" href="https://github.com/aff3ct/repro/issues/new?template=verification.yml&amp;entry=afisiadis2014-scf&amp;verdict=correct+an+assumption&amp;title=%5Bafisiadis2014-scf%5D+correct+an+assumption">Correct an assumption or contest</a></div>
+
+<h2>Replay</h2>
+<pre># SC
+aff3ct -C POLAR -N 1024 --ter-freq 0 -e 300 --sim-stop-time 400 -K 512 -m 2.0 -M 3.6 -s 0.25 --dec-type SC --dec-implem FLAT
+# SCFlip T=32
+aff3ct -C POLAR -N 1024 --ter-freq 0 -e 300 --sim-stop-time 400 -K 528 --crc-poly 16-IBM -m 2.0 -M 3.6 -s 0.25 --dec-type SCF --dec-implem FLAT --dec-polar-nodes SSC,MAX=1 --dec-flips 32</pre>
+
+<h2>Cite</h2>
+<p>Permanent link: <a href="https://aff3ct.github.io/repro/afisiadis2014-scf/">https://aff3ct.github.io/repro/afisiadis2014-scf/</a>. Badge: <code>badge.svg</code> next to this page.</p>
+<pre>\href{https://aff3ct.github.io/repro/afisiadis2014-scf/}{\includegraphics[height=1.6ex]{aff3ct-badge}} Reproduced with AFF3CT: https://aff3ct.github.io/repro/afisiadis2014-scf/</pre>
+</main></body></html>

@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>AFF3CT Reproduced</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+:root{--bg:#fbfbf8;--fg:#1b1d1f;--muted:#5b6066;--line:#d9dcd6;--panel:#f1f2ee;--accent:#1f78b4;
+--ok:#33a02c;--close:#ff7f00;--ko:#e31a1c;--nd:#6a3d9a}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;
+--line:#33373c;--panel:#1d2024;--accent:#a6cee3;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#15171a;--fg:#e8e9e6;--muted:#a3a8ad;--line:#33373c;--panel:#1d2024;--accent:#a6cee3;
+color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.55 "IBM Plex Sans",system-ui,sans-serif;margin:0;
+padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+main{max-width:860px;margin:0 auto;padding-block:28px 64px}
+h1{font-size:1.5rem;line-height:1.25;text-wrap:balance;margin:.2em 0 .3em}
+h2{font-size:1.05rem;margin:2em 0 .6em;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+a{color:var(--accent)}
+.eyebrow{font:12px/1.4 "IBM Plex Mono",ui-monospace,monospace;color:var(--muted);letter-spacing:.04em}
+.muted{color:var(--muted)}
+.status{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:14px 0}
+.pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:12.5px;color:#fff;white-space:nowrap}
+.pill.reproduced{background:var(--ok)}.pill.close{background:var(--close)}.pill.not-reproduced{background:var(--ko)}
+.pill.no-data{background:var(--nd)}
+.figure{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px}
+.plot{width:100%;height:auto;display:block}
+.plot .grid{stroke:var(--line);stroke-width:1}.plot .frame{fill:none;stroke:var(--muted)}
+.plot .tick{fill:var(--muted);font:11px "IBM Plex Mono",monospace}.plot .axis{fill:var(--fg);font:12px sans-serif}
+.legend{list-style:none;padding:0;margin:8px 0 0;display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px}
+.legend .sw{display:inline-block;width:14px;height:4px;margin-right:6px;vertical-align:middle}
+.key{font-size:12.5px;color:var(--muted);margin-top:6px}
+.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em}
+.n{text-align:right;font-variant-numeric:tabular-nums}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 16px;margin:0}dt{color:var(--muted)}dd{margin:0}
+.assume{background:var(--panel);border-left:3px solid var(--close);padding:10px 16px 10px 28px;border-radius:4px}
+pre{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:12px;overflow-x:auto;
+font:12.5px/1.5 "IBM Plex Mono",ui-monospace,monospace}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}
+.btn{display:inline-block;padding:9px 16px;border-radius:6px;text-decoration:none;font-weight:600;
+border:1px solid var(--accent)}
+.draft{background:var(--panel);border:1px dashed var(--close);border-radius:6px;padding:8px 12px;font-size:13.5px;margin-bottom:18px}
+.btn.primary{background:var(--accent);color:var(--bg)}.btn.secondary{color:var(--accent)}
+@media (max-width:520px){dl{grid-template-columns:1fr}dt{margin-top:6px}}
+</style></head><body><main>
+<div class="draft">Prototype: the aff3ct/repro repository does not exist yet, so the GitHub buttons lead nowhere for now. Statuses are computed from the data.</div><div class="eyebrow">AFF3CT REPRODUCED</div>
+<h1>Published FEC results, reproduced with AFF3CT and verified by their authors</h1>
+<p>7 entries: 5 reproduced, 1 close, 1 not reproduced. Each entry is replayed every week against the development version of AFF3CT.</p>
+<div class="table-wrap"><table><thead><tr><th>Entry</th><th>Paper</th><th>Status</th><th>Authors</th></tr></thead>
+<tbody>
+<tr><td><a href="afisiadis2014-scf/index.html">afisiadis2014-scf</a></td><td>A low-complexity improved successive cancellation decoder for polar codes<br><span class="muted">O. Afisiadis, A. Balatsoukas-Stimming, A. Burg, Fig. 8</span></td><td><span class="pill reproduced">reproduced</span></td><td>pending</td></tr>
+<tr><td><a href="chandesris2018-dscf/index.html">chandesris2018-dscf</a></td><td>Dynamic-SCFlip decoding of polar codes<br><span class="muted">L. Chandesris, V. Savin, D. Declercq, Fig. 6</span></td><td><span class="pill reproduced">reproduced</span></td><td>pending</td></tr>
+<tr><td><a href="elkelesh2018-bpl/index.html">elkelesh2018-bpl</a></td><td>Belief propagation list decoding of polar codes<br><span class="muted">A. Elkelesh, M. Ebada, S. Cammerer, S. ten Brink, Fig. 1</span></td><td><span class="pill not-reproduced">not reproduced</span></td><td>pending</td></tr>
+<tr><td><a href="ercan2020-fast-dscf/index.html">ercan2020-fast-dscf</a></td><td>Practical dynamic SC-Flip polar decoders: algorithm and implementation<br><span class="muted">F. Ercan, T. Tonnellier, N. Doan, W. J. Gross, Fig. 13</span></td><td><span class="pill reproduced">reproduced</span></td><td>pending</td></tr>
+<tr><td><a href="geiselhart2021-aed/index.html">geiselhart2021-aed</a></td><td>On the automorphism group of polar codes<br><span class="muted">M. Geiselhart, A. Elkelesh, M. Ebada, S. Cammerer, S. ten Brink, Fig. 4, I_min = {31, 57}</span></td><td><span class="pill reproduced">reproduced</span></td><td>pending</td></tr>
+<tr><td><a href="johannsen2023-scal/index.html">johannsen2023-scal</a></td><td>Successive cancellation automorphism list decoding of polar codes<br><span class="muted">L. Johannsen, C. Kestel, M. Geiselhart, T. Vogt, S. ten Brink, N. Wehn, Fig. 4, P(128, 60), I_min = {27}</span></td><td><span class="pill close">close</span></td><td>pending</td></tr>
+<tr><td><a href="pillet2020-scanl-fig2/index.html">pillet2020-scanl-fig2</a></td><td>SCAN list decoding of polar codes<br><span class="muted">C. Pillet, C. Condo, V. Bioglio, Fig. 2</span></td><td><span class="pill reproduced">reproduced</span></td><td>pending</td></tr>
+</tbody></table></div>
+</main></body></html>
