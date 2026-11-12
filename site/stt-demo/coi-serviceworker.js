@@ -32,11 +32,13 @@ if (typeof window === 'undefined') {
                 credentials: "omit",
             })
             : r;
-        // Ajout stt-demo : les fichiers du site sont toujours revalidés auprès du serveur (réponse 304 si rien
-        // n'a changé), pour qu'une nouvelle version de la page s'affiche sans attendre l'expiration du cache.
-        const sameOrigin = r.method === "GET" && new URL(r.url).origin === self.location.origin;
+        // Ajout stt-demo : la page elle-même est revalidée auprès du serveur à chaque ouverture, pour qu'une
+        // nouvelle version s'affiche sans attendre l'expiration du cache. En cas d'échec, requête normale.
+        // Les autres fichiers passent par la requête d'origine ; la page les appelle avec un numéro de version.
+        const fresh = r.mode === "navigate" && r.method === "GET";
         event.respondWith(
-            (sameOrigin ? fetch(r.url, { cache: "no-cache", credentials: "same-origin" }) : fetch(request))
+            (fresh ? fetch(r.url, { cache: "no-cache", credentials: "same-origin" }).catch(() => fetch(request))
+                   : fetch(request))
                 .then((response) => {
                     if (response.status === 0) {
                         return response;

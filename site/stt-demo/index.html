@@ -135,7 +135,8 @@ a { color: var(--p1); }
         <li><strong>Whisper small</strong> : 244 M de paramètres, poids quantifiés sur 8 bits, environ 250 Mo. Traitement par fenêtres de 30 s.</li>
         <li><strong>Whisper large</strong> : <code>large-v3-turbo</code> (encodeur de large-v3, décodeur réduit à 4 couches), poids quantifiés sur 8 bits, environ 1,1 Go. Traitement par fenêtres de 30 s.</li>
         <li>Micro : l'enregistrement est gardé en mémoire dans la page, puis transcrit comme un fichier une fois arrêté ; il n'est ni envoyé ni sauvegardé.</li>
-        <li>Sherpa-ONNX et Vosk démarrent tout de suite, en parallèle. Les deux Whisper passent l'un après l'autre, pour ne pas se disputer le processeur ni la mémoire.</li>
+        <li>Sur ordinateur, Sherpa-ONNX et Vosk démarrent tout de suite, en parallèle, et les deux Whisper passent l'un après l'autre. Sur téléphone, les quatre moteurs passent l'un après l'autre.</li>
+        <li>« Chargement du modèle » et « Transcription » sont mesurés séparément. Au premier lancement, le chargement comprend le téléchargement : c'est lui qui domine, pas le calcul.</li>
         <li>« × temps réel » : durée de l'audio divisée par le temps de calcul. Ces chiffres sont ceux de ce navigateur sur cet ordinateur ; ils classent les moteurs entre eux mais ne prédisent pas la vitesse sur une carte embarquée.</li>
         <li>Les modèles Whisper et le modèle Sherpa sont téléchargés depuis huggingface.co, la bibliothèque transformers.js depuis cdn.jsdelivr.net, le reste depuis ce site. Une fois les modèles en cache, la page fonctionne sans connexion.</li>
       </ul>
@@ -145,6 +146,7 @@ a { color: var(--p1); }
 
 <script type="module">
 const SR = 16000;
+const V = '6'; // version des scripts : à augmenter à chaque changement des workers ou de vendor/
 const hc = navigator.hardwareConcurrency || 4;
 const THREADS = self.crossOriginIsolated ? Math.max(1, Math.min(8, Math.floor(hc / 2))) : 1;
 
@@ -235,7 +237,7 @@ const MOBILE = navigator.userAgentData && typeof navigator.userAgentData.mobile 
   : /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 if (MOBILE) {
   ui.wlarge.enabled.checked = false;
-  $('#mobnote').textContent = ' Sur téléphone, Whisper large (1,1 Go) est décoché par défaut : il dépasse souvent la mémoire disponible.';
+  $('#mobnote').textContent = ' Sur téléphone, les moteurs passent l\'un après l\'autre pour ménager la mémoire, et Whisper large (1,1 Go) est décoché par défaut : il dépasse souvent la mémoire disponible.';
 }
 
 $('#iso').textContent = self.crossOriginIsolated
@@ -358,21 +360,23 @@ rec.addEventListener('click', async () => {
 });
 
 // ---------- Moteurs en worker (Sherpa, Whisper) ----------
-function runWorker(e, id) {
+function runWorker(e, id, attempt = 0) {
   const u = ui[e.id];
   return new Promise((resolve) => {
     if (!workers[e.id]) {
       workers[e.id] = e.id === 'sherpa'
-        ? new Worker('workers/sherpa.js')
-        : new Worker('workers/whisper.js', { type: 'module' });
+        ? new Worker('workers/sherpa.js?v=' + V)
+        : new Worker('workers/whisper.js?v=' + V, { type: 'module' });
       u.loadMs = null;
     }
+    let got = false; // le worker a-t-il déjà répondu ?
     const w = workers[e.id];
     const fresh = u.loadMs == null;
     u.status(fresh ? 'Téléchargement du modèle' : 'Transcription', null);
     u.progress(fresh ? 0 : null, fresh ? 'dl' : 'wait');
     w.onmessage = (ev) => {
       if (id !== runId) return;
+      got = true;
       const m = ev.data;
       if (m.type === 'load') {
         const f = m.loaded / m.total;
@@ -398,8 +402,14 @@ function runWorker(e, id) {
     };
     w.onerror = (ev) => {
       if (id !== runId) return;
-      fail(u, ev.message || 'erreur du worker');
       w.terminate(); delete workers[e.id];
+      // Sans message et sans réponse préalable : le script du moteur n'a pas pu être chargé. On réessaie.
+      if (!got && !ev.message && attempt < 2) {
+        u.status('Nouvelle tentative de chargement du moteur'); u.progress(null, 'wait');
+        setTimeout(() => { if (id === runId) runWorker(e, id, attempt + 1).then(resolve); else resolve(); }, 1200);
+        return;
+      }
+      fail(u, ev.message || "le moteur n'a pas pu être chargé (connexion instable ou mémoire insuffisante). Relancer pour réessayer.");
       resolve();
     };
     w.postMessage({ type: 'run', cfg: e.cfg, pcm });
@@ -443,7 +453,7 @@ function loadVoskLib() {
         try {
           await new Promise((res, rej) => {
             const sc = document.createElement('script');
-            sc.src = 'vendor/vosk.js' + (i ? '?essai=' + i : '');
+            sc.src = 'vendor/vosk.js?v=' + V + (i ? '&essai=' + i : '');
             sc.onload = res; sc.onerror = rej;
             document.head.append(sc);
           });
@@ -540,6 +550,20 @@ async function start() {
   const on = (k) => ui[k].enabled.checked;
   const by = Object.fromEntries(ENGINES.map((e) => [e.id, e]));
   const jobs = [];
+  if (MOBILE) {
+    // Téléphone : un moteur à la fois, et sa mémoire est rendue avant de passer au suivant.
+    // Les temps mesurés ne sont ainsi pas faussés par les autres moteurs.
+    const order = ['sherpa', 'vosk', 'wsmall', 'wlarge'].filter(on);
+    for (const k of order.slice(1)) { ui[k].status('En attente'); ui[k].progress(null, 'wait'); }
+    jobs.push((async () => {
+      for (const k of order) {
+        if (id !== runId) return;
+        await (k === 'vosk' ? runVosk(by.vosk, id) : runWorker(by[k], id));
+        if (workers[k]) { workers[k].terminate(); delete workers[k]; }
+        if (k === 'vosk' && voskModel) { try { voskModel.terminate(); } catch {} voskModel = null; }
+      }
+    })());
+  } else {
   if (on('sherpa')) jobs.push(runWorker(by.sherpa, id));
   if (on('vosk')) jobs.push(runVosk(by.vosk, id));
   jobs.push((async () => {
@@ -548,6 +572,7 @@ async function start() {
     if (id !== runId) return;
     if (on('wlarge')) await runWorker(by.wlarge, id);
   })());
+  }
   await Promise.all(jobs);
   if (id === runId) end();
 }

@@ -80,6 +80,10 @@ async function load(cfg) {
     ruleFsts: '',
     ruleFars: '',
   });
+  // Le modèle est maintenant en mémoire dans le moteur : la copie du système de fichiers ne sert plus.
+  for (const name of ['encoder.onnx', 'decoder.onnx', 'joiner.onnx', 'tokens.txt']) {
+    try { Module.FS.unlink('/' + name); } catch (e) { /* sans gravité */ }
+  }
   postMessage({ type: 'ready', loadMs: performance.now() - t0 });
 }
 
