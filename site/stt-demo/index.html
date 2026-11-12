@@ -143,7 +143,6 @@ a { color: var(--p1); }
   </div>
 </main>
 
-<script src="vendor/vosk.js"></script>
 <script type="module">
 const SR = 16000;
 const hc = navigator.hardwareConcurrency || 4;
@@ -432,11 +431,41 @@ async function prefetch(url, onProgress) {
   }
 }
 
+// La bibliothèque (5,8 Mo) est chargée à la demande, avec nouvelles tentatives : sur une connexion
+// mobile, un chargement raté laissait « Vosk is not defined ».
+let voskLib = null;
+function loadVoskLib() {
+  const ok = () => typeof window.Vosk === 'object' && typeof window.Vosk.createModel === 'function';
+  if (ok()) return Promise.resolve();
+  if (!voskLib) {
+    voskLib = (async () => {
+      for (let i = 0; i < 3; i++) {
+        try {
+          await new Promise((res, rej) => {
+            const sc = document.createElement('script');
+            sc.src = 'vendor/vosk.js' + (i ? '?essai=' + i : '');
+            sc.onload = res; sc.onerror = rej;
+            document.head.append(sc);
+          });
+          if (ok()) return;
+        } catch {}
+        await new Promise((res) => setTimeout(res, 800));
+      }
+      voskLib = null;
+      throw new Error("la bibliothèque Vosk n'a pas pu être chargée (connexion instable ?). Relancer pour réessayer.");
+    })();
+  }
+  return voskLib;
+}
+
 async function runVosk(e, id) {
   const u = ui.vosk;
   try {
     if (!voskModel) {
       const t0 = performance.now();
+      u.status('Chargement de la bibliothèque'); u.progress(null, 'wait');
+      await loadVoskLib();
+      if (id !== runId) return;
       let known = false;
       try { known = localStorage.getItem('stt-demo-vosk') === e.cfg.url; } catch {}
       if (!known) {
