@@ -32,8 +32,11 @@ if (typeof window === 'undefined') {
                 credentials: "omit",
             })
             : r;
+        // Ajout stt-demo : les fichiers du site sont toujours revalidés auprès du serveur (réponse 304 si rien
+        // n'a changé), pour qu'une nouvelle version de la page s'affiche sans attendre l'expiration du cache.
+        const sameOrigin = r.method === "GET" && new URL(r.url).origin === self.location.origin;
         event.respondWith(
-            fetch(request)
+            (sameOrigin ? fetch(r.url, { cache: "no-cache", credentials: "same-origin" }) : fetch(request))
                 .then((response) => {
                     if (response.status === 0) {
                         return response;
