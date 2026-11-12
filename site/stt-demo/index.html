@@ -112,6 +112,21 @@ a { color: var(--p1); }
   <div class="grid" id="grid"></div>
 
   <div class="panel" style="margin-top:16px">
+    <h2>Stockage sur cet appareil</h2>
+    <p style="margin-top:8px">Les modèles téléchargés sont enregistrés par le navigateur sur cet appareil, pour ne pas avoir à les retélécharger à chaque visite. Ils y restent après la fermeture de la page et occupent de la place sur le disque ou dans le stockage du téléphone.</p>
+    <ul style="margin:0 0 8px; padding-left:20px">
+      <li>Seuls les moteurs déjà lancés sont enregistrés : Sherpa-ONNX 71 Mo, Vosk environ 55 Mo, Whisper small 250 Mo, Whisper large 1,1 Go.</li>
+      <li>La mémoire vive utilisée pendant la transcription n'est pas concernée : elle est rendue dès que l'onglet est fermé.</li>
+      <li>Les audios (fichiers ou enregistrements au micro) ne sont jamais enregistrés.</li>
+      <li>Le bouton ci-dessous supprime les modèles de cet appareil. Ils seront simplement retéléchargés au prochain lancement.</li>
+    </ul>
+    <div class="controls" style="margin-top:10px">
+      <button id="purge" disabled>Supprimer les modèles téléchargés</button>
+      <span id="storeinfo" class="sub" style="margin:0"></span>
+    </div>
+  </div>
+
+  <div class="panel">
     <details>
       <summary>Modèles, mesures et limites</summary>
       <ul>
@@ -509,6 +524,7 @@ async function start() {
 }
 
 function end() {
+  refreshStorage();
   running = false;
   go.disabled = !pcm; stop.disabled = true;
   for (const e of ENGINES) ui[e.id].enabled.disabled = false;
@@ -525,6 +541,40 @@ function stopAll() {
   }
   end();
 }
+
+// ---------- Stockage des modèles ----------
+const storeInfo = $('#storeinfo'), purge = $('#purge');
+async function refreshStorage(prefix = '') {
+  try {
+    const u = (await navigator.storage.estimate()).usage || 0;
+    purge.disabled = u < 1e6;
+    storeInfo.textContent = prefix + (u < 1e6 ? "Aucun modèle enregistré sur cet appareil."
+                                              : `Espace occupé sur cet appareil : ${fmtMo(u)}.`);
+  } catch {
+    purge.disabled = false;
+    storeInfo.textContent = prefix + "Espace occupé : non mesurable dans ce navigateur.";
+  }
+}
+purge.addEventListener('click', async () => {
+  if (!confirm('Supprimer de cet appareil les modèles téléchargés ? Ils seront retéléchargés au prochain lancement.')) return;
+  if (running) stopAll();
+  purge.disabled = true;
+  storeInfo.textContent = 'Suppression en cours';
+  for (const k of Object.keys(workers)) { workers[k].terminate(); delete workers[k]; }
+  if (voskModel) { try { voskModel.terminate(); } catch {} voskModel = null; }
+  for (const e of ENGINES) ui[e.id].loadMs = null;
+  try { for (const k of ['transformers-cache', 'stt-demo-modeles-v1']) await caches.delete(k); } catch {}
+  await new Promise((res) => {
+    try {
+      const r = indexedDB.deleteDatabase('/vosk');
+      r.onsuccess = r.onerror = r.onblocked = () => res();
+    } catch { res(); }
+  });
+  try { localStorage.removeItem('stt-demo-vosk'); } catch {}
+  await new Promise((res) => setTimeout(res, 800));
+  await refreshStorage('Modèles supprimés. ');
+});
+refreshStorage();
 
 go.addEventListener('click', start);
 stop.addEventListener('click', stopAll);
