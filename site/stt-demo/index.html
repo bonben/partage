@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:,">
+<title>Comparaison de moteurs de reconnaissance vocale</title>
+<script src="coi-serviceworker.js"></script>
+<style>
+:root {
+  --bg: #f6f7f9; --card: #ffffff; --text: #1b1f24; --muted: #5d6673; --line: #dfe3e8; --track: #e9ecf0;
+  --p1: rgb(31,120,180); --p3: rgb(51,160,44); --p7: rgb(255,127,0); --p9: rgb(106,61,154); --p5: rgb(227,26,28);
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14171b; --card: #1d2127; --text: #e8ebef; --muted: #9aa4b1; --line: #2e343c; --track: #2a3038;
+    --p1: rgb(166,206,227); --p3: rgb(178,223,138); --p7: rgb(253,191,111); --p9: rgb(202,178,214); --p5: rgb(251,154,153); }
+}
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1500px; margin: 0 auto; padding: 24px 16px 48px; }
+h1 { font-size: 1.5rem; margin: 0 0 4px; }
+h2 { font-size: 1.05rem; margin: 0; }
+p { margin: 0 0 8px; }
+.sub { color: var(--muted); margin-bottom: 16px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.local { border-left: 4px solid var(--p3); }
+#drop { border: 2px dashed var(--line); border-radius: 10px; padding: 22px 16px; text-align: center; cursor: pointer; }
+#drop.over { border-color: var(--p1); }
+#drop strong { display: block; }
+#fileinfo { color: var(--muted); margin-top: 6px; }
+.controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin-top: 14px; }
+button { font: inherit; border-radius: 8px; border: 1px solid var(--line); background: var(--card); color: var(--text);
+  padding: 8px 14px; cursor: pointer; }
+button.primary { background: var(--p1); border-color: var(--p1); color: #fff; font-weight: 600; }
+@media (prefers-color-scheme: dark) { button.primary { color: #14171b; } }
+button:disabled { opacity: .5; cursor: default; }
+audio { flex: 1 1 320px; min-width: 240px; height: 40px; }
+label.opt { color: var(--muted); display: flex; gap: 6px; align-items: center; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1150px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }
+.engine { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--c); border-radius: 10px;
+  padding: 14px; display: flex; flex-direction: column; min-width: 0; }
+.engine header { display: flex; align-items: center; gap: 8px; }
+.engine header input { width: 16px; height: 16px; accent-color: var(--c); }
+.meta { color: var(--muted); font-size: .85rem; margin: 6px 0 10px; min-height: 5.2em; }
+.status { font-size: .9rem; display: flex; justify-content: space-between; gap: 8px; }
+.status .pct { font-variant-numeric: tabular-nums; color: var(--muted); }
+.bar { height: 8px; background: var(--track); border-radius: 4px; overflow: hidden; margin: 6px 0 4px; }
+.bar > div { height: 100%; width: 0; background: var(--c); transition: width .15s linear; }
+.bar.dl > div { opacity: .45; }
+.bar.wait > div { width: 100% !important; opacity: .25; animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .6; } }
+.stats { color: var(--muted); font-size: .85rem; min-height: 2.6em; font-variant-numeric: tabular-nums; }
+.text { border-top: 1px solid var(--line); margin-top: 8px; padding-top: 10px; flex: 1; min-height: 9em;
+  white-space: pre-wrap; overflow-wrap: anywhere; }
+.text .partial { color: var(--muted); }
+.text:empty::before { content: "La transcription s'affichera ici."; color: var(--muted); }
+.copy { align-self: flex-end; margin-top: 8px; font-size: .85rem; padding: 4px 10px; }
+.err { color: var(--p5); }
+details { color: var(--muted); }
+details summary { cursor: pointer; color: var(--text); }
+details ul { margin: 8px 0 0; padding-left: 20px; }
+a { color: var(--p1); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Comparaison de moteurs de reconnaissance vocale</h1>
+  <p class="sub">Sherpa-ONNX, Vosk, Whisper small et Whisper large transcrivent le même fichier, côte à côte, dans ce navigateur.</p>
+
+  <div class="panel local">
+    <strong>Traitement local.</strong> Le fichier audio est décodé et transcrit sur cet ordinateur, par le processeur (WebAssembly, sans carte graphique). Il n'est envoyé à aucun serveur.
+    Le seul trafic réseau est le téléchargement des modèles au premier lancement ; ils sont ensuite gardés en cache par le navigateur.
+    <span id="iso"></span>
+  </div>
+
+  <div class="panel">
+    <div id="drop" tabindex="0" role="button" aria-label="Choisir un fichier audio">
+      <strong>Déposer un fichier audio ici, ou cliquer pour le choisir</strong>
+      <span class="sub">wav, mp3, m4a, ogg, flac, opus, ou la piste son d'une vidéo (mp4, webm) : tout ce que le navigateur sait décoder. Langue attendue : français.</span>
+      <div id="fileinfo"></div>
+    </div>
+    <input id="file" type="file" accept="audio/*,video/*,.wav,.mp3,.m4a,.ogg,.oga,.flac,.opus,.aac,.webm,.mp4,.mkv" hidden>
+    <div class="controls">
+      <button id="go" class="primary" disabled>Lire et transcrire</button>
+      <button id="stop" disabled>Arrêter</button>
+      <audio id="player" controls></audio>
+      <label class="opt"><input id="playopt" type="checkbox" checked> lire l'audio pendant la transcription</label>
+    </div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+
+  <div class="panel" style="margin-top:16px">
+    <details>
+      <summary>Modèles, mesures et limites</summary>
+      <ul>
+        <li><strong>Sherpa-ONNX</strong> : Zipformer transducteur en flux, modèle français communautaire Kroko (2025-08-06, licence CC BY-SA), environ 71 Mo. Un seul fil d'exécution. C'est le type de modèle visé pour une cible embarquée.</li>
+        <li><strong>Vosk</strong> : Kaldi (TDNN et graphe de décodage), <code>vosk-model-small-fr-0.22</code> (Apache 2.0), 42 Mo. Un seul fil. Sortie en minuscules, sans ponctuation.</li>
+        <li><strong>Whisper small</strong> : 244 M de paramètres, poids quantifiés sur 8 bits, environ 250 Mo. Traitement par fenêtres de 30 s.</li>
+        <li><strong>Whisper large</strong> : <code>large-v3-turbo</code> (encodeur de large-v3, décodeur réduit à 4 couches), poids quantifiés sur 8 bits, environ 1,1 Go. Traitement par fenêtres de 30 s.</li>
+        <li>Sherpa-ONNX et Vosk démarrent tout de suite, en parallèle. Les deux Whisper passent l'un après l'autre, pour ne pas se disputer le processeur ni la mémoire.</li>
+        <li>« × temps réel » : durée de l'audio divisée par le temps de calcul. Ces chiffres sont ceux de ce navigateur sur cet ordinateur ; ils classent les moteurs entre eux mais ne prédisent pas la vitesse sur une carte embarquée.</li>
+        <li>Les modèles Whisper et le modèle Sherpa sont téléchargés depuis huggingface.co, la bibliothèque transformers.js depuis cdn.jsdelivr.net, le reste depuis ce site. Une fois les modèles en cache, la page fonctionne sans connexion.</li>
+      </ul>
+    </details>
+  </div>
+</main>
+
+<script src="vendor/vosk.js"></script>
+<script type="module">
+const SR = 16000;
+const hc = navigator.hardwareConcurrency || 4;
+const THREADS = self.crossOriginIsolated ? Math.max(1, Math.min(8, Math.floor(hc / 2))) : 1;
+
+const ENGINES = [
+  { id: 'sherpa', name: 'Sherpa-ONNX', color: 'var(--p1)',
+    meta: 'Zipformer transducteur en flux (Kroko, français)<br>Téléchargement : 71 Mo · 1 fil',
+    cfg: { base: 'https://huggingface.co/csukuangfj/sherpa-onnx-streaming-zipformer-fr-kroko-2025-08-06/resolve/08b84b7b7cf519be9817e9c16919d96a7a8bad91/',
+           totalBytes: 71.0e6 } },
+  { id: 'vosk', name: 'Vosk', color: 'var(--p3)',
+    meta: 'Kaldi, vosk-model-small-fr-0.22<br>Téléchargement : 42 Mo · 1 fil',
+    cfg: { url: new URL('models/vosk-model-small-fr-0.22.tar.gz', location.href).href, totalBytes: 42231712 } },
+  { id: 'wsmall', name: 'Whisper small', color: 'var(--p7)',
+    meta: `Whisper small, 8 bits, fenêtres de 30 s<br>Téléchargement : 250 Mo · ${THREADS} fil${THREADS > 1 ? 's' : ''}`,
+    cfg: { model: 'onnx-community/whisper-small', dtype: 'q8', totalBytes: 252e6, threads: THREADS, language: 'french' } },
+  { id: 'wlarge', name: 'Whisper large', color: 'var(--p9)',
+    meta: `Whisper large-v3-turbo, 8 bits, fenêtres de 30 s<br>Téléchargement : 1,1 Go · ${THREADS} fil${THREADS > 1 ? 's' : ''}`,
+    cfg: { model: 'onnx-community/whisper-large-v3-turbo', dtype: 'q8', totalBytes: 1090e6, threads: THREADS, language: 'french' } },
+];
+
+const $ = (s, r = document) => r.querySelector(s);
+const fmtS = (ms) => (ms / 1000).toLocaleString('fr-FR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + ' s';
+const fmtMo = (b) => b >= 1e9 ? (b / 1e9).toLocaleString('fr-FR', { maximumFractionDigits: 2 }) + ' Go'
+                   : b >= 1e6 ? Math.round(b / 1e6) + ' Mo' : Math.max(1, Math.round(b / 1e3)) + ' ko';
+const fmtDur = (s) => { const m = Math.floor(s / 60); return (m ? m + ' min ' : '') + Math.round(s - m * 60) + ' s'; };
+
+// ---------- Interface d'un moteur ----------
+const ui = {};
+for (const e of ENGINES) {
+  const el = document.createElement('section');
+  el.className = 'engine';
+  el.style.setProperty('--c', e.color);
+  el.innerHTML = `
+    <header><input type="checkbox" checked aria-label="Activer ${e.name}"><h2>${e.name}</h2></header>
+    <div class="meta">${e.meta}</div>
+    <div class="status"><span class="label">Prêt</span><span class="pct"></span></div>
+    <div class="bar"><div></div></div>
+    <div class="stats"></div>
+    <div class="text" aria-live="polite"></div>
+    <button class="copy" disabled>Copier le texte</button>`;
+  $('#grid').append(el);
+  const u = ui[e.id] = {
+    el, enabled: $('input', el), label: $('.label', el), pct: $('.pct', el), bar: $('.bar', el), fill: $('.bar > div', el),
+    stats: $('.stats', el), text: $('.text', el), copy: $('.copy', el), final: '', loadMs: null,
+    status(t, cls) { this.label.textContent = t; this.label.className = 'label' + (cls ? ' ' + cls : ''); },
+    progress(frac, mode) {
+      this.bar.className = 'bar' + (mode ? ' ' + mode : '');
+      if (frac == null) { this.pct.textContent = ''; return; }
+      const p = Math.max(0, Math.min(1, frac));
+      this.fill.style.width = (p * 100).toFixed(1) + '%';
+      this.pct.textContent = Math.round(p * 100) + ' %';
+    },
+    setText(done, partial) {
+      this.text.textContent = done;
+      if (partial) {
+        const s = document.createElement('span');
+        s.className = 'partial';
+        s.textContent = (done ? ' ' : '') + partial;
+        this.text.append(s);
+      }
+    },
+    setStats(ms, audioS, finished) {
+      const parts = [];
+      if (this.loadMs != null) parts.push('Chargement du modèle : ' + fmtS(this.loadMs));
+      if (ms != null) {
+        let t = 'Transcription : ' + fmtS(ms);
+        if (finished && ms > 0) {
+          const x = audioS / (ms / 1000);
+          t += ' (' + x.toLocaleString('fr-FR', { maximumFractionDigits: x < 10 ? 1 : 0 }) + ' × temps réel)';
+        }
+        parts.push(t);
+      }
+      this.stats.innerHTML = parts.join('<br>');
+    },
+    reset() {
+      this.final = ''; this.text.textContent = ''; this.stats.textContent = ''; this.copy.disabled = true;
+      this.fill.style.width = '0'; this.progress(null); this.status('Prêt');
+    },
+  };
+  u.copy.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(u.final); u.copy.textContent = 'Copié'; }
+    catch { u.copy.textContent = 'Copie impossible'; }
+    setTimeout(() => { u.copy.textContent = 'Copier le texte'; }, 1500);
+  });
+}
+
+$('#iso').textContent = self.crossOriginIsolated
+  ? ''
+  : ' Remarque : ce navigateur n\'a pas activé le calcul sur plusieurs fils ; Whisper sera plus lent. Recharger la page règle souvent le problème.';
+
+// ---------- Fichier audio ----------
+let pcm = null;       // Float32Array, 16 kHz mono
+let audioS = 0;
+let running = false;
+let runId = 0;
+const workers = {};   // id -> Worker
+let voskModel = null, voskRec = null;
+
+const drop = $('#drop'), fileInput = $('#file'), player = $('#player'), go = $('#go'), stop = $('#stop');
+drop.addEventListener('click', () => fileInput.click());
+drop.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+drop.addEventListener('dragover', (e) => { e.preventDefault(); drop.classList.add('over'); });
+drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+drop.addEventListener('drop', (e) => {
+  e.preventDefault(); drop.classList.remove('over');
+  if (e.dataTransfer.files[0]) setFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', () => { if (fileInput.files[0]) setFile(fileInput.files[0]); });
+
+async function decode(file) {
+  const buf = await file.arrayBuffer();
+  let ab = await new OfflineAudioContext(1, 1, SR).decodeAudioData(buf);
+  if (ab.sampleRate !== SR) { // sécurité : rééchantillonnage explicite
+    const off = new OfflineAudioContext(1, Math.ceil(ab.duration * SR), SR);
+    const src = off.createBufferSource();
+    src.buffer = ab; src.connect(off.destination); src.start();
+    ab = await off.startRendering();
+  }
+  const out = new Float32Array(ab.length);
+  for (let c = 0; c < ab.numberOfChannels; c++) {
+    const d = ab.getChannelData(c);
+    for (let i = 0; i < d.length; i++) out[i] += d[i] / ab.numberOfChannels;
+  }
+  return out;
+}
+
+async function setFile(file) {
+  if (running) stopAll();
+  const info = $('#fileinfo');
+  go.disabled = true; pcm = null;
+  info.className = '';
+  info.textContent = `${file.name} : décodage en cours`;
+  for (const e of ENGINES) ui[e.id].reset();
+  try {
+    pcm = await decode(file);
+  } catch (err) {
+    info.className = 'err';
+    info.textContent = `${file.name} : ce format n'a pas pu être décodé par le navigateur.`;
+    return;
+  }
+  audioS = pcm.length / SR;
+  if (player.src) URL.revokeObjectURL(player.src);
+  player.src = URL.createObjectURL(file);
+  info.textContent = `${file.name} · ${fmtDur(audioS)} · ${fmtMo(file.size)} · converti en 16 kHz mono`;
+  go.disabled = false;
+}
+
+// ---------- Moteurs en worker (Sherpa, Whisper) ----------
+function runWorker(e, id) {
+  const u = ui[e.id];
+  return new Promise((resolve) => {
+    if (!workers[e.id]) {
+      workers[e.id] = e.id === 'sherpa'
+        ? new Worker('workers/sherpa.js')
+        : new Worker('workers/whisper.js', { type: 'module' });
+      u.loadMs = null;
+    }
+    const w = workers[e.id];
+    const fresh = u.loadMs == null;
+    u.status(fresh ? 'Téléchargement du modèle' : 'Transcription', null);
+    u.progress(fresh ? 0 : null, fresh ? 'dl' : 'wait');
+    w.onmessage = (ev) => {
+      if (id !== runId) return;
+      const m = ev.data;
+      if (m.type === 'load') {
+        const f = m.loaded / m.total;
+        if (f >= 0.999) { u.status('Initialisation du modèle'); u.progress(null, 'wait'); }
+        else { u.status(`Téléchargement du modèle (${fmtMo(m.loaded)} sur ${fmtMo(m.total)})`); u.progress(f, 'dl'); }
+      } else if (m.type === 'status') {
+        u.status(m.text); u.progress(null, 'wait');
+      } else if (m.type === 'ready') {
+        u.loadMs = m.loadMs; u.setStats(null, audioS);
+        u.status('Transcription'); u.fill.style.width = '0'; u.progress(0);
+      } else if (m.type === 'progress') {
+        u.status(m.window && m.window[1] > 1 ? `Transcription (fenêtre ${m.window[0]} sur ${m.window[1]})` : 'Transcription');
+        u.progress(m.done);
+        u.setText(m.text, m.partial);
+        u.setStats(m.ms, audioS, false);
+      } else if (m.type === 'done') {
+        finish(u, m.text, m.ms); resolve();
+      } else if (m.type === 'error') {
+        fail(u, m.message);
+        w.terminate(); delete workers[e.id];
+        resolve();
+      }
+    };
+    w.onerror = (ev) => {
+      if (id !== runId) return;
+      fail(u, ev.message || 'erreur du worker');
+      w.terminate(); delete workers[e.id];
+      resolve();
+    };
+    w.postMessage({ type: 'run', cfg: e.cfg, pcm });
+  });
+}
+
+function finish(u, text, ms) {
+  u.final = text;
+  u.setText(text || '(aucune parole reconnue)', '');
+  u.status('Terminé'); u.progress(1);
+  u.setStats(ms, audioS, true);
+  u.copy.disabled = !text;
+}
+function fail(u, msg) {
+  u.status('Erreur : ' + msg, 'err'); u.progress(null);
+}
+
+// ---------- Vosk (la bibliothèque crée son propre worker) ----------
+async function prefetch(url, onProgress) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Téléchargement impossible (${resp.status})`);
+  const reader = resp.body.getReader();
+  let n = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    n += value.length;
+    onProgress(n);
+  }
+}
+
+async function runVosk(e, id) {
+  const u = ui.vosk;
+  try {
+    if (!voskModel) {
+      const t0 = performance.now();
+      let known = false;
+      try { known = localStorage.getItem('stt-demo-vosk') === e.cfg.url; } catch {}
+      if (!known) {
+        u.status('Téléchargement du modèle'); u.progress(0, 'dl');
+        await prefetch(e.cfg.url, (n) => {
+          if (id !== runId) return;
+          u.status(`Téléchargement du modèle (${fmtMo(n)} sur ${fmtMo(e.cfg.totalBytes)})`);
+          u.progress(n / e.cfg.totalBytes, 'dl');
+        });
+      }
+      if (id !== runId) return;
+      u.status('Initialisation du modèle'); u.progress(null, 'wait');
+      voskModel = await Vosk.createModel(e.cfg.url);
+      try { localStorage.setItem('stt-demo-vosk', e.cfg.url); } catch {}
+      u.loadMs = performance.now() - t0;
+    }
+    if (id !== runId) return;
+    u.setStats(null, audioS);
+    u.status('Transcription'); u.fill.style.width = '0'; u.progress(0);
+
+    const rec = voskRec = new voskModel.KaldiRecognizer(SR);
+    const done = [];
+    let partial = '';
+    let wake = null;
+    const next = () => new Promise((r) => { wake = r; });
+    rec.on('result', (m) => {
+      const t = (m.result && m.result.text || '').trim();
+      if (t) done.push(t);
+      partial = '';
+      if (wake) wake();
+    });
+    rec.on('partialresult', (m) => {
+      partial = (m.result && m.result.partial || '').trim();
+      if (wake) wake();
+    });
+    const t0 = performance.now();
+    const block = SR * 0.4;
+    for (let i = 0; i < pcm.length; i += block) {
+      const p = next();
+      rec.acceptWaveformFloat(pcm.slice(i, Math.min(i + block, pcm.length)), SR);
+      await p;
+      if (id !== runId) { rec.remove(); return; }
+      u.progress(Math.min(i + block, pcm.length) / pcm.length);
+      u.setText(done.join(' '), partial);
+      u.setStats(performance.now() - t0, audioS, false);
+    }
+    const p = next();
+    rec.retrieveFinalResult();
+    await p;
+    const ms = performance.now() - t0;
+    rec.remove(); voskRec = null;
+    if (id !== runId) return;
+    finish(u, done.join(' '), ms);
+  } catch (err) {
+    if (id === runId) fail(u, String(err && err.message ? err.message : err));
+  }
+}
+
+// ---------- Orchestration ----------
+async function start() {
+  if (!pcm || running) return;
+  const id = ++runId;
+  running = true;
+  go.disabled = true; stop.disabled = false;
+  for (const e of ENGINES) {
+    ui[e.id].reset();
+    ui[e.id].enabled.disabled = true;
+    if (!ui[e.id].enabled.checked) ui[e.id].status('Désactivé');
+  }
+  if ($('#playopt').checked) { player.currentTime = 0; player.play().catch(() => {}); }
+
+  const on = (k) => ui[k].enabled.checked;
+  const by = Object.fromEntries(ENGINES.map((e) => [e.id, e]));
+  const jobs = [];
+  if (on('sherpa')) jobs.push(runWorker(by.sherpa, id));
+  if (on('vosk')) jobs.push(runVosk(by.vosk, id));
+  jobs.push((async () => {
+    if (on('wsmall') && on('wlarge')) { ui.wlarge.status('En attente (après Whisper small)'); ui.wlarge.progress(null, 'wait'); }
+    if (on('wsmall')) await runWorker(by.wsmall, id);
+    if (id !== runId) return;
+    if (on('wlarge')) await runWorker(by.wlarge, id);
+  })());
+  await Promise.all(jobs);
+  if (id === runId) end();
+}
+
+function end() {
+  running = false;
+  go.disabled = !pcm; stop.disabled = true;
+  for (const e of ENGINES) ui[e.id].enabled.disabled = false;
+}
+
+function stopAll() {
+  runId++;
+  for (const k of Object.keys(workers)) { workers[k].terminate(); delete workers[k]; }
+  if (voskRec) { try { voskRec.remove(); } catch {} voskRec = null; }
+  player.pause();
+  for (const e of ENGINES) {
+    const u = ui[e.id];
+    if (u.label.textContent !== 'Terminé' && u.label.textContent !== 'Désactivé') { u.status('Arrêté'); u.progress(null); }
+  }
+  end();
+}
+
+go.addEventListener('click', start);
+stop.addEventListener('click', stopAll);
+window.__stt = { setFile, start, ui, state: () => ({ running, isolated: self.crossOriginIsolated, threads: THREADS }) };
+</script>
+</body>
+</html>
