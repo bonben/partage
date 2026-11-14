@@ -669,22 +669,28 @@ make
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user/tp/tp2
 ./load.sh
-dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
-cat<span class="w"> </span>/proc/devices
-cat<span class="w"> </span>/proc/iomem
-ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard<span class="w"> </span>/dev/btns
 </code></pre></div>
 <div class="admonition warning">
-<p class="admonition-title">Des erreurs au chargement ? C'est prévu</p>
-<p><code>./load.sh</code> affiche une erreur de <code>mknod</code> pour <code>/dev/btns</code>, et <code>ls</code> ne trouve pas ce fichier. C'est normal : le
-driver des boutons a une panne volontaire, qu'on traite en 2.3. Pour l'instant, on ne s'occupe que du
-chenillard, qui lui doit fonctionner.</p>
+<p class="admonition-title">Une erreur au chargement ? C'est prévu</p>
+<p><code>./load.sh</code> affiche une erreur de <code>mknod</code> pour <code>/dev/btns</code>. C'est normal : le driver des boutons a une panne
+volontaire, qu'on traite en 2.3. Pour l'instant, on ne s'occupe que du chenillard, qui lui doit fonctionner.</p>
 </div>
+<p>Vérifiez maintenant, une commande à la fois, ce que le chargement du driver du chenillard a changé :</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>chenillard
+</code></pre></div>
+<p>Deux lignes : le driver annonce son chargement, puis son numéro majeur et l'adresse de ses registres. (Dans
+<code>dmesg</code> complet, la ligne <code>loading out-of-tree module taints kernel</code> est un avertissement sans conséquence : il
+signale un module qui ne fait pas partie du noyau.)</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>grep<span class="w"> </span>chenillard<span class="w"> </span>/proc/devices
+grep<span class="w"> </span>chenillard<span class="w"> </span>/proc/iomem
+ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard
+</code></pre></div>
+<p>Le numéro majeur, la plage d'adresses réservée, et le fichier qui porte ce numéro.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Dans <code>/proc/devices</code>, quel numéro a reçu le chenillard ? Où le retrouve-t-on dans <code>ls -l /dev/chenillard</code> ?</li>
-<li>Quel appel du driver a fait apparaître la ligne <code>chenillard</code> dans <code>/proc/iomem</code> ?</li>
+<li>Le numéro affiché par <code>/proc/devices</code> : où le retrouve-t-on dans <code>dmesg</code> et dans <code>ls -l /dev/chenillard</code> ?</li>
+<li>Quel appel du driver a fait apparaître la ligne <code>chenillard</code> dans <code>/proc/iomem</code> ? Elle n'y était pas au TP 1.</li>
 </ul>
 </div>
 <p>Le chenillard se pilote maintenant depuis le shell, en écrivant trois octets : mode, vitesse, motif.</p>
