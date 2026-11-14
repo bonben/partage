@@ -674,6 +674,12 @@ cat<span class="w"> </span>/proc/devices
 cat<span class="w"> </span>/proc/iomem
 ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard<span class="w"> </span>/dev/btns
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Des erreurs au chargement ? C'est prévu</p>
+<p><code>./load.sh</code> affiche une erreur de <code>mknod</code> pour <code>/dev/btns</code>, et <code>ls</code> ne trouve pas ce fichier. C'est normal : le
+driver des boutons a une panne volontaire, qu'on traite en 2.3. Pour l'instant, on ne s'occupe que du
+chenillard, qui lui doit fonctionner.</p>
+</div>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
