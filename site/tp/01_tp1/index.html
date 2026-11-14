@@ -614,11 +614,16 @@ cat<span class="w"> </span>/proc/iomem
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Dans <code>/proc/cmdline</code>, qui a fourni ces arguments au noyau ?</li>
-<li>Où dit-on au noyau que sa racine est en NFS ?</li>
-<li>Pourquoi ne voit-on pas le chenillard dans <code>/proc/iomem</code> ?</li>
+<li>Dans <code>/proc/cmdline</code>, qui a fourni ces arguments au noyau ? (Voir le transparent « La chaîne de démarrage ».)</li>
+<li>Lequel de ces arguments dit au noyau que sa racine est en NFS, et sur quelle machine ?</li>
+<li>Le chenillard est décrit dans le device tree (<code>ls /proc/device-tree/amba_pl/</code>), mais il n'apparaît pas dans
+  <code>/proc/iomem</code>. Pourquoi ?</li>
 </ul>
 </div>
+<details class="tip">
+<summary>Indice pour la troisième question</summary>
+<p><code>/proc/iomem</code> ne liste pas le matériel présent : il liste les plages d'adresses qu'un <strong>driver</strong> a réservées.</p>
+</details>
 <h2 id="12-compilation-croisee">1.2 Compilation croisée<a class="headerlink" href="#12-compilation-croisee" title="Permanent link">&para;</a></h2>
 <div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tp1
 make<span class="w"> </span>hello
