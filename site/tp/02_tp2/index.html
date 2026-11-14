@@ -26,7 +26,7 @@
     
     
       
-        <title>2. TP 2 : lire, casser et modifier un driver - Linux sur SoC FPGA, travaux pratiques</title>
+        <title>2. TP 2 : lire, charger et dépanner un driver - Linux sur SoC FPGA, travaux pratiques</title>
       
     
     
@@ -129,7 +129,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2. TP 2 : lire, casser et modifier un driver
+              2. TP 2 : lire, charger et dépanner un driver
             
           </span>
         </div>
@@ -323,7 +323,7 @@
   <span class="md-ellipsis">
     
   
-  2. TP 2 : lire, casser et modifier un driver
+  2. TP 2 : lire, charger et dépanner un driver
 
     
   </span>
@@ -340,7 +340,7 @@
   <span class="md-ellipsis">
     
   
-  2. TP 2 : lire, casser et modifier un driver
+  2. TP 2 : lire, charger et dépanner un driver
 
     
   </span>
@@ -399,10 +399,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#24-une-modification" class="md-nav__link">
+  <a href="#24-interruption-et-lecture-bloquante" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        2.4 Une modification
+        2.4 Interruption et lecture bloquante
       </span>
     </span>
   </a>
@@ -410,21 +410,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-pour-les-rapides-interruption-et-lecture-bloquante" class="md-nav__link">
+  <a href="#25-pour-aller-plus-loin" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        2.5 Pour les rapides : interruption et lecture bloquante
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#26-pour-aller-plus-loin" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        2.6 Pour aller plus loin
+        2.5 Pour aller plus loin
       </span>
     </span>
   </a>
@@ -553,10 +542,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#24-une-modification" class="md-nav__link">
+  <a href="#24-interruption-et-lecture-bloquante" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        2.4 Une modification
+        2.4 Interruption et lecture bloquante
       </span>
     </span>
   </a>
@@ -564,21 +553,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#25-pour-les-rapides-interruption-et-lecture-bloquante" class="md-nav__link">
+  <a href="#25-pour-aller-plus-loin" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        2.5 Pour les rapides : interruption et lecture bloquante
-      </span>
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#26-pour-aller-plus-loin" class="md-nav__link">
-    <span class="md-ellipsis">
-      <span class="md-typeset">
-        2.6 Pour aller plus loin
+        2.5 Pour aller plus loin
       </span>
     </span>
   </a>
@@ -602,10 +580,10 @@
                   
 
 
-<h1 id="2-tp-2-lire-casser-et-modifier-un-driver">2. TP 2 : lire, casser et modifier un driver<a class="headerlink" href="#2-tp-2-lire-casser-et-modifier-un-driver" title="Permanent link">&para;</a></h1>
-<p><strong>Durée : 1 h.</strong> Objectif : savoir lire un driver, le relier au device tree, et diagnostiquer quand il ne s'attache
-pas. Le driver est fourni : on le lit et on le modifie, on ne l'écrit pas. Les parties 2.1 à 2.4 sont pour tous ; la
-2.5 est pour les rapides, puis montrée par le formateur en fin de séance.</p>
+<h1 id="2-tp-2-lire-charger-et-depanner-un-driver">2. TP 2 : lire, charger et dépanner un driver<a class="headerlink" href="#2-tp-2-lire-charger-et-depanner-un-driver" title="Permanent link">&para;</a></h1>
+<p><strong>Durée : 1 h.</strong> Objectif : savoir lire un driver, le relier au device tree, diagnostiquer quand il ne s'attache pas,
+et voir ce qu'apporte une interruption. Les drivers sont fournis : on les lit, on les charge, on en répare un. On ne
+les écrit pas.</p>
 <p>Deux drivers sont fournis dans <code>tp2</code> :</p>
 <table>
 <thead>
@@ -760,45 +738,34 @@ apparaît dans <code>/proc/interrupts</code>, et <code>/dev/btns</code> existe.<
   été de ce côté, qu'auriez-vous observé de différent ? Et qu'aurait-il fallu refaire pour corriger ?</li>
 </ul>
 </div>
-<h2 id="24-une-modification">2.4 Une modification<a class="headerlink" href="#24-une-modification" title="Permanent link">&para;</a></h2>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/dev/chenillard
-hexdump<span class="w"> </span>-C<span class="w"> </span>/dev/chenillard
-./app
+<h2 id="24-interruption-et-lecture-bloquante">2.4 Interruption et lecture bloquante<a class="headerlink" href="#24-interruption-et-lecture-bloquante" title="Permanent link">&para;</a></h2>
+<p>Le driver des boutons est maintenant attaché. Il a demandé au noyau l'interruption décrite dans le device tree, et
+sa fonction <code>read</code> <strong>endort le programme</strong> jusqu'à ce qu'un bouton soit pressé.</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/interrupts
 </code></pre></div>
-<p><code>cat</code> et <code>hexdump</code> n'affichent rien, alors que le programme <code>app</code> lit bien l'état du chenillard. Lisez
-<code>chenillard_i_read</code> et trouvez pourquoi (<code>man 2 read</code> : que signifie une valeur de retour nulle ?).</p>
-<p>Corrigez le driver pour que <code>hexdump</code> affiche les trois octets une fois, puis s'arrête.</p>
-<p>La fonction à modifier fait dix lignes, et la correction en ajoute trois.</p>
-<details class="tip">
-<summary>Indice 1</summary>
-<p><code>read</code> doit rendre le nombre d'octets copiés. Rendre 0 signifie « fin de fichier » : <code>cat</code> s'arrête sans rien
-afficher. Et si l'on rend toujours 3, <code>cat</code> relit sans fin : il faut se souvenir que tout a déjà été lu. C'est
-le rôle de <code>*f_pos</code>, la position dans le fichier.</p>
-</details>
-<details class="tip">
-<summary>Indice 2 : la structure</summary>
-<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">f_pos</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">            </span><span class="cm">/* tout a déjà été lu : fin de fichier */</span>
-<span class="cm">/* ... lecture des trois registres et copy_to_user, inchangés ... */</span>
-<span class="o">*</span><span class="n">f_pos</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
-<span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<p>Repérez la ligne <code>axi_btns</code> et notez son compteur (la première colonne de chiffres).</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./app
 </code></pre></div>
-</details>
-<p>Recompilez (<code>make</code> sur le poste), puis <code>./unload.sh</code> et <code>./load.sh</code> sur la carte.</p>
-<h2 id="25-pour-les-rapides-interruption-et-lecture-bloquante">2.5 Pour les rapides : interruption et lecture bloquante<a class="headerlink" href="#25-pour-les-rapides-interruption-et-lecture-bloquante" title="Permanent link">&para;</a></h2>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/interrupts<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>btns<span class="w">    </span><span class="c1"># noter le compteur</span>
-./app<span class="w">                               </span><span class="c1"># appuyer sur les boutons, Ctrl-C pour sortir</span>
-cat<span class="w"> </span>/proc/interrupts<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>btns
+<p>Appuyez sur les boutons de la carte : gauche et droite changent la vitesse, haut et bas changent le mode.
+<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> pour sortir, puis relisez <code>/proc/interrupts</code>.</p>
+<p>Pour voir ce que coûte l'attente, ouvrez une seconde console sur la carte depuis le poste, pendant que <code>app</code>
+tourne :</p>
+<div class="highlight"><span class="filename">Sur le poste, dans un nouveau terminal</span><pre><span></span><code>telnet<span class="w"> </span><span class="m">192</span>.168.74.2
 </code></pre></div>
+<div class="highlight"><span class="filename">Dans cette seconde console</span><pre><span></span><code>top
+</code></pre></div>
+<p><code>q</code> quitte <code>top</code>, <code>exit</code> ferme la seconde console.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Pendant que <code>app</code> attend un bouton, combien de CPU consomme-t-il ? Comparez avec le programme qui scrutait
-  les interrupteurs au TP 1.</li>
-<li>Dans <code>axi_btns.c</code>, que fait la routine d'interruption, et pourquoi écrit-elle dans le registre <code>ISR</code> ?</li>
+<li>De combien le compteur de <code>/proc/interrupts</code> a-t-il augmenté ? Est-ce le nombre de vos appuis ?</li>
+<li>Pendant que <code>app</code> attend un bouton, combien de CPU consomme-t-il dans <code>top</code> ? Comparez avec un programme qui
+  relirait le registre des boutons en boucle, comme celui des interrupteurs au TP 1.</li>
+<li>Dans <code>axi_btns.c</code>, repérez la fonction appelée à chaque interruption (<code>axi_btns_irq_handler</code>) et la ligne de
+  <code>btns_i_read</code> qui endort le programme (<code>wait_event_interruptible</code>). Qui réveille qui ?</li>
 </ul>
 </div>
-<h2 id="26-pour-aller-plus-loin">2.6 Pour aller plus loin<a class="headerlink" href="#26-pour-aller-plus-loin" title="Permanent link">&para;</a></h2>
+<h2 id="25-pour-aller-plus-loin">2.5 Pour aller plus loin<a class="headerlink" href="#25-pour-aller-plus-loin" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>thread_app</code> : boutons et clavier en même temps, avec deux threads.</li>
 <li>Comparez <code>axi_btns_of_probe</code> avec la fonction <code>probe</code> donnée en annexe des transparents :
@@ -806,6 +773,7 @@ cat<span class="w"> </span>/proc/interrupts<span class="w"> </span><span class="
   Qu'apportent les fonctions <code>devm_</code> ?</li>
 <li>Faites du chenillard un driver de plateforme, sur le modèle des boutons : son nœud
   <code>compatible = "imt,chenillard"</code> existe déjà dans le device tree.</li>
+<li>Ce driver protège-t-il le chenillard contre deux programmes qui écrivent en même temps ? Que faudrait-il ajouter ?</li>
 </ul>
 
 
