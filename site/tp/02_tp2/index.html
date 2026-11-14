@@ -675,17 +675,22 @@ make
 <p><code>./load.sh</code> affiche une erreur de <code>mknod</code> pour <code>/dev/btns</code>. C'est normal : le driver des boutons a une panne
 volontaire, qu'on traite en 2.3. Pour l'instant, on ne s'occupe que du chenillard, qui lui doit fonctionner.</p>
 </div>
-<p>Vérifiez maintenant, une commande à la fois, ce que le chargement du driver du chenillard a changé :</p>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>chenillard
+<p>Regardez maintenant, une commande à la fois, ce que le chargement du driver du chenillard a changé :</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
 </code></pre></div>
-<p>Deux lignes : le driver annonce son chargement, puis son numéro majeur et l'adresse de ses registres. (Dans
-<code>dmesg</code> complet, la ligne <code>loading out-of-tree module taints kernel</code> est un avertissement sans conséquence : il
-signale un module qui ne fait pas partie du noyau.)</p>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>grep<span class="w"> </span>chenillard<span class="w"> </span>/proc/devices
-grep<span class="w"> </span>chenillard<span class="w"> </span>/proc/iomem
-ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard
+<p>Les derniers messages du noyau. Cherchez les deux lignes qui commencent par <code>chenillard:</code> : le driver annonce son
+chargement, puis son numéro majeur et l'adresse de ses registres. La ligne <code>loading out-of-tree module taints
+kernel</code> est un avertissement sans conséquence : il signale un module qui ne fait pas partie du noyau.</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/devices
 </code></pre></div>
-<p>Le numéro majeur, la plage d'adresses réservée, et le fichier qui porte ce numéro.</p>
+<p>La table des drivers de caractère inscrits, avec leur numéro majeur. Cherchez <code>chenillard</code>, et regardez qui d'autre
+est là.</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/iomem
+</code></pre></div>
+<p>La carte des adresses physiques réservées. Cherchez <code>chenillard</code>, absent au TP 1.</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard
+</code></pre></div>
+<p>Le fichier spécial, avec ses deux numéros (majeur, mineur) à la place de la taille.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
