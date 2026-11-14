@@ -698,9 +698,16 @@ est là.</p>
 <li>Quel appel du driver a fait apparaître la ligne <code>chenillard</code> dans <code>/proc/iomem</code> ? Elle n'y était pas au TP 1.</li>
 </ul>
 </div>
-<p>Le chenillard se pilote maintenant depuis le shell, en écrivant trois octets : mode, vitesse, motif.</p>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">'\001\007\000'</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/chenillard
+<p>Le chenillard se pilote maintenant depuis le shell, en écrivant trois octets dans son fichier : mode, vitesse, motif.
+Dans <code>printf</code>, <code>\x</code> suivi de deux chiffres hexadécimaux donne un octet.</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">'\x01\x07\x00'</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/chenillard<span class="w">     </span><span class="c1"># mode 1, vitesse 7 : le chenillard tourne</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">'\x00\x07\xff'</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/chenillard<span class="w">     </span><span class="c1"># mode 0, motif FF : toutes les LED allumées</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s1">'\x00\x07\xaa'</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/chenillard<span class="w">     </span><span class="c1"># mode 0, motif AA : une LED sur deux</span>
 </code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Attention à la notation</p>
+<p>Sans le <code>x</code>, <code>printf</code> lit de l'octal : <code>\007</code> vaut 7, mais <code>\0ff</code> vaut un octet nul suivi des lettres « ff ».</p>
+</div>
 <h2 id="23-une-panne">2.3 Une panne<a class="headerlink" href="#23-une-panne" title="Permanent link">&para;</a></h2>
 <p>Le chargement des modules s'est bien passé, et pourtant <code>/dev/btns</code> ne fonctionne pas. Trouvez pourquoi, <strong>sans lire
 le code d'abord</strong> : où le noyau devrait-il montrer que le driver des boutons a trouvé son périphérique ?</p>
