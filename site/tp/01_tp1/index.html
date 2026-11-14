@@ -64,6 +64,13 @@
     
     
 <meta name="robots" content="noindex, nofollow">
+<script>
+  // Les PDF (transparents du cours) s'ouvrent dans un nouvel onglet, depuis le menu comme depuis les pages.
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href]");
+    if (a && /\.pdf($|[?#])/i.test(a.getAttribute("href"))) { a.target = "_blank"; a.rel = "noopener"; }
+  }, true);
+</script>
 
   </head>
   
