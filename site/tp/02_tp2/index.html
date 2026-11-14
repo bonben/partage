@@ -631,12 +631,36 @@ pas. Le driver est fourni : on le lit et on le modifie, on ne l'écrit pas. Les 
 <h2 id="21-lire-le-driver-du-chenillard">2.1 Lire le driver du chenillard<a class="headerlink" href="#21-lire-le-driver-du-chenillard" title="Permanent link">&para;</a></h2>
 <p>Dans VS Code (ouvert au TP 1, sinon <code>code /srv/nfsroot/arkane/home/user/tp</code> sur le poste), ouvrez <code>tp2/chenillard.c</code>.
 Lisez <code>chenillard_init</code>, <code>chenillard_i_read</code> et <code>chenillard_i_write</code>.</p>
+<p>Trois appels font l'essentiel de <code>chenillard_init</code> (transparent « Trois appels à reconnaître dans un driver ») :</p>
+<table>
+<thead>
+<tr>
+<th>Appel</th>
+<th>Ce qu'il fait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>register_chrdev</code></td>
+<td>inscrit le driver sous un <strong>numéro majeur</strong> : tout fichier de <code>/dev</code> qui porte ce numéro mène à ses fonctions <code>read</code> et <code>write</code></td>
+</tr>
+<tr>
+<td><code>request_mem_region</code></td>
+<td>réserve la plage d'adresses physiques des registres</td>
+</tr>
+<tr>
+<td><code>ioremap</code></td>
+<td>rend une adresse du noyau qui mène à ces registres</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Que font <code>register_chrdev</code>, <code>request_mem_region</code> et <code>ioremap</code> ?</li>
-<li>Quelle est la différence entre l'adresse donnée à <code>ioremap</code> et celle qu'il rend ?</li>
-<li>Qu'est-ce qui, dans ce driver, rappelle <code>/dev/mem</code> ?</li>
+<li>Quelle est la différence entre l'adresse donnée à <code>ioremap</code> et celle qu'il rend ? À quel appel du TP 1
+  ressemble-t-il ?</li>
+<li>D'où vient l'adresse du chenillard dans ce driver ? Qu'est-ce que cela rappelle du TP 1 ?</li>
+<li>Que fait ce driver que <code>/dev/mem</code> ne faisait pas ?</li>
 </ul>
 </div>
 <h2 id="22-compiler-et-charger">2.2 Compiler et charger<a class="headerlink" href="#22-compiler-et-charger" title="Permanent link">&para;</a></h2>
@@ -650,6 +674,13 @@ cat<span class="w"> </span>/proc/devices
 cat<span class="w"> </span>/proc/iomem
 ls<span class="w"> </span>-l<span class="w"> </span>/dev/chenillard<span class="w"> </span>/dev/btns
 </code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Questions</p>
+<ul>
+<li>Dans <code>/proc/devices</code>, quel numéro a reçu le chenillard ? Où le retrouve-t-on dans <code>ls -l /dev/chenillard</code> ?</li>
+<li>Quel appel du driver a fait apparaître la ligne <code>chenillard</code> dans <code>/proc/iomem</code> ?</li>
+</ul>
+</div>
 <p>Le chenillard se pilote maintenant depuis le shell, en écrivant trois octets : mode, vitesse, motif.</p>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">printf</span><span class="w"> </span><span class="s1">'\001\007\000'</span><span class="w"> </span>&gt;<span class="w"> </span>/dev/chenillard
 </code></pre></div>
