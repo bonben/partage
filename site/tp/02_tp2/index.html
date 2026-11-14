@@ -709,25 +709,52 @@ Dans <code>printf</code>, <code>\x</code> suivi de deux chiffres hexadécimaux d
 <p>Sans le <code>x</code>, <code>printf</code> lit de l'octal : <code>\007</code> vaut 7, mais <code>\0ff</code> vaut un octet nul suivi des lettres « ff ».</p>
 </div>
 <h2 id="23-une-panne">2.3 Une panne<a class="headerlink" href="#23-une-panne" title="Permanent link">&para;</a></h2>
-<p>Le chargement des modules s'est bien passé, et pourtant <code>/dev/btns</code> ne fonctionne pas. Trouvez pourquoi, <strong>sans lire
-le code d'abord</strong> : où le noyau devrait-il montrer que le driver des boutons a trouvé son périphérique ?</p>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>ls<span class="w"> </span>/sys/bus/platform/devices/
-ls<span class="w"> </span>/sys/bus/platform/drivers/axi_btns/
-cat<span class="w"> </span>/proc/device-tree/amba_pl/gpio@41200000/compatible<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
-cat<span class="w"> </span>/proc/interrupts
+<p><strong>Le problème.</strong> Le module <code>axi_btns</code> est chargé, mais le fichier <code>/dev/btns</code> n'existe pas : c'est l'erreur de
+<code>mknod</code> vue au chargement. <strong>Le but</strong> : comprendre pourquoi, corriger, et faire apparaître <code>/dev/btns</code>.</p>
+<p>On remonte la piste en quatre observations, sur la carte. Ne lisez le code qu'à l'étape 4.</p>
+<p><strong>1. Le driver s'est-il inscrit ?</strong></p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>lsmod
+cat<span class="w"> </span>/proc/devices
 </code></pre></div>
-<p>Une fois la cause trouvée : corrigez, recompilez, puis rechargez.</p>
+<p>Le module <code>axi_btns</code> est bien chargé, mais il n'y a pas de ligne <code>btns</code> dans <code>/proc/devices</code> : son
+<code>register_chrdev</code> n'a pas été appelé. Dans <code>axi_btns.c</code>, cet appel est dans la fonction <code>axi_btns_of_probe</code>. C'est
+donc <strong><code>probe</code> qui n'a pas été appelée</strong>.</p>
+<p><strong>2. Le noyau connaît-il le périphérique ?</strong></p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>ls<span class="w"> </span>/sys/bus/platform/devices/
+</code></pre></div>
+<p>Oui : <code>41200000.gpio</code> est dans la liste. Il vient du device tree.</p>
+<p><strong>3. Le driver est-il attaché à ce périphérique ?</strong></p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>ls<span class="w"> </span>/sys/bus/platform/drivers/axi_btns/
+</code></pre></div>
+<p>Le dossier du driver existe, mais il ne contient aucun lien vers <code>41200000.gpio</code>. Le périphérique existe, le driver
+existe, et <strong>le noyau ne les a pas mis ensemble</strong>.</p>
+<p><strong>4. Sur quoi le noyau se fonde-t-il pour les mettre ensemble ?</strong> Sur la chaîne <code>compatible</code> : celle du nœud du
+device tree doit être identique à celle qu'annonce le driver (transparent « Driver de plateforme : du <code>compatible</code> à
+<code>probe</code> »). Comparez les deux :</p>
+<div class="highlight"><span class="filename">Sur la carte : ce que dit le device tree</span><pre><span></span><code>cat<span class="w"> </span>/proc/device-tree/amba_pl/gpio@41200000/compatible<span class="w"> </span><span class="p">;</span><span class="w"> </span><span class="nb">echo</span>
+</code></pre></div>
+<p>Côté driver : dans VS Code, ouvrez <code>tp2/axi_btns.c</code> et cherchez <code>compatible</code> (<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-f">F</kbd></span>).</p>
+<details class="tip">
+<summary>Indice</summary>
+<p>Comparez les deux chaînes caractère par caractère. Un tiret n'est pas un tiret bas.</p>
+</details>
+<p><strong>Corriger et vérifier.</strong> Corrigez la chaîne dans le driver, puis :</p>
 <div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>make
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./unload.sh
 ./load.sh
 dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
+ls<span class="w"> </span>/sys/bus/platform/drivers/axi_btns/
+cat<span class="w"> </span>/proc/interrupts
+ls<span class="w"> </span>-l<span class="w"> </span>/dev/btns
 </code></pre></div>
-<p><code>dmesg</code> doit maintenant afficher l'interruption lue dans le device tree.</p>
+<p>Cette fois <code>./load.sh</code> ne signale plus d'erreur, <code>dmesg</code> affiche l'interruption lue dans le device tree
+(<code>IRQ read from DTS entry as ...</code>), le lien <code>41200000.gpio</code> apparaît dans le dossier du driver, une ligne <code>axi_btns</code>
+apparaît dans <code>/proc/interrupts</code>, et <code>/dev/btns</code> existe.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Quelle fonction du driver le noyau appelle-t-il quand il trouve un nœud qui correspond ?</li>
+<li>Le noyau a-t-il affiché un message d'erreur pour signaler que le <code>compatible</code> ne correspondait à rien ?</li>
 <li>Que se serait-il passé si l'erreur avait été dans le device tree plutôt que dans le driver ?</li>
 </ul>
 </div>
