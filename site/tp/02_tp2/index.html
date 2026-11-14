@@ -618,7 +618,7 @@ pas. Le driver est fourni : on le lit et on le modifie, on ne l'écrit pas. Les 
 </tbody>
 </table>
 <h2 id="21-lire-le-driver-du-chenillard">2.1 Lire le driver du chenillard<a class="headerlink" href="#21-lire-le-driver-du-chenillard" title="Permanent link">&para;</a></h2>
-<p>Dans VS Code (ouvert au TP 1, sinon <code>code /users/local/arkane-$USER</code> sur le poste), ouvrez <code>tp2/chenillard.c</code>.
+<p>Dans VS Code (ouvert au TP 1, sinon <code>code /srv/nfsroot/arkane/home/user/tp</code> sur le poste), ouvrez <code>tp2/chenillard.c</code>.
 Lisez <code>chenillard_init</code>, <code>chenillard_i_read</code> et <code>chenillard_i_write</code>.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
@@ -629,10 +629,10 @@ Lisez <code>chenillard_init</code>, <code>chenillard_i_read</code> et <code>chen
 </ul>
 </div>
 <h2 id="22-compiler-et-charger">2.2 Compiler et charger<a class="headerlink" href="#22-compiler-et-charger" title="Permanent link">&para;</a></h2>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tp2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
-./envoyer<span class="w"> </span>tp2/*.ko<span class="w"> </span>tp2/load.sh<span class="w"> </span>tp2/unload.sh<span class="w"> </span>tp2/app<span class="w"> </span>tp2/thread_app
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/srv/nfsroot/arkane/home/user/tp/tp2
+make
 </code></pre></div>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user/tp/tp2
 ./load.sh
 dmesg<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail
 cat<span class="w"> </span>/proc/devices
@@ -651,8 +651,7 @@ cat<span class="w"> </span>/proc/device-tree/amba_pl/gpio@41200000/compatible<sp
 cat<span class="w"> </span>/proc/interrupts
 </code></pre></div>
 <p>Une fois la cause trouvée : corrigez, recompilez, puis rechargez.</p>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tp2<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
-./envoyer<span class="w"> </span>tp2/*.ko
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>make
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./unload.sh
 ./load.sh
@@ -690,7 +689,7 @@ le rôle de <code>*f_pos</code>, la position dans le fichier.</p>
 <span class="k">return</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
 </code></pre></div>
 </details>
-<p>Recompilez, renvoyez <code>chenillard.ko</code>, puis <code>./unload.sh</code> et <code>./load.sh</code> sur la carte.</p>
+<p>Recompilez (<code>make</code> sur le poste), puis <code>./unload.sh</code> et <code>./load.sh</code> sur la carte.</p>
 <h2 id="25-pour-les-rapides-interruption-et-lecture-bloquante">2.5 Pour les rapides : interruption et lecture bloquante<a class="headerlink" href="#25-pour-les-rapides-interruption-et-lecture-bloquante" title="Permanent link">&para;</a></h2>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/interrupts<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>btns<span class="w">    </span><span class="c1"># noter le compteur</span>
 ./app<span class="w">                               </span><span class="c1"># appuyer sur les boutons, Ctrl-C pour sortir</span>

@@ -325,10 +325,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#envoyer-un-fichier-sur-la-carte" class="md-nav__link">
+  <a href="#un-seul-dossier-vu-des-deux-cotes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Envoyer un fichier sur la carte
+        Un seul dossier, vu des deux côtés
       </span>
     </span>
   </a>
@@ -509,10 +509,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#envoyer-un-fichier-sur-la-carte" class="md-nav__link">
+  <a href="#un-seul-dossier-vu-des-deux-cotes" class="md-nav__link">
     <span class="md-ellipsis">
       <span class="md-typeset">
-        Envoyer un fichier sur la carte
+        Un seul dossier, vu des deux côtés
       </span>
     </span>
   </a>
@@ -557,8 +557,8 @@ U-Boot ; le noyau Linux 5.4 ; puis BusyBox, depuis un système de fichiers que l
 <h2 id="le-poste">Le poste<a class="headerlink" href="#le-poste" title="Permanent link">&para;</a></h2>
 <p>Ouvrez deux terminaux.</p>
 <div class="highlight"><span class="filename">Sur le poste, terminal 1 : l&#x27;environnement de compilation</span><pre><span></span><code>SETUP<span class="w"> </span>MEE_VIVADO_CLASSROOM
-cp<span class="w"> </span>-r<span class="w"> </span>/users/local/arkane/tp<span class="w"> </span>/users/local/arkane-<span class="nv">$USER</span>
-<span class="nb">cd</span><span class="w"> </span>/users/local/arkane-<span class="nv">$USER</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/users/local/arkane/tp<span class="w"> </span>/srv/nfsroot/arkane/home/user/tp
+<span class="nb">cd</span><span class="w"> </span>/srv/nfsroot/arkane/home/user/tp
 </code></pre></div>
 <p><code>SETUP MEE_VIVADO_CLASSROOM</code> donne le compilateur croisé <code>arm-linux-gnueabihf-gcc</code>. Il est à relancer dans chaque
 nouveau terminal où vous compilez.</p>
@@ -572,16 +572,33 @@ regardez défiler le démarrage dans <code>tio</code>. Si le noyau s'arrête sur
 <code>nfs: server 192.168.74.1 not responding</code>, c'est le serveur NFS du poste : débranchez l'adaptateur USB
 Ethernet, rebranchez-le sur un autre port USB, puis PS-RST. Sinon, appelez le formateur.</p>
 </div>
-<h2 id="envoyer-un-fichier-sur-la-carte">Envoyer un fichier sur la carte<a class="headerlink" href="#envoyer-un-fichier-sur-la-carte" title="Permanent link">&para;</a></h2>
-<p>Le dossier <code>/home/user</code> de la carte est en réalité un dossier du poste. Le script <code>envoyer</code> y copie vos fichiers.
-Essayez-le avec un fichier source, puisque rien n'est encore compilé :</p>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>./envoyer<span class="w"> </span>tp1/hello.c
+<h2 id="un-seul-dossier-vu-des-deux-cotes">Un seul dossier, vu des deux côtés<a class="headerlink" href="#un-seul-dossier-vu-des-deux-cotes" title="Permanent link">&para;</a></h2>
+<p>Le système de fichiers de la carte est un dossier du poste, servi par le réseau. Vous travaillez donc <strong>directement
+dedans</strong> : ce que vous compilez sur le poste est aussitôt visible sur la carte, sans rien copier.</p>
+<table>
+<thead>
+<tr>
+<th>Sur le poste</th>
+<th>Sur la carte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/srv/nfsroot/arkane/home/user/tp</code></td>
+<td><code>/home/user/tp</code></td>
+</tr>
+</tbody>
+</table>
+<p>Vérifiez-le :</p>
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user/tp
+ls
 </code></pre></div>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user
-ls<span class="w"> </span>-l
-</code></pre></div>
-<p><code>hello.c</code> doit apparaître dans la liste. Vous enverrez de la même façon vos programmes et vos modules, <strong>après les
-avoir compilés</strong> sur le poste.</p>
+<p>Vous devez voir <code>tp1</code> et <code>tp2</code>. Dans la suite, <strong>on édite et on compile sur le poste, on exécute sur la carte</strong>, dans
+le même dossier.</p>
+<div class="admonition warning">
+<p class="admonition-title">Le dossier <code>tp</code> existe déjà ?</p>
+<p>Si <code>cp</code> répond que le dossier existe, il reste d'un essai précédent. Appelez le formateur.</p>
+</div>
 <h2 id="les-fichiers-fournis">Les fichiers fournis<a class="headerlink" href="#les-fichiers-fournis" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -598,10 +615,6 @@ avoir compilés</strong> sur le poste.</p>
 <tr>
 <td><code>tp2/</code></td>
 <td>les drivers <code>chenillard.c</code> et <code>axi_btns.c</code>, les applications <code>app.c</code> et <code>thread_app.c</code>, les scripts <code>load.sh</code> et <code>unload.sh</code>, <code>Makefile</code></td>
-</tr>
-<tr>
-<td><code>envoyer</code></td>
-<td>le script de copie vers la carte</td>
 </tr>
 </tbody>
 </table>

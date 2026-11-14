@@ -613,12 +613,11 @@ cat<span class="w"> </span>/proc/iomem
 make<span class="w"> </span>hello
 file<span class="w"> </span>hello
 ./hello
-<span class="nb">cd</span><span class="w"> </span>..
-./envoyer<span class="w"> </span>tp1/hello
 </code></pre></div>
-<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user
+<div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user/tp/tp1
 ./hello
 </code></pre></div>
+<p>Restez dans <code>tp1</code> des deux côtés jusqu'à la fin de ce TP.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
@@ -669,7 +668,7 @@ devmem<span class="w"> </span>0x43C00004<span class="w"> </span><span class="m">
 <h2 id="14-le-meme-acces-en-c-devmem-et-mmap">1.4 Le même accès en C : <code>/dev/mem</code> et <code>mmap</code><a class="headerlink" href="#14-le-meme-acces-en-c-devmem-et-mmap" title="Permanent link">&para;</a></h2>
 <p>Ouvrez le dossier du TP dans VS Code. C'est l'éditeur que tout le monde utilise aujourd'hui : gardez cette fenêtre
 ouverte, elle servira aussi pour les drivers du TP 2.</p>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>code<span class="w"> </span>/users/local/arkane-<span class="nv">$USER</span>
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>code<span class="w"> </span>/srv/nfsroot/arkane/home/user/tp
 </code></pre></div>
 <p>Dans l'explorateur de fichiers, à gauche, ouvrez <code>tp1/devmem.c</code>.</p>
 <p>Ce programme fait la même chose que <code>devmem</code>, en C. L'ouverture de <code>/dev/mem</code> et l'appel à <code>mmap</code>
@@ -685,8 +684,7 @@ sont <strong>déjà écrits</strong> ; lisez-les, ce sont les deux lignes vues e
 <li>trois affectations : écrire <code>mode</code> dans le registre de mode ; puis <code>valeur</code> dans le registre de motif si le mode
    vaut 0, dans le registre de vitesse sinon.</li>
 </ol>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tp1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>devmem<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
-./envoyer<span class="w"> </span>tp1/devmem
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>make<span class="w"> </span>devmem
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./devmem<span class="w"> </span><span class="m">0</span><span class="w"> </span>0xAA<span class="w">     </span><span class="c1"># les LED affichent 10101010</span>
 ./devmem<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">7</span><span class="w">        </span><span class="c1"># le chenillard tourne</span>
@@ -711,8 +709,7 @@ sont <strong>déjà écrits</strong> ; lisez-les, ce sont les deux lignes vues e
 <p>Les huit interrupteurs se lisent dans le registre de données d'un AXI GPIO, à <code>0x41220000</code>. Le programme
 <code>tp1/interrupteurs.c</code> scrute les interrupteurs en boucle et règle la vitesse du chenillard en conséquence. Il est
 écrit, sauf deux lignes marquées <code>À COMPLÉTER</code> : l'adresse des interrupteurs, et l'écriture de la vitesse.</p>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>tp1<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>interrupteurs<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
-./envoyer<span class="w"> </span>tp1/interrupteurs
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>make<span class="w"> </span>interrupteurs
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./interrupteurs<span class="w">      </span><span class="c1"># bougez les interrupteurs ; Ctrl-C pour arrêter</span>
 </code></pre></div>
