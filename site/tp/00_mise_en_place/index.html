@@ -547,12 +547,15 @@ regardez défiler le démarrage dans <code>tio</code>. Si le noyau s'arrête sur
 Ethernet, rebranchez-le sur un autre port USB, puis PS-RST. Sinon, appelez le formateur.</p>
 </div>
 <h2 id="envoyer-un-fichier-sur-la-carte">Envoyer un fichier sur la carte<a class="headerlink" href="#envoyer-un-fichier-sur-la-carte" title="Permanent link">&para;</a></h2>
-<p>Le dossier <code>/home/user</code> de la carte est en réalité un dossier du poste. Le script <code>envoyer</code> y copie vos fichiers :</p>
-<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>./envoyer<span class="w"> </span>tp1/hello
+<p>Le dossier <code>/home/user</code> de la carte est en réalité un dossier du poste. Le script <code>envoyer</code> y copie vos fichiers.
+Essayez-le avec un fichier source, puisque rien n'est encore compilé :</p>
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>./envoyer<span class="w"> </span>tp1/hello.c
 </code></pre></div>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/home/user
 ls<span class="w"> </span>-l
 </code></pre></div>
+<p><code>hello.c</code> doit apparaître dans la liste. Vous enverrez de la même façon vos programmes et vos modules, <strong>après les
+avoir compilés</strong> sur le poste.</p>
 <h2 id="les-fichiers-fournis">Les fichiers fournis<a class="headerlink" href="#les-fichiers-fournis" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
