@@ -754,8 +754,10 @@ apparaît dans <code>/proc/interrupts</code>, et <code>/dev/btns</code> existe.<
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
-<li>Le noyau a-t-il affiché un message d'erreur pour signaler que le <code>compatible</code> ne correspondait à rien ?</li>
-<li>Que se serait-il passé si l'erreur avait été dans le device tree plutôt que dans le driver ?</li>
+<li>Le noyau a-t-il signalé que le <code>compatible</code> du driver ne correspondait à aucun nœud ? D'où venait le seul
+  message d'erreur que vous avez vu ?</li>
+<li>Le <code>compatible</code> du device tree est écrit à la main lui aussi, pour une IP maison. Si la faute de frappe avait
+  été de ce côté, qu'auriez-vous observé de différent ? Et qu'aurait-il fallu refaire pour corriger ?</li>
 </ul>
 </div>
 <h2 id="24-une-modification">2.4 Une modification<a class="headerlink" href="#24-une-modification" title="Permanent link">&para;</a></h2>
