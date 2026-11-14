@@ -741,28 +741,35 @@ apparaît dans <code>/proc/interrupts</code>, et <code>/dev/btns</code> existe.<
 <h2 id="24-interruption-et-lecture-bloquante">2.4 Interruption et lecture bloquante<a class="headerlink" href="#24-interruption-et-lecture-bloquante" title="Permanent link">&para;</a></h2>
 <p>Le driver des boutons est maintenant attaché. Il a demandé au noyau l'interruption décrite dans le device tree, et
 sa fonction <code>read</code> <strong>endort le programme</strong> jusqu'à ce qu'un bouton soit pressé.</p>
+<p><strong>Voir l'interruption arriver.</strong></p>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>cat<span class="w"> </span>/proc/interrupts
 </code></pre></div>
 <p>Repérez la ligne <code>axi_btns</code> et notez son compteur (la première colonne de chiffres).</p>
 <div class="highlight"><span class="filename">Sur la carte</span><pre><span></span><code>./app
 </code></pre></div>
-<p>Appuyez sur les boutons de la carte : gauche et droite changent la vitesse, haut et bas changent le mode.
-<span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> pour sortir, puis relisez <code>/proc/interrupts</code>.</p>
-<p>Pour voir ce que coûte l'attente, ouvrez une seconde console sur la carte depuis le poste, pendant que <code>app</code>
-tourne :</p>
-<div class="highlight"><span class="filename">Sur le poste, dans un nouveau terminal</span><pre><span></span><code>telnet<span class="w"> </span><span class="m">192</span>.168.74.2
+<p>Appuyez sur les boutons : gauche et droite changent la vitesse, haut et bas changent le mode. <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-c">C</kbd></span> pour
+sortir, puis relisez <code>/proc/interrupts</code>.</p>
+<p><strong>Comparer avec la scrutation.</strong> Le programme <code>scrute</code> fait exactement le même travail que <code>app</code>, mais sans driver
+ni interruption : il relit le registre des boutons en boucle par <code>/dev/mem</code>, comme au TP 1. Lancez chacun en
+arrière-plan (le <code>&amp;</code>) et regardez ce qu'il coûte.</p>
+<div class="highlight"><span class="filename">Sur la carte : la scrutation</span><pre><span></span><code>./scrute<span class="w"> </span><span class="p">&amp;</span>
+top
 </code></pre></div>
-<div class="highlight"><span class="filename">Dans cette seconde console</span><pre><span></span><code>top
+<p>Essayez les boutons : ils fonctionnent. Dans <code>top</code>, lisez la colonne <code>%CPU</code> de <code>scrute</code>, et la ligne <code>CPU:</code> en haut.
+<code>q</code> quitte <code>top</code>.</p>
+<div class="highlight"><span class="filename">Sur la carte : l&#x27;interruption</span><pre><span></span><code>killall<span class="w"> </span>scrute
+./app<span class="w"> </span><span class="p">&amp;</span>
+top
 </code></pre></div>
-<p><code>q</code> quitte <code>top</code>, <code>exit</code> ferme la seconde console.</p>
+<p>Les boutons fonctionnent de la même façon. Cherchez <code>app</code> dans <code>top</code>. <code>q</code>, puis <code>killall app</code>.</p>
 <div class="admonition question">
 <p class="admonition-title">Questions</p>
 <ul>
 <li>De combien le compteur de <code>/proc/interrupts</code> a-t-il augmenté ? Est-ce le nombre de vos appuis ?</li>
-<li>Pendant que <code>app</code> attend un bouton, combien de CPU consomme-t-il dans <code>top</code> ? Comparez avec un programme qui
-  relirait le registre des boutons en boucle, comme celui des interrupteurs au TP 1.</li>
+<li>Quelle part du processeur prend <code>scrute</code> ? Et <code>app</code> ? La carte a deux cœurs : que représente 50 % ?</li>
 <li>Dans <code>axi_btns.c</code>, repérez la fonction appelée à chaque interruption (<code>axi_btns_irq_handler</code>) et la ligne de
   <code>btns_i_read</code> qui endort le programme (<code>wait_event_interruptible</code>). Qui réveille qui ?</li>
+<li>Ouvrez <code>scrute.c</code> : qu'est-ce qui l'empêche de dormir en attendant un bouton ?</li>
 </ul>
 </div>
 <h2 id="25-pour-aller-plus-loin">2.5 Pour aller plus loin<a class="headerlink" href="#25-pour-aller-plus-loin" title="Permanent link">&para;</a></h2>
