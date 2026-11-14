@@ -667,7 +667,12 @@ devmem<span class="w"> </span>0x43C00004<span class="w"> </span><span class="m">
 <p>Dans les autres modes, l'IP part d'un motif qui lui est propre, chargé au moment où l'on écrit le mode.</p>
 </div>
 <h2 id="14-le-meme-acces-en-c-devmem-et-mmap">1.4 Le même accès en C : <code>/dev/mem</code> et <code>mmap</code><a class="headerlink" href="#14-le-meme-acces-en-c-devmem-et-mmap" title="Permanent link">&para;</a></h2>
-<p>Le programme <code>tp1/devmem.c</code> fait la même chose que <code>devmem</code>, en C. L'ouverture de <code>/dev/mem</code> et l'appel à <code>mmap</code>
+<p>Ouvrez le dossier du TP dans VS Code. C'est l'éditeur que tout le monde utilise aujourd'hui : gardez cette fenêtre
+ouverte, elle servira aussi pour les drivers du TP 2.</p>
+<div class="highlight"><span class="filename">Sur le poste</span><pre><span></span><code>code<span class="w"> </span>/users/local/arkane-<span class="nv">$USER</span>
+</code></pre></div>
+<p>Dans l'explorateur de fichiers, à gauche, ouvrez <code>tp1/devmem.c</code>.</p>
+<p>Ce programme fait la même chose que <code>devmem</code>, en C. L'ouverture de <code>/dev/mem</code> et l'appel à <code>mmap</code>
 sont <strong>déjà écrits</strong> ; lisez-les, ce sont les deux lignes vues en cours :</p>
 <div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">open</span><span class="p">(</span><span class="s">"/dev/mem"</span><span class="p">,</span><span class="w"> </span><span class="n">O_RDWR</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">O_SYNC</span><span class="p">);</span>
 <span class="k">volatile</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="n">regs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mmap</span><span class="p">(</span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">TAILLE</span><span class="p">,</span><span class="w"> </span><span class="n">PROT_READ</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">PROT_WRITE</span><span class="p">,</span><span class="w"> </span><span class="n">MAP_SHARED</span><span class="p">,</span><span class="w"> </span><span class="n">fd</span><span class="p">,</span><span class="w"> </span><span class="n">CHENILLARD_BASE</span><span class="p">);</span>
