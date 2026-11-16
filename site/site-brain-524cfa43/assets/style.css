@@ -1910,3 +1910,36 @@ html[data-theme="dark"] .network-node.is-active .node-border {
 html[data-theme="dark"] .node-ring {
   stroke: #38c0dc;
 }
+
+/* Lab-STICC logo: official navy version, white version in dark mode */
+.institution-logos {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.lab-logo img {
+  width: 92px;
+  height: 42px;
+}
+
+.lab-logo .logo-on-dark,
+html[data-theme="dark"] .lab-logo .logo-on-light {
+  display: none;
+}
+
+html[data-theme="dark"] .lab-logo .logo-on-dark {
+  display: block;
+  filter: none;
+}
+
+@media (max-width: 700px) {
+  .institution-logos {
+    gap: 0;
+    margin-left: auto;
+  }
+  .lab-logo img {
+    width: 66px;
+    height: 32px;
+  }
+}
