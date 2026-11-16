@@ -19,7 +19,7 @@
     document.documentElement.setAttribute('data-theme-setting', setting);
     document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
     const metaTheme = document.querySelector('meta[name="theme-color"]');
-    if (metaTheme) metaTheme.setAttribute('content', isDark ? '#0b161e' : '#f5f9fa');
+    if (metaTheme) metaTheme.setAttribute('content', isDark ? '#0b161e' : '#fcfcfc');
   }
 
   if (themeToggle) {

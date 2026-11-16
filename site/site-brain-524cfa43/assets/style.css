@@ -1992,3 +1992,32 @@ html[data-theme="dark"] .theme-card,
 html[data-theme="dark"] .paper {
   border-top: 1px solid var(--line);
 }
+
+/* ---------------------------------------------------------------------------
+   Light theme: neutral backgrounds instead of tinted blue ones.
+   --------------------------------------------------------------------------- */
+:root {
+  --paper: #fcfcfc;
+  --line: #e2e6e8;
+}
+
+body {
+  background-image: none;
+}
+
+.header-shell {
+  background: rgba(252, 252, 252, 0.88);
+}
+
+.header-shell.is-scrolled {
+  background: rgba(252, 252, 252, 0.95);
+}
+
+.work-section,
+.people-section {
+  background: transparent;
+}
+
+.work-section {
+  border-top: 1px solid var(--line);
+}
