@@ -2096,3 +2096,9 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.alumni-name small {
+  margin-left: 6px;
+  font-weight: 400;
+  color: var(--muted);
+}
