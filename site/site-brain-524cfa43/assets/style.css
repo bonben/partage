@@ -2025,7 +2025,7 @@ body {
 /* Graph: link menu for a member node */
 .node-menu {
   position: absolute;
-  z-index: 5;
+  z-index: 90;
   min-width: 170px;
   padding: 10px 6px 6px;
   background: var(--paper);

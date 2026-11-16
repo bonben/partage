@@ -229,11 +229,11 @@
     });
 
     // Member nodes open a small menu of links; other nodes navigate directly.
-    const art = svg.parentElement;
+    // The menu lives in <body> so the graph frame (overflow: hidden) cannot clip it.
     const menu = document.createElement('div');
     menu.className = 'node-menu';
     menu.hidden = true;
-    art.appendChild(menu);
+    document.body.appendChild(menu);
 
     function memberLinks(node) {
       const d = node.element.dataset;
@@ -265,14 +265,15 @@
         menu.appendChild(a);
       });
       const nodeBox = node.element.getBoundingClientRect();
-      const artBox = art.getBoundingClientRect();
       menu.hidden = false;
       const left = Math.min(
-        Math.max(nodeBox.left + nodeBox.width / 2 - artBox.left - menu.offsetWidth / 2, 8),
-        artBox.width - menu.offsetWidth - 8
+        Math.max(nodeBox.left + nodeBox.width / 2 - menu.offsetWidth / 2, 8),
+        document.documentElement.clientWidth - menu.offsetWidth - 8
       );
-      menu.style.left = `${left}px`;
-      menu.style.top = `${nodeBox.bottom - artBox.top + 6}px`;
+      const below = nodeBox.bottom + 6;
+      const top = below + menu.offsetHeight > window.innerHeight - 8 ? nodeBox.top - menu.offsetHeight - 6 : below;
+      menu.style.left = `${left + window.scrollX}px`;
+      menu.style.top = `${top + window.scrollY}px`;
       if (focusFirst) {
         const first = menu.querySelector('a');
         if (first) first.focus();
@@ -300,6 +301,7 @@
     document.addEventListener('click', (event) => {
       if (!menu.hidden && !menu.contains(event.target)) closeMenu();
     });
+    window.addEventListener('resize', closeMenu);
     menu.addEventListener('keydown', (event) => {
       if (event.key === 'Escape') {
         closeMenu();
