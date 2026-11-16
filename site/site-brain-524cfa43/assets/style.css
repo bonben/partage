@@ -1611,6 +1611,10 @@ html[data-theme="dark"] .brain-logo {
   filter: brightness(1.14) saturate(1.08);
 }
 
+html[data-theme="dark"] .institution-logo img {
+  filter: invert(1) hue-rotate(180deg) brightness(1.15);
+}
+
 html[data-theme="dark"] .theme-toggle {
   background: rgba(19, 42, 56, 0.72);
   border-color: #254558;
@@ -1905,38 +1909,4 @@ html[data-theme="dark"] .network-node.is-active .node-border {
 
 html[data-theme="dark"] .node-ring {
   stroke: #38c0dc;
-}
-
-/* Lab-STICC logo: official navy version, white version in dark mode */
-.institution-logos {
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-.lab-logo img {
-  width: 92px;
-  height: 42px;
-}
-
-/* Both institution logos in monochrome: black on light, white on dark */
-.institution-logo img {
-  filter: brightness(0);
-  opacity: .82;
-}
-
-html[data-theme="dark"] .institution-logo img {
-  filter: brightness(0) invert(1);
-  opacity: .88;
-}
-
-@media (max-width: 700px) {
-  .institution-logos {
-    gap: 0;
-    margin-left: auto;
-  }
-  .lab-logo img {
-    width: 66px;
-    height: 32px;
-  }
 }
