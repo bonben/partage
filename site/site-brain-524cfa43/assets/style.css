@@ -1943,3 +1943,52 @@ html[data-theme="dark"] .lab-logo .logo-on-dark {
     height: 32px;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Flat blocks: no framed cards, colored edges, shadows or hover lifts.
+   --------------------------------------------------------------------------- */
+.hero-art,
+.theme-card,
+.paper,
+.people-list .person-card,
+.contact-card-link,
+.theme-visual,
+html[data-theme="dark"] .theme-visual,
+html[data-theme="dark"] .people-list .person-card,
+html[data-theme="dark"] .hero-art,
+html[data-theme="dark"] .theme-card,
+html[data-theme="dark"] .paper,
+html[data-theme="dark"] .person-card,
+html[data-theme="dark"] .contact-card-link {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.theme-card:hover,
+.paper:hover,
+.people-list .person-card:hover,
+.contact-card-link:hover,
+html[data-theme="dark"] .people-list .person-card:hover,
+html[data-theme="dark"] .theme-card:hover,
+html[data-theme="dark"] .paper:hover,
+html[data-theme="dark"] .person-card:hover,
+html[data-theme="dark"] .contact-card-link:hover {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  transform: none;
+}
+
+.theme-card,
+.paper {
+  border-top: 1px solid var(--line);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+html[data-theme="dark"] .theme-card,
+html[data-theme="dark"] .paper {
+  border-top: 1px solid var(--line);
+}
