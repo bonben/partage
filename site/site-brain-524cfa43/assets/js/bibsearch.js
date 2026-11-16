@@ -136,13 +136,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 4. Otherwise, filter items on the full searchable text (hidden authors
     //    included, accents ignored), then highlight the visible matches.
-    const needle = normalize(searchTerm);
-    allItems.forEach((el) => {
-      if ((searchText.get(el) || "").indexOf(needle) === -1) {
-        el.classList.add("unloaded");
-      }
-    });
-    if (CSS.highlights) {
+    // A bare year selects that year's section, not every entry whose text
+    // mentions it (venue names such as "ICASSP 2024" or HAL dates would leak in).
+    const yearSection = yearSections.find((sec) => sec.year === cleanRaw);
+    if (yearSection) {
+      allItems.forEach((el) => {
+        if (el.parentElement !== yearSection.ol) el.classList.add("unloaded");
+      });
+      if (CSS.highlights) CSS.highlights.delete("search");
+    } else {
+      const needle = normalize(searchTerm);
+      allItems.forEach((el) => {
+        if ((searchText.get(el) || "").indexOf(needle) === -1) {
+          el.classList.add("unloaded");
+        }
+      });
+    }
+    if (!yearSection && CSS.highlights) {
       highlightSearchTerm({ search: searchTerm, selector: ".bibliography > li" });
     }
 
