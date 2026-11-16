@@ -1,0 +1,31 @@
+{
+  "_description": "Curated venues. Patterns match HAL conferenceTitle_s or journalTitle_s, case-insensitively. Keep regexes precise; workshop, Findings and similar tracks are excluded globally.",
+  "conference_exclude": "\\b(workshops?|findings|companion|tutorials?|symposium on)\\b|\\b(?:CVPRW|ICMLW|ICLRW|ICMLA)\\b",
+  "venues": [
+    {"abbr": "NeurIPS", "type": "COMM", "pattern": "\\bneurips\\b|\\bneural information processing systems\\b"},
+    {"abbr": "ICML", "type": "COMM", "pattern": "\\bicml\\b|\\binternational conference on machine learning\\b"},
+    {"abbr": "ICLR", "type": "COMM", "pattern": "\\biclr\\b|\\binternational conference on learning representations\\b"},
+    {"abbr": "CVPR", "type": "COMM", "pattern": "\\bcvpr\\b|\\bconference on computer vision and pattern recognition\\b"},
+    {"abbr": "ICCV", "type": "COMM", "pattern": "\\biccv\\b|\\binternational conference on computer vision\\b"},
+    {"abbr": "ECCV", "type": "COMM", "pattern": "\\beccv\\b|\\beuropean conference on computer vision\\b"},
+    {"abbr": "AISTATS", "type": "COMM", "pattern": "\\baistats\\b|\\bartificial intelligence and statistics\\b"},
+    {"abbr": "UAI", "type": "COMM", "pattern": "\\buai\\b|\\buncertainty in artificial intelligence\\b"},
+    {"abbr": "AAAI", "type": "COMM", "pattern": "\\baaai\\b|\\baaai conference on artificial intelligence\\b"},
+    {"abbr": "IJCAI", "type": "COMM", "pattern": "\\bijcai\\b|\\binternational joint conference on artificial intelligence\\b"},
+    {"abbr": "ACL", "type": "COMM", "pattern": "\\bacl 20[0-9]{2}\\b|\\bannual meeting of the association for computational linguistics\\b"},
+    {"abbr": "EMNLP", "type": "COMM", "pattern": "\\bemnlp\\b|\\bempirical methods in natural language processing\\b"},
+    {"abbr": "NAACL", "type": "COMM", "pattern": "\\bnaacl\\b|\\bnorth american chapter of the association for computational linguistics\\b"},
+    {"abbr": "KDD", "type": "COMM", "pattern": "\\bkdd\\b|\\bknowledge discovery and data mining\\b"},
+    {"abbr": "ICASSP", "type": "COMM", "pattern": "\\bicassp\\b|\\binternational conference on acoustics, speech(?:,| and) (?:and )?signal processing\\b"},
+    {"abbr": "ISMIR", "type": "COMM", "pattern": "\\bismir\\b|\\binternational society for music information retrieval conference\\b"},
+    {"abbr": "TMLR", "type": "ART", "pattern": "^transactions on machine learning research$"},
+    {"abbr": "JMLR", "type": "ART", "pattern": "^journal of machine learning research$"},
+    {"abbr": "TPAMI", "type": "ART", "pattern": "^(?:ieee )?transactions on pattern analysis and machine intelligence$|^ieee tpami$"},
+    {"abbr": "TNNLS", "type": "ART", "pattern": "^(?:ieee )?transactions on neural networks and learning systems$"},
+    {"abbr": "Nature", "type": "ART", "pattern": "^nature$"},
+    {"abbr": "Nature MI", "type": "ART", "pattern": "^nature machine intelligence$"},
+    {"abbr": "Nature Comms", "type": "ART", "pattern": "^nature communications$"},
+    {"abbr": "Science", "type": "ART", "pattern": "^science$"},
+    {"abbr": "Neuron", "type": "ART", "pattern": "^neuron$"}
+  ]
+}

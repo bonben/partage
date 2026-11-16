@@ -1,0 +1,17 @@
+{
+  "_comment": "first_year: the BRAIN team was created in 2017, nothing earlier is listed. Permanent members whose publications are included even without the BRAIn HAL structure, provided they themselves are affiliated with one of affiliation_structures on that record. Keys are idHal_s, values idHal_i (see https://api.hal.science/ref/author/?q=idHal_s:<id>&fl=idHal_i).",
+  "members": {
+    "vincent-gripon": 21307,
+    "nicolas-farrugia": 18587,
+    "bastien-pasdeloup": 183197,
+    "giulia-lioi": 748625,
+    "mathieu-leonardon": 171188,
+    "axel-marmoret": 737595
+  },
+  "affiliation_structures": {
+    "486345": "Lab-STICC (until 2024)",
+    "1251146": "Lab-STICC (from 2025)",
+    "481355": "IMT Atlantique"
+  },
+  "first_year": 2017
+}

@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BRAIN — Broader Artificial Intelligence | IMT Atlantique &amp; Lab-STICC</title>
+  <meta name="description"
+    content="BRAIN is an AI research team at IMT Atlantique and CNRS Lab-STICC (UMR 6285) in Brest, France. We study representations across deep learning, signal processing, vision, audio, and neuroimaging.">
+  <meta name="keywords"
+    content="BRAIN, Broader Artificial Intelligence, IMT Atlantique, Lab-STICC, CNRS UMR 6285, artificial intelligence, machine learning, deep learning, representation learning, few-shot learning, foundation models, EEG, signal processing, Brest">
+  <meta name="author" content="BRAIN Research Team">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#f5f9fa">
+  <link rel="canonical" href="https://brain-bzh.github.io/partage/site-brain-524cfa43/">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="BRAIN Research Team">
+  <meta property="og:title" content="BRAIN — Broader Artificial Intelligence">
+  <meta property="og:description"
+    content="AI research team at IMT Atlantique and CNRS Lab-STICC (UMR 6285) in Brest, France. Advancing representations for artificial intelligence, machine learning, and signal processing.">
+  <meta property="og:url" content="https://brain-bzh.github.io/partage/site-brain-524cfa43/">
+  <meta property="og:image" content="https://brain-bzh.github.io/partage/site-brain-524cfa43/assets/img/brain-logo.svg">
+  <meta property="og:image:alt" content="BRAIN Research Team Logo">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BRAIN — Broader Artificial Intelligence">
+  <meta name="twitter:description"
+    content="AI research team at IMT Atlantique and CNRS Lab-STICC in Brest, France. Representations for intelligent systems.">
+  <meta name="twitter:image" content="https://brain-bzh.github.io/partage/site-brain-524cfa43/assets/img/brain-logo.svg">
+
+    <!-- Icons -->
+  <link rel="icon" type="image/svg+xml" href="/partage/site-brain-524cfa43/assets/img/brain-logo.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/partage/site-brain-524cfa43/assets/img/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/partage/site-brain-524cfa43/assets/img/apple-touch-icon.png">
+
+  <!-- Styles & Scripts -->
+  <script>
+    (() => {
+      const stored = localStorage.getItem('theme');
+      const setting = stored === 'dark' || stored === 'light' ? stored : 'system';
+      const isDark =
+        setting === 'dark' ||
+        (setting === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      document.documentElement.setAttribute('data-theme-setting', setting);
+      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="stylesheet" href="/partage/site-brain-524cfa43/assets/style.css">
+  <script src="/partage/site-brain-524cfa43/assets/site.js" defer></script>
+
+
+  <!-- Structured Data (JSON-LD) for Search Engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ResearchOrganization",
+        "@id": "https://brain-bzh.github.io/partage/site-brain-524cfa43/#organization",
+        "name": "BRAIN — Broader Artificial Intelligence",
+        "alternateName": ["BRAIN", "Équipe BRAIN", "BRAIN Lab-STICC"],
+        "url": "https://brain-bzh.github.io/partage/site-brain-524cfa43/",
+        "logo": "https://brain-bzh.github.io/partage/site-brain-524cfa43/assets/img/brain-logo.svg",
+        "description": "BRAIN is an AI research team at IMT Atlantique and CNRS Lab-STICC (UMR 6285) working at the intersection of artificial intelligence, deep learning, representation learning, and signal processing.",
+        "parentOrganization": [
+          {
+            "@type": "CollegeOrUniversity",
+            "name": "IMT Atlantique",
+            "url": "https://www.imt-atlantique.fr"
+          },
+          {
+            "@type": "ResearchOrganization",
+            "name": "Lab-STICC (CNRS UMR 6285)",
+            "url": "https://labsticc.fr"
+          }
+        ],
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Technopôle Brest-Iroise, CS 83818",
+          "addressLocality": "Brest",
+          "postalCode": "29238",
+          "addressCountry": "FR"
+        },
+        "sameAs": [
+          "https://github.com/brain-bzh",
+          "https://labsticc.fr/fr/equipes/brain",
+          "https://www.imt-atlantique.fr/en/research-innovation/teams/brain"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://brain-bzh.github.io/partage/site-brain-524cfa43/#website",
+        "url": "https://brain-bzh.github.io/partage/site-brain-524cfa43/",
+        "name": "BRAIN — Broader Artificial Intelligence",
+        "description": "Official website of the BRAIN research team at IMT Atlantique & CNRS Lab-STICC.",
+        "publisher": {
+          "@id": "https://brain-bzh.github.io/partage/site-brain-524cfa43/#organization"
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+    <div class="header-shell">
+    <header class="site-header wrap">
+      <a class="wordmark" href="/partage/site-brain-524cfa43/" aria-label="BRAIN home"><img class="brain-logo"
+          src="/partage/site-brain-524cfa43/assets/img/brain-logo.svg" alt=""><span>BRAIN<span
+            class="wordmark-dot">.</span></span></a><a class="institution-logo" href="https://www.imt-atlantique.fr/en"
+        aria-label="IMT Atlantique"><img src="/partage/site-brain-524cfa43/assets/img/imt-atlantique.svg"
+          alt="IMT Atlantique"></a>
+      <nav aria-label="Main navigation"><a href="/partage/site-brain-524cfa43/#research">Research</a><a href="/partage/site-brain-524cfa43/#publications">Selected Work</a><a
+          href="/partage/site-brain-524cfa43/publications/">Publications</a><a
+          href="/partage/site-brain-524cfa43/#people">People</a><button class="theme-toggle" id="theme-toggle" type="button"
+          aria-label="Toggle color theme" title="Toggle light / dark theme"><svg class="theme-icon theme-icon-moon"
+            width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg><svg class="theme-icon theme-icon-sun" width="15" height="15" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg></button></nav>
+    </header>
+  </div>
+
+  <main id="main">
+    <section class="hero wrap" id="top">
+      <div class="hero-copy">
+        <p class="eyebrow">A research team in Brest, France</p>
+        <h1 class="hero-title"><span>BROADER</span><span>ARTIFICIAL</span><span>INTELLIGENCE<span
+              class="period">.</span></span></h1>
+        <p class="hero-intro">We study representations that help intelligent systems learn, adapt, and make sense of
+          complex data across signals, images, audio, and brain activity.</p>
+        <div class="hero-actions"><a class="button" href="#publications">Selected work <span
+              aria-hidden="true">↘</span></a><a class="text-link" href="/partage/site-brain-524cfa43/publications/">All
+            publications <span aria-hidden="true">↗</span></a></div>
+      </div>
+      <div class="hero-art">
+        <svg class="network-art" viewBox="0 0 440 400" fill="none" role="img" tabindex="0"
+          aria-label="Interactive network illustration. Move over the nodes, click to explore publications, or use arrow keys and Escape.">
+          <defs>
+            <clipPath id="clip-node-outer">
+              <circle cx="0" cy="0" r="20" />
+            </clipPath>
+            <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#4ecfe9" stop-opacity="0.45" />
+              <stop offset="100%" stop-color="#087e96" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+          <g class="art-grid" stroke="currentColor">
+            <path d="M20 80H420M20 160H420M20 240H420M20 320H420M100 20V380M180 20V380M260 20V380M340 20V380" />
+          </g>
+          <g class="network-rest-rings" stroke="currentColor">
+            <circle class="orbit-ring orbit-ring-inner" cx="213" cy="230" r="38" />
+            <circle class="orbit-ring orbit-ring-outer" cx="213" cy="230" r="65" />
+            <circle class="orbit-ring orbit-ring-wide" cx="213" cy="230" r="102" stroke-dasharray="3 6" />
+          </g>
+          <g class="network-edges" stroke="currentColor" stroke-width="1.2">
+            <line data-from="0" data-to="1" x1="72" y1="246" x2="126" y2="150" />
+            <line data-from="1" data-to="2" x1="126" y1="150" x2="213" y2="230" />
+            <line data-from="2" data-to="3" x1="213" y1="230" x2="300" y2="118" />
+            <line data-from="3" data-to="4" x1="300" y1="118" x2="372" y2="198" />
+            <line data-from="4" data-to="5" x1="372" y1="198" x2="306" y2="285" />
+            <line data-from="5" data-to="2" x1="306" y1="285" x2="213" y2="230" />
+            <line data-from="1" data-to="6" x1="126" y1="150" x2="170" y2="303" />
+            <line data-from="6" data-to="0" x1="170" y1="303" x2="72" y2="246" />
+            <line data-from="1" data-to="9" x1="126" y1="150" x2="212" y2="95" />
+            <line data-from="9" data-to="3" x1="212" y1="95" x2="300" y2="118" />
+            <line data-from="1" data-to="3" x1="126" y1="150" x2="300" y2="118" />
+            <line data-from="2" data-to="9" x1="213" y1="230" x2="212" y2="95" />
+            <line data-from="6" data-to="5" x1="170" y1="303" x2="306" y2="285" />
+            <line data-from="0" data-to="2" x1="72" y1="246" x2="213" y2="230" />
+            <line data-from="2" data-to="4" x1="213" y1="230" x2="372" y2="198" />
+            <line data-from="0" data-to="7" x1="72" y1="246" x2="130" y2="299" />
+            <line data-from="7" data-to="6" x1="130" y1="299" x2="170" y2="303" />
+            <line data-from="7" data-to="8" x1="130" y1="299" x2="143" y2="347" />
+            <line data-from="6" data-to="8" x1="170" y1="303" x2="143" y2="347" />
+          </g>
+          <g class="network-pulses" aria-hidden="true"></g>
+          <g class="network-nodes" fill="currentColor">
+            <g class="network-node" data-x="72" data-y="246" data-name="Axel Marmoret"
+              data-role="Associate Professor · Audio &amp; Tensor Signals"
+              data-href="/partage/site-brain-524cfa43/publications/#Axel%20Marmoret" transform="translate(72 246)">
+              <title>Axel Marmoret — Associate Professor (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/axel-marmoret.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/axel-marmoret.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-46" y="23" width="92" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Axel Marmoret</text>
+              </g>
+            </g>
+            <g class="network-node" data-x="126" data-y="150" data-name="Nicolas Farrugia"
+              data-role="Full Professor · Neuroimaging &amp; Audio AI"
+              data-href="/partage/site-brain-524cfa43/publications/#Nicolas%20Farrugia" transform="translate(126 150)">
+              <title>Nicolas Farrugia — Full Professor (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/nicolas-farrugia.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/nicolas-farrugia.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-52" y="23" width="104" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Nicolas Farrugia</text>
+              </g>
+            </g>
+            <g class="network-node network-node-hub" data-x="213" data-y="230" data-name="BRAIN" data-role="" data-href="#research" transform="translate(213 230)">
+              <title>BRAIN</title>
+              <circle class="hub-ambient" r="34" fill="url(#hub-glow)" />
+              <circle class="node-halo" r="31" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-dot node-dot-hub" r="13" />
+              <circle class="node-hub-core" r="5" fill="#e0f3f7" />
+            </g>
+            <g class="network-node" data-x="300" data-y="118" data-name="Bastien Pasdeloup"
+              data-role="Associate Professor · AI for health &amp; GSP"
+              data-href="/partage/site-brain-524cfa43/publications/#Bastien%20Pasdeloup" transform="translate(300 118)">
+              <title>Bastien Pasdeloup — Associate Professor (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/bastien-pasdeloup.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/bastien-pasdeloup.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-55" y="23" width="110" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Bastien Pasdeloup</text>
+              </g>
+            </g>
+            <g class="network-node" data-x="372" data-y="198" data-name="Giulia Lioi"
+              data-role="Associate Professor · Neuroimaging &amp; Brain Signals"
+              data-href="/partage/site-brain-524cfa43/publications/#Giulia%20Lioi" transform="translate(372 198)">
+              <title>Giulia Lioi — Associate Professor (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/giulia-lioi.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/giulia-lioi.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-38" y="23" width="76" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Giulia Lioi</text>
+              </g>
+            </g>
+            <g class="network-node" data-x="306" data-y="285" data-name="Mathieu Léonardon"
+              data-role="Associate Professor · Edge AI &amp; Compression"
+              data-href="/partage/site-brain-524cfa43/publications/#Mathieu%20Léonardon" transform="translate(306 285)">
+              <title>Mathieu Léonardon — Associate Professor (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/mathieu-leonardon.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/mathieu-leonardon.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-55" y="23" width="110" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Mathieu Léonardon</text>
+              </g>
+            </g>
+            <g class="network-node network-node-pillar" data-x="170" data-y="303" data-name="Thrifty AI"
+              data-role="Few-Shot &amp; Low-Data Representations"
+              data-href="#research" transform="translate(170 303)">
+              <title>Thrifty AI — Few-Shot Learning</title>
+              <circle class="node-halo" r="22" />
+              <circle class="node-ring" r="13" />
+              <circle class="node-dot" r="5.5" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-38" y="12" width="76" height="18" rx="9" />
+                <text class="node-caption-text" x="0" y="21" text-anchor="middle">Thrifty AI</text>
+              </g>
+            </g>
+            <g class="network-node network-node-pillar" data-x="130" data-y="299" data-name="Compression"
+              data-role="Efficient &amp; Edge AI Systems" data-href="#research" transform="translate(130 299)">
+              <title>Compression of AI — Edge &amp; Hardware Efficiency</title>
+              <circle class="node-halo" r="22" />
+              <circle class="node-ring" r="13" />
+              <circle class="node-dot" r="5.5" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-44" y="12" width="88" height="18" rx="9" />
+                <text class="node-caption-text" x="0" y="21" text-anchor="middle">Compression</text>
+              </g>
+            </g>
+            <g class="network-node network-node-pillar" data-x="143" data-y="347" data-name="Geometry"
+              data-role="Latent Manifolds &amp; Graph Signals" data-href="#research" transform="translate(143 347)">
+              <title>Geometry and AI — Latent Spaces &amp; Graphs</title>
+              <circle class="node-halo" r="22" />
+              <circle class="node-ring" r="13" />
+              <circle class="node-dot" r="5.5" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-38" y="12" width="76" height="18" rx="9" />
+                <text class="node-caption-text" x="0" y="21" text-anchor="middle">Geometry</text>
+              </g>
+            </g>
+            <g class="network-node" data-x="212" data-y="95" data-name="Vincent Gripon"
+              data-role="Full Professor · Team Lead" data-href="/partage/site-brain-524cfa43/publications/#Vincent%20Gripon"
+              transform="translate(212 95)">
+              <title>Vincent Gripon — Full Professor · Team Lead (Click to view publications)</title>
+              <circle class="node-halo" r="28" />
+              <circle class="node-ring" r="22" />
+              <circle class="node-photo-bg" cx="0" cy="0" r="20" />
+              <image href="/partage/site-brain-524cfa43/assets/img/people/vincent-gripon.jpg"
+                xlink:href="/partage/site-brain-524cfa43/assets/img/people/vincent-gripon.jpg" x="-20" y="-20" width="40"
+                height="40" preserveAspectRatio="xMidYMid slice" clip-path="url(#clip-node-outer)" />
+              <circle class="node-border" cx="0" cy="0" r="20" />
+              <g class="node-caption" aria-hidden="true">
+                <rect class="node-caption-bg" x="-48" y="23" width="96" height="20" rx="10" />
+                <text class="node-caption-text" x="0" y="33" text-anchor="middle">Vincent Gripon</text>
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </section>
+
+    <!-- 01 / RESEARCH -->
+    <section class="about section wrap reveal-section" id="research">
+      <div class="section-side">
+        <h2>Research</h2>
+      </div>
+      <div class="section-content">
+        <p class="section-lead">BRAIN is a research team of <a href="https://labsticc.fr/fr/equipes/brain">Lab-STICC
+            (CNRS UMR 6285)</a> hosted at <a href="https://www.imt-atlantique.fr/en/research-innovation/teams/brain">IMT
+            Atlantique</a> and part of the Mathematical and Electrical Engineering (MEE) department.</p>
+        <p>The purpose of BRAIN is to investigate key questions at the crossbreed of Artificial Intelligence, Deep
+          Learning and Signal Processing, with applications using images, sounds, text and more complex domains
+          including neuroimaging data.</p>
+        <div class="themes">
+          <article class="theme-card">
+            <div class="theme-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 76" fill="none">
+                <circle class="tv-ring tv-ring-1" cx="48" cy="38" r="24" stroke="currentColor" stroke-dasharray="3 3" />
+                <circle class="tv-ring tv-ring-2" cx="130" cy="38" r="24" stroke="currentColor"
+                  stroke-dasharray="3 3" />
+                <line x1="48" y1="38" x2="90" y2="26" stroke="currentColor" stroke-opacity="0.45" />
+                <line x1="130" y1="38" x2="90" y2="26" stroke="currentColor" stroke-opacity="0.45" />
+                <circle class="tv-anchor" cx="48" cy="38" r="6" fill="#087e96" />
+                <circle class="tv-anchor" cx="130" cy="38" r="6" fill="#123c50" />
+                <circle class="tv-query" cx="90" cy="26" r="5" fill="#4ecfe9" />
+                <circle cx="35" cy="24" r="3" fill="#087e96" opacity="0.6" />
+                <circle cx="58" cy="52" r="3" fill="#087e96" opacity="0.6" />
+                <circle cx="142" cy="25" r="3" fill="#123c50" opacity="0.6" />
+                <circle cx="122" cy="53" r="3" fill="#123c50" opacity="0.6" />
+              </svg>
+            </div>
+            <h3>Thrifty AI</h3>
+            <p>How to find efficient representations in the low data regime (typically few-shot or few-label learning).
+            </p>
+          </article>
+          <article class="theme-card">
+            <div class="theme-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 76" fill="none">
+                <g stroke="currentColor" stroke-opacity="0.35" stroke-width="1.1">
+                  <line x1="30" y1="16" x2="90" y2="30" />
+                  <line x1="30" y1="38" x2="90" y2="30" />
+                  <line x1="30" y1="60" x2="90" y2="46" />
+                  <line x1="30" y1="16" x2="90" y2="46" stroke-dasharray="2 3" />
+                  <line x1="30" y1="60" x2="90" y2="30" stroke-dasharray="2 3" />
+                  <line x1="90" y1="30" x2="150" y2="38" stroke="#087e96" stroke-opacity="0.85" stroke-width="1.8" />
+                  <line x1="90" y1="46" x2="150" y2="38" stroke="#087e96" stroke-opacity="0.85" stroke-width="1.8" />
+                </g>
+                <circle cx="30" cy="16" r="4.5" fill="#607580" />
+                <circle cx="30" cy="38" r="4.5" fill="#087e96" />
+                <circle cx="30" cy="60" r="4.5" fill="#607580" />
+                <rect class="tv-bottleneck" x="83" y="21" width="14" height="34" rx="7" fill="#e0f3f7" stroke="#087e96"
+                  stroke-width="1.5" />
+                <circle class="tv-pulse-node" cx="150" cy="38" r="7" fill="#087e96" />
+              </svg>
+            </div>
+            <h3>Compression of AI</h3>
+            <p>How to find efficient representations to lower the demand in computations and energy of AI systems,
+              typically for AI on edge.</p>
+          </article>
+          <article class="theme-card">
+            <div class="theme-visual" aria-hidden="true">
+              <svg viewBox="0 0 180 76" fill="none">
+                <path class="tv-wave" d="M 16 48 Q 52 12, 90 38 T 164 26" stroke="#087e96" stroke-width="2"
+                  fill="none" />
+                <path d="M 16 58 Q 52 24, 90 48 T 164 38" stroke="currentColor" stroke-opacity="0.3"
+                  stroke-dasharray="3 3" fill="none" />
+                <circle class="tv-manifold-dot" cx="46" cy="31" r="4.5" fill="#123c50" />
+                <circle class="tv-manifold-dot" cx="90" cy="38" r="5.5" fill="#4ecfe9" stroke="#087e96"
+                  stroke-width="1.5" />
+                <circle class="tv-manifold-dot" cx="134" cy="41" r="4.5" fill="#123c50" />
+              </svg>
+            </div>
+            <h3>Geometry and AI</h3>
+            <p>How to leverage the geometry of latent spaces or input domains to better adapt and monitor AI systems.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 / SELECTED WORK -->
+    <section class="work-section reveal-section" id="publications">
+      <div class="wrap section">
+        <div class="section-side">
+          <h2>Selected publications</h2>
+          <a class="text-link" href="/partage/site-brain-524cfa43/publications/">All publications <span
+              aria-hidden="true">↗</span></a>
+        </div>
+        <div class="section-content papers">
+          <article class="paper" data-category="eeg">
+            <div class="paper-meta"><span class="venue-pill">NEURIPS 2025</span></div>
+            <h3><a href="https://brain-bzh.github.io/reve/">REVE: A Foundation Model for EEG <span
+                  aria-hidden="true">↗</span></a></h3>
+            <p>A 4D spatial-temporal foundation model pretrained on 60,000+ hours of EEG designed to adapt seamlessly to
+              arbitrary electrode setups and downstream BCI tasks.</p>
+            <p class="authors">Yassine El Ouahidi, Jonathan Lys, Philipp Thölke, Nicolas Farrugia, Bastien Pasdeloup,
+              Vincent Gripon, Karim Jerbi, Giulia Lioi</p>
+            <div class="paper-links"><a
+                href="https://proceedings.neurips.cc/paper_files/paper/2025/hash/20a917f77773ac0fa8bea2bdd6606b66-Abstract-Conference.html">Paper
+                ↗</a><a href="https://brain-bzh.github.io/reve/">Project ↗</a></div>
+          </article>
+          <article class="paper" data-category="vision">
+            <div class="paper-meta"><span class="venue-pill">CVPR 2025</span></div>
+            <h3><a
+                href="https://openaccess.thecvf.com/content/CVPR2025/html/Bendou_ProKeR_A_Kernel_Perspective_on_Few-Shot_Adaptation_of_Large_Vision-Language_CVPR_2025_paper.html">ProKeR:
+                A Kernel Perspective on Few-Shot Adaptation of Large Vision-Language Models <span
+                  aria-hidden="true">↗</span></a></h3>
+            <p>Reformulating few-shot adaptation of CLIP-like models through proximal kernel ridge regression in feature
+              space for fast, training-free generalization.</p>
+            <p class="authors">Yassir Bendou, Amine Ouasfi, Vincent Gripon, Adnane Boukhayma</p>
+            <div class="paper-links"><a
+                href="https://openaccess.thecvf.com/content/CVPR2025/html/Bendou_ProKeR_A_Kernel_Perspective_on_Few-Shot_Adaptation_of_Large_Vision-Language_CVPR_2025_paper.html">Paper
+                ↗</a><a href="https://github.com/ybendou/ProKeR">Code ↗</a></div>
+          </article>
+          <article class="paper" data-category="edge">
+            <div class="paper-meta"><span class="venue-pill">ICASSP 2026</span></div>
+            <h3><a href="https://hal.science/hal-05478355">TensLoRA: Tensor Alternatives for Low-Rank Adaptation <span
+                  aria-hidden="true">↗</span></a></h3>
+            <p>Leveraging higher-order tensor factorizations across attention projections and layers to achieve superior
+              compression-performance trade-offs when fine-tuning transformers.</p>
+            <p class="authors">Axel Marmoret, Réda Bensaid, Jonathan Lys, Vincent Gripon, François Leduc-Primeau</p>
+            <div class="paper-links"><a href="https://hal.science/hal-05478355v2/file/TensLoRA.pdf">PDF ↗</a><a
+                href="https://arxiv.org/abs/2509.19391">arXiv ↗</a></div>
+          </article>
+          <article class="paper" data-category="edge">
+            <div class="paper-meta"><span class="venue-pill">TMLR 2026</span></div>
+            <h3><a href="https://imt-atlantique.hal.science/hal-05647847">Insights From a Data- and Space-Agnostic
+                Approach to Zero-Cost Proxies <span aria-hidden="true">↗</span></a></h3>
+            <p>Disentangling architectural topology from input data in zero-cost Neural Architecture Search proxies to
+              enable rapid hardware-aware model discovery.</p>
+            <p class="authors">Timotée Ly-Manson, Mathieu Léonardon, Abdeldjalil Aïssa-El-Bey</p>
+            <div class="paper-links"><a
+                href="https://imt-atlantique.hal.science/hal-05647847v1/file/PARADIS_camera_ready.pdf">PDF ↗</a><a
+                href="https://imt-atlantique.hal.science/hal-05647847">HAL ↗</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 / PEOPLE -->
+    <section class="people-section reveal-section" id="people">
+      <div class="wrap section">
+        <div class="section-side">
+          <h2>People</h2>
+        </div>
+        <div class="section-content">
+          
+          <div class="people-list" id="home-people-list">
+            
+            
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/nicolas-farrugia.jpg" alt="Nicolas Farrugia"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Nicolas Farrugia</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://nicofarr.github.io" target="_blank" rel="noopener noreferrer"
+                      title="Website of Nicolas Farrugia"
+                      aria-label="Personal website of Nicolas Farrugia">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=IO4nLK4AAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Nicolas Farrugia"
+                      aria-label="Google Scholar profile for Nicolas Farrugia">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Nicolas%20Farrugia"
+                      title="Publications by Nicolas Farrugia"
+                      aria-label="Publications by Nicolas Farrugia">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Full professor · HDR</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/vincent-gripon.jpg" alt="Vincent Gripon"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Vincent Gripon</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://vincent-gripon.com" target="_blank" rel="noopener noreferrer"
+                      title="Website of Vincent Gripon"
+                      aria-label="Personal website of Vincent Gripon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=n3IKEqgAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Vincent Gripon"
+                      aria-label="Google Scholar profile for Vincent Gripon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Vincent%20Gripon"
+                      title="Publications by Vincent Gripon"
+                      aria-label="Publications by Vincent Gripon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Full professor · HDR · Team lead</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/giulia-lioi.jpg" alt="Giulia Lioi"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Giulia Lioi</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=mx2AqLYAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Giulia Lioi"
+                      aria-label="Google Scholar profile for Giulia Lioi">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Giulia%20Lioi"
+                      title="Publications by Giulia Lioi"
+                      aria-label="Publications by Giulia Lioi">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Associate professor</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/mathieu-leonardon.jpg" alt="Mathieu Léonardon"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Mathieu Léonardon</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://www.mathieuleonardon.com" target="_blank" rel="noopener noreferrer"
+                      title="Website of Mathieu Léonardon"
+                      aria-label="Personal website of Mathieu Léonardon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=ZqWCKuwAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Mathieu Léonardon"
+                      aria-label="Google Scholar profile for Mathieu Léonardon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Mathieu%20L%C3%A9onardon"
+                      title="Publications by Mathieu Léonardon"
+                      aria-label="Publications by Mathieu Léonardon">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Associate professor · HDR</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/axel-marmoret.jpg" alt="Axel Marmoret"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Axel Marmoret</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://ax-le.github.io" target="_blank" rel="noopener noreferrer"
+                      title="Website of Axel Marmoret"
+                      aria-label="Personal website of Axel Marmoret">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=2PRDe3oAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Axel Marmoret"
+                      aria-label="Google Scholar profile for Axel Marmoret">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Axel%20Marmoret"
+                      title="Publications by Axel Marmoret"
+                      aria-label="Publications by Axel Marmoret">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Associate professor</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="permanent">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/bastien-pasdeloup.jpg" alt="Bastien Pasdeloup"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Bastien Pasdeloup</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://bastienpasdeloup.github.io" target="_blank" rel="noopener noreferrer"
+                      title="Website of Bastien Pasdeloup"
+                      aria-label="Personal website of Bastien Pasdeloup">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=dKOgoG4AAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Bastien Pasdeloup"
+                      aria-label="Google Scholar profile for Bastien Pasdeloup">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Bastien%20Pasdeloup"
+                      title="Publications by Bastien Pasdeloup"
+                      aria-label="Publications by Bastien Pasdeloup">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                <small>Associate professor · HDR</small>
+                
+              </div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/venkatesh-subramani.svg" alt="Venkatesh Subramani"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Venkatesh Subramani</span>
+                  <div class="person-actions">
+                    
+                    <a class="person-icon-link" href="https://venkateshness.github.io" target="_blank" rel="noopener noreferrer"
+                      title="Website of Venkatesh Subramani"
+                      aria-label="Personal website of Venkatesh Subramani">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                      </svg>
+                    </a>
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=4aZ_rOIAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Venkatesh Subramani"
+                      aria-label="Google Scholar profile for Venkatesh Subramani">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Venkatesh%20Subramani"
+                      title="Publications by Venkatesh Subramani"
+                      aria-label="Publications by Venkatesh Subramani">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>Postdoctoral researcher</small>
+                
+              </div>
+            </div>
+            
+            
+            
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/ismail-amessegher.jpg" alt="Ismail Amessegher"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Ismail Amessegher</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Ismail%20Amessegher"
+                      title="Publications by Ismail Amessegher"
+                      aria-label="Publications by Ismail Amessegher">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/reda-bensaid.png" alt="Réda Bensaid"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Réda Bensaid</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=InQw64sAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Réda Bensaid"
+                      aria-label="Google Scholar profile for Réda Bensaid">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#R%C3%A9da%20Bensaid"
+                      title="Publications by Réda Bensaid"
+                      aria-label="Publications by Réda Bensaid">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/lucas-benoit.jpg" alt="Lucas Benoit"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Lucas Benoit</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=WvgNCFEAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Lucas Benoit"
+                      aria-label="Google Scholar profile for Lucas Benoit">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Lucas%20Benoit"
+                      title="Publications by Lucas Benoit"
+                      aria-label="Publications by Lucas Benoit">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/philippe-forest.jpg" alt="Philippe Forest"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Philippe Forest</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Philippe%20Forest"
+                      title="Publications by Philippe Forest"
+                      aria-label="Publications by Philippe Forest">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/baptiste-hilaire.jpg" alt="Baptiste Hilaire"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Baptiste Hilaire</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=FI9X9R4AAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Baptiste Hilaire"
+                      aria-label="Google Scholar profile for Baptiste Hilaire">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Baptiste%20Hilaire"
+                      title="Publications by Baptiste Hilaire"
+                      aria-label="Publications by Baptiste Hilaire">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/kaiteng-jiang.jpg" alt="Kaiteng Jiang"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Kaiteng Jiang</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Kaiteng%20Jiang"
+                      title="Publications by Kaiteng Jiang"
+                      aria-label="Publications by Kaiteng Jiang">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/tevchhorpoan-khieu.jpeg" alt="Tévchhorpoan Khieu"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Tévchhorpoan Khieu</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#T%C3%A9vchhorpoan%20Khieu"
+                      title="Publications by Tévchhorpoan Khieu"
+                      aria-label="Publications by Tévchhorpoan Khieu">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/lucie-jean-labadye.svg" alt="Lucie Jean-Labadye"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Lucie Jean-Labadye</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Lucie%20Jean-Labadye"
+                      title="Publications by Lucie Jean-Labadye"
+                      aria-label="Publications by Lucie Jean-Labadye">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/elise-lagarde.jpeg" alt="Elise Lagarde"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Elise Lagarde</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Elise%20Lagarde"
+                      title="Publications by Elise Lagarde"
+                      aria-label="Publications by Elise Lagarde">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/jonathan-lys.jpg" alt="Jonathan Lys"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Jonathan Lys</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=heUq7WEAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Jonathan Lys"
+                      aria-label="Google Scholar profile for Jonathan Lys">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Jonathan%20Lys"
+                      title="Publications by Jonathan Lys"
+                      aria-label="Publications by Jonathan Lys">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/jeremy-morlier.svg" alt="Jérémy Morlier"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Jérémy Morlier</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=oWRu5csAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Jérémy Morlier"
+                      aria-label="Google Scholar profile for Jérémy Morlier">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#J%C3%A9r%C3%A9my%20Morlier"
+                      title="Publications by Jérémy Morlier"
+                      aria-label="Publications by Jérémy Morlier">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/joshua-rivera.jpg" alt="Joshua Rivera"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Joshua Rivera</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="https://scholar.google.com/citations?user=Ta024bgAAAAJ" target="_blank" rel="noopener noreferrer"
+                      title="Google Scholar — Joshua Rivera"
+                      aria-label="Google Scholar profile for Joshua Rivera">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+                        <path d="M6 12v5c0 2 3 3 6 3s6-1 6-3v-5" />
+                      </svg>
+                    </a>
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Joshua%20Rivera"
+                      title="Publications by Joshua Rivera"
+                      aria-label="Publications by Joshua Rivera">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/nolan-sisouphanthong.jpeg" alt="Nolan Sisouphanthong"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Nolan Sisouphanthong</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Nolan%20Sisouphanthong"
+                      title="Publications by Nolan Sisouphanthong"
+                      aria-label="Publications by Nolan Sisouphanthong">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+            <div class="person-card"
+              data-member-group="researchers">
+              
+              <img class="person-avatar" src="/partage/site-brain-524cfa43/assets/img/people/alexandre-thouvenot.svg" alt="Alexandre Thouvenot"
+                width="48" height="48" loading="lazy">
+              
+              <div class="person-info">
+                <div class="person-name-row">
+                  <span class="person-name">Alexandre Thouvenot</span>
+                  <div class="person-actions">
+                    
+                    
+                    <a class="person-icon-link" href="/partage/site-brain-524cfa43/publications/#Alexandre%20Thouvenot"
+                      title="Publications by Alexandre Thouvenot"
+                      aria-label="Publications by Alexandre Thouvenot">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <line x1="10" y1="9" x2="8" y2="9" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
+                
+                
+                
+                
+                <small>PhD student</small>
+                
+              </div>
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 / CONNECT -->
+    <section class="contact reveal-section" id="connect">
+      <div class="contact-wave" aria-hidden="true">
+        <svg viewBox="0 0 1440 160" fill="none" preserveAspectRatio="none">
+          <path d="M0 96 C 320 24, 640 148, 960 76 C 1180 28, 1320 92, 1440 64" stroke="currentColor" stroke-width="1.5"
+            stroke-opacity="0.18" />
+          <path d="M0 124 C 380 56, 720 156, 1080 88 C 1260 54, 1360 110, 1440 92" stroke="currentColor"
+            stroke-width="1" stroke-opacity="0.12" stroke-dasharray="4 6" />
+        </svg>
+      </div>
+      <div class="wrap contact-inner">
+        <div>
+          <h2>Connect<em>.</em></h2>
+        </div>
+        <div>
+          <p>Discover our open-source models, publications, and institutional collaborations in Brest, France.</p>
+          <div class="contact-links">
+            <a class="contact-card-link" href="https://github.com/brain-bzh">
+              <span class="contact-link-title">GitHub <span>↗</span></span>
+              <small>Open-source code &amp; weights</small>
+            </a>
+            <a class="contact-card-link" href="https://www.imt-atlantique.fr/en/research-innovation/teams/brain">
+              <span class="contact-link-title">IMT Atlantique <span>↗</span></span>
+              <small>MEE Department · Brest</small>
+            </a>
+            <a class="contact-card-link" href="https://labsticc.fr/fr/equipes/brain">
+              <span class="contact-link-title">Lab-STICC <span>↗</span></span>
+              <small>CNRS UMR 6285</small>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+    <footer class="wrap footer"><a class="wordmark" href="/partage/site-brain-524cfa43/"><img class="brain-logo"
+        src="/partage/site-brain-524cfa43/assets/img/brain-logo.svg" alt=""><span>BRAIN<span
+          class="wordmark-dot">.</span></span></a>
+    <p>BRoader Artificial INtelligence<br>IMT Atlantique · Lab-STICC · Brest, France</p><a href="#top">Back to top ↑</a>
+  </footer>
+
+</body>
+
+</html>
