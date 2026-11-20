@@ -1,0 +1,1656 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BRAIN : Broader Artificial Intelligence · IMT Atlantique & CNRS Lab-STICC · Brest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --abyssal: #0a2239;
+      --abyssal-deep: #061524;
+      --abyssal-mid: #123352;
+      --granite: #4a5568;
+      --granite-dark: #2d3748;
+      --granite-light: #718096;
+      --foam: #f4f7f8;
+      --foam-pure: #ffffff;
+      --foam-border: #d5dfe5;
+      --chart-rule: #b8c7d1;
+      --beacon: #e0531f;
+      --beacon-soft: rgba(224, 83, 31, 0.12);
+      --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--foam);
+      color: var(--abyssal);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body {
+      background-color: var(--foam);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Subtle nautical chart grid overlay */
+    .chart-grid-bg {
+      background-image:
+        linear-gradient(to right, rgba(10, 34, 57, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(10, 34, 57, 0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Top Hydrographic Status Bar */
+    .telemetry-bar {
+      background-color: var(--abyssal-deep);
+      color: rgba(244, 247, 248, 0.85);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      border-bottom: 1px solid rgba(244, 247, 248, 0.12);
+      padding: 0.55rem 0;
+      letter-spacing: 0.03em;
+    }
+
+    .telemetry-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .beacon-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--beacon);
+      margin-right: 0.5rem;
+      box-shadow: 0 0 0 3px rgba(224, 83, 31, 0.28);
+    }
+
+    .telemetry-coords {
+      color: var(--foam);
+      font-weight: 500;
+    }
+
+    .telemetry-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      color: rgba(244, 247, 248, 0.68);
+    }
+
+    /* Navigation Header */
+    .site-header {
+      background-color: var(--abyssal);
+      color: var(--foam);
+      border-bottom: 1px solid rgba(244, 247, 248, 0.14);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 76px;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .brand-logo-wrap {
+      width: 44px;
+      height: 44px;
+      background-color: var(--foam);
+      border-radius: 4px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--beacon);
+    }
+
+    .brand-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+      color: var(--foam-pure);
+    }
+
+    .brand-domain {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--beacon);
+      letter-spacing: 0.06em;
+    }
+
+    .main-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .main-nav a {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(244, 247, 248, 0.82);
+      padding: 0.35rem 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    .main-nav a:hover {
+      color: var(--foam-pure);
+      border-bottom-color: var(--beacon);
+    }
+
+    .header-affiliations {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      border-left: 1px solid rgba(244, 247, 248, 0.16);
+      padding-left: 1.25rem;
+    }
+
+    .header-affiliations img {
+      height: 28px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .imt-badge-light {
+      background-color: var(--foam);
+      padding: 4px 8px;
+      border-radius: 3px;
+    }
+
+    /* Hero Section : Iroise Bathymetry & Signal Waves */
+    .hero {
+      position: relative;
+      background-color: var(--abyssal);
+      color: var(--foam);
+      padding: 5.5rem 0 5rem;
+      overflow: hidden;
+      border-bottom: 4px solid var(--beacon);
+    }
+
+    .bathymetry-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.25;
+    }
+
+    .compass-rose-svg {
+      position: absolute;
+      right: -60px;
+      top: 40px;
+      width: 460px;
+      height: 460px;
+      pointer-events: none;
+      opacity: 0.14;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .chart-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--foam);
+      background-color: rgba(224, 83, 31, 0.18);
+      border: 1px solid var(--beacon);
+      padding: 0.35rem 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.35rem, 4.3vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--foam-pure);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 .accent-word {
+      color: var(--beacon);
+    }
+
+    .hero-lead {
+      font-size: 1.15rem;
+      line-height: 1.65;
+      color: rgba(244, 247, 248, 0.86);
+      max-width: 68ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background-color: var(--beacon);
+      color: var(--foam-pure);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.85rem 1.5rem;
+      border: 1px solid var(--beacon);
+    }
+
+    .btn-primary:hover {
+      background-color: #c74415;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      background-color: transparent;
+      color: var(--foam);
+      font-family: var(--font-mono);
+      font-size: 0.84rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      padding: 0.85rem 1.5rem;
+      border: 1px solid rgba(244, 247, 248, 0.35);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--foam-pure);
+      background-color: rgba(244, 247, 248, 0.06);
+    }
+
+    /* Hydrographic / Signal Oscilloscope Panel */
+    .sounding-card {
+      background-color: rgba(6, 21, 36, 0.84);
+      border: 1px solid rgba(244, 247, 248, 0.22);
+      padding: 1.75rem;
+      position: relative;
+    }
+
+    .sounding-card::before {
+      content: "";
+      position: absolute;
+      top: -1px;
+      left: -1px;
+      width: 14px;
+      height: 14px;
+      border-top: 3px solid var(--beacon);
+      border-left: 3px solid var(--beacon);
+    }
+
+    .sounding-card::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      right: -1px;
+      width: 14px;
+      height: 14px;
+      border-bottom: 3px solid var(--beacon);
+      border-right: 3px solid var(--beacon);
+    }
+
+    .sounding-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: rgba(244, 247, 248, 0.7);
+      border-bottom: 1px solid rgba(244, 247, 248, 0.14);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .sounding-wave-box {
+      background-color: rgba(10, 34, 57, 0.7);
+      border: 1px solid rgba(244, 247, 248, 0.12);
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .sounding-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+    }
+
+    .metric-item {
+      border-left: 2px solid var(--beacon);
+      padding-left: 0.65rem;
+    }
+
+    .metric-label {
+      color: rgba(244, 247, 248, 0.6);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .metric-val {
+      color: var(--foam-pure);
+      font-weight: 600;
+    }
+
+    /* Section Header Pattern */
+    section {
+      padding: 5.5rem 0;
+      border-bottom: 1px solid var(--foam-border);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 2px solid var(--abyssal);
+    }
+
+    .section-kicker {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--beacon);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.85rem, 3vw, 2.5rem);
+      font-weight: 700;
+      color: var(--abyssal);
+      letter-spacing: -0.01em;
+    }
+
+    .section-coord {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--granite);
+      background-color: var(--foam-pure);
+      border: 1px solid var(--chart-rule);
+      padding: 0.4rem 0.75rem;
+    }
+
+    /* 3 Research Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .pillar-card {
+      background-color: var(--foam-pure);
+      border: 1px solid var(--chart-rule);
+      border-top: 4px solid var(--abyssal);
+      padding: 2.25rem 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: transform 0.2s ease, border-top-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pillar-card:hover {
+      border-top-color: var(--beacon);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(10, 34, 57, 0.07);
+    }
+
+    .pillar-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .pillar-index {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--beacon);
+      background-color: var(--beacon-soft);
+      padding: 0.25rem 0.65rem;
+      border: 1px solid rgba(224, 83, 31, 0.3);
+    }
+
+    .pillar-depth {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--granite);
+    }
+
+    .pillar-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--abyssal);
+      margin-bottom: 0.85rem;
+    }
+
+    .pillar-card p {
+      color: var(--granite-dark);
+      font-size: 0.98rem;
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    .pillar-wave {
+      border-top: 1px dashed var(--chart-rule);
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--granite);
+    }
+
+    /* 8 Transverse Themes */
+    .themes-section {
+      background-color: var(--foam-pure);
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+    }
+
+    .theme-box {
+      background-color: var(--foam);
+      border: 1px solid var(--chart-rule);
+      padding: 1.4rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+      transition: border-color 0.2s ease, background-color 0.2s ease;
+    }
+
+    .theme-box:hover {
+      border-color: var(--beacon);
+      background-color: var(--foam-pure);
+    }
+
+    .theme-code {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--beacon);
+      letter-spacing: 0.06em;
+    }
+
+    .theme-name {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--abyssal);
+    }
+
+    .theme-desc {
+      font-size: 0.88rem;
+      color: var(--granite);
+      line-height: 1.5;
+    }
+
+    /* Selected Publications */
+    .pub-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+    }
+
+    .pub-card {
+      background-color: var(--foam-pure);
+      border: 1px solid var(--chart-rule);
+      border-left: 5px solid var(--abyssal);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-left-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .pub-card:hover {
+      border-left-color: var(--beacon);
+      box-shadow: 0 10px 22px rgba(10, 34, 57, 0.06);
+    }
+
+    .pub-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .pub-tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background-color: var(--foam);
+      color: var(--abyssal);
+      border: 1px solid var(--chart-rule);
+      padding: 0.2rem 0.6rem;
+    }
+
+    .pub-tag.tag-beacon {
+      background-color: var(--beacon-soft);
+      color: var(--beacon);
+      border-color: rgba(224, 83, 31, 0.35);
+      font-weight: 600;
+    }
+
+    .pub-title {
+      font-family: var(--font-display);
+      font-size: 1.32rem;
+      font-weight: 700;
+      color: var(--abyssal);
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+
+    .pub-authors {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--granite);
+      margin-bottom: 1rem;
+    }
+
+    .pub-summary {
+      font-size: 0.95rem;
+      color: var(--granite-dark);
+      line-height: 1.6;
+    }
+
+    /* People Section */
+    .crew-group {
+      margin-bottom: 3.5rem;
+    }
+
+    .crew-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .crew-group-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .crew-group-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--abyssal);
+    }
+
+    .crew-group-count {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--foam-pure);
+      background-color: var(--abyssal);
+      padding: 0.15rem 0.55rem;
+    }
+
+    .crew-group-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--chart-rule);
+    }
+
+    .permanent-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.75rem;
+    }
+
+    .member-card {
+      background-color: var(--foam-pure);
+      border: 1px solid var(--chart-rule);
+      padding: 1.35rem;
+      display: flex;
+      gap: 1.15rem;
+      align-items: center;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .member-card:hover {
+      border-color: var(--beacon);
+      transform: translateY(-2px);
+    }
+
+    .member-avatar {
+      width: 78px;
+      height: 78px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--abyssal);
+      background-color: var(--foam);
+    }
+
+    .member-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .member-info {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .member-name {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--abyssal);
+      line-height: 1.25;
+      margin-bottom: 0.2rem;
+    }
+
+    .member-role {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--granite);
+      margin-bottom: 0.6rem;
+    }
+
+    .member-role .lead-badge {
+      color: var(--beacon);
+      font-weight: 600;
+    }
+
+    .member-links {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .member-link {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--abyssal);
+      background-color: var(--foam);
+      border: 1px solid var(--chart-rule);
+      padding: 0.15rem 0.55rem;
+    }
+
+    .member-link:hover {
+      background-color: var(--beacon);
+      color: var(--foam-pure);
+      border-color: var(--beacon);
+    }
+
+    /* PhD Grid */
+    .phd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .phd-card {
+      background-color: var(--foam-pure);
+      border: 1px solid var(--chart-rule);
+      padding: 0.95rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .phd-card:hover {
+      border-color: var(--abyssal);
+    }
+
+    .phd-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 1px solid var(--chart-rule);
+      background-color: var(--foam);
+    }
+
+    .phd-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phd-name {
+      font-family: var(--font-display);
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--abyssal);
+      line-height: 1.25;
+    }
+
+    .phd-label {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--granite);
+    }
+
+    /* Footer : Brest Technopole Anchor */
+    .site-footer {
+      background-color: var(--abyssal-deep);
+      color: var(--foam);
+      padding: 4.5rem 0 2.5rem;
+      border-top: 4px solid var(--beacon);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(244, 247, 248, 0.14);
+    }
+
+    .footer-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: var(--foam-pure);
+    }
+
+    .footer-desc {
+      font-size: 0.92rem;
+      color: rgba(244, 247, 248, 0.74);
+      line-height: 1.65;
+      margin-bottom: 1.35rem;
+    }
+
+    .footer-coords-box {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      background-color: rgba(244, 247, 248, 0.05);
+      border-left: 3px solid var(--beacon);
+      padding: 0.75rem 1rem;
+      color: var(--foam);
+    }
+
+    .footer-heading {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--beacon);
+      margin-bottom: 1.1rem;
+    }
+
+    .footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: rgba(244, 247, 248, 0.8);
+    }
+
+    .footer-logos {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      margin-top: 1.25rem;
+    }
+
+    .footer-logos img {
+      height: 36px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .footer-bottom {
+      padding-top: 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(244, 247, 248, 0.58);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr;
+      }
+      .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .permanent-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-inner {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 1rem 0;
+      }
+      .header-affiliations {
+        display: none;
+      }
+      .main-nav {
+        gap: 1.15rem;
+        width: 100%;
+        justify-content: flex-start;
+        overflow-x: auto;
+      }
+      .pub-list {
+        grid-template-columns: 1fr;
+      }
+      .permanent-grid {
+        grid-template-columns: 1fr;
+      }
+      .themes-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="chart-grid-bg">
+
+  <!-- Top Hydrographic & Geographic Bar -->
+  <div class="telemetry-bar">
+    <div class="container telemetry-inner">
+      <div>
+        <span class="beacon-dot"></span>
+        <span class="telemetry-coords">48° 21' 31" N, 4° 34' 14" W : Technopôle Brest-Iroise</span>
+      </div>
+      <div class="telemetry-meta">
+        <span>STATION : IMT ATLANTIQUE · MEE DEPT</span>
+        <span>·</span>
+        <span>UMR CNRS 6285 LAB-STICC</span>
+        <span>·</span>
+        <span>BRAIN.BZH</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Header -->
+  <header class="site-header">
+    <div class="container nav-inner">
+      <a href="#" class="brand">
+        <div class="brand-logo-wrap">
+          <img src="assets/img/brain-logo.svg" alt="BRAIN Team Logo" />
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">BRAIN</span>
+          <span class="brand-domain">Broader Artificial Intelligence · brain.bzh</span>
+        </div>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <a href="#pillars">Pillars</a>
+        <a href="#themes">Themes</a>
+        <a href="#publications">Publications</a>
+        <a href="#team">Team</a>
+        <a href="#anchorage">Brest Campus</a>
+      </nav>
+
+      <div class="header-affiliations">
+        <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique" class="imt-badge-light" />
+        <img src="assets/img/lab-sticc-white.png" alt="CNRS Lab-STICC UMR 6285" />
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section with SVG Bathymetric Contours & Harmonic Waves -->
+  <section class="hero">
+    <!-- Pure SVG Bathymetric Isolines of the Iroise Sea -->
+    <svg class="bathymetry-svg" viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+      <path d="M-100 120 C 240 40, 520 260, 880 140 C 1150 50, 1320 180, 1540 110" stroke="#f4f7f8" stroke-width="1" stroke-dasharray="6 6" />
+      <path d="M-100 210 C 200 130, 540 340, 910 210 C 1180 120, 1340 250, 1540 190" stroke="#f4f7f8" stroke-width="1.2" />
+      <path d="M-100 310 C 180 230, 560 420, 940 290 C 1210 190, 1360 320, 1540 270" stroke="#f4f7f8" stroke-width="1" />
+      <path d="M-100 410 C 220 350, 580 510, 960 380 C 1220 280, 1380 410, 1540 360" stroke="#e0531f" stroke-width="1.5" stroke-opacity="0.7" />
+      <path d="M-100 510 C 260 460, 610 590, 990 470 C 1240 380, 1390 490, 1540 450" stroke="#f4f7f8" stroke-width="1" />
+      <path d="M-100 610 C 300 570, 640 670, 1020 560 C 1260 480, 1410 580, 1540 540" stroke="#f4f7f8" stroke-width="0.8" stroke-dasharray="3 5" />
+    </svg>
+
+    <!-- Nautical Compass & Polar Graph Rose -->
+    <svg class="compass-rose-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="180" stroke="#f4f7f8" stroke-width="1" stroke-dasharray="4 4" />
+      <circle cx="200" cy="200" r="135" stroke="#f4f7f8" stroke-width="1" />
+      <circle cx="200" cy="200" r="85" stroke="#e0531f" stroke-width="1.5" />
+      <circle cx="200" cy="200" r="35" stroke="#f4f7f8" stroke-width="1" />
+      <line x1="200" y1="5" x2="200" y2="395" stroke="#f4f7f8" stroke-width="1" />
+      <line x1="5" y1="200" x2="395" y2="200" stroke="#f4f7f8" stroke-width="1" />
+      <line x1="62" y1="62" x2="338" y2="338" stroke="#f4f7f8" stroke-width="0.7" stroke-dasharray="3 3" />
+      <line x1="338" y1="62" x2="62" y2="338" stroke="#f4f7f8" stroke-width="0.7" stroke-dasharray="3 3" />
+    </svg>
+
+    <div class="container hero-grid">
+      <div>
+        <div class="chart-tag">
+          <span>Brest, Bretagne, France</span>
+          <span>·</span>
+          <span>Chart Sector Iroise-MEE</span>
+        </div>
+        <h1>
+          We study <span class="accent-word">representations</span> that help intelligent systems learn, adapt, and make sense of complex data across signals, images, and brains.
+        </h1>
+        <p class="hero-lead">
+          BRAIN is a research team of Lab-STICC (UMR CNRS 6285) hosted at IMT Atlantique in Brest, France, within the Mathematical and Electrical Engineering (MEE) department. We investigate fundamental and applied questions at the intersection of Artificial Intelligence, Deep Learning, Signal Processing, Computer Vision, Audio, and Computational Neuroscience.
+        </p>
+        <div class="hero-actions">
+          <a href="#pillars" class="btn-primary">Explore Research Axes</a>
+          <a href="#publications" class="btn-outline">Selected Publications</a>
+        </div>
+      </div>
+
+      <!-- Cartographic & EEG/Acoustic Signal Bridge Card -->
+      <aside class="sounding-card" aria-label="Signal and Ocean Wave Harmonics">
+        <div class="sounding-header">
+          <span>SONAR / EEG / LATENT MANIFOLD</span>
+          <span>DEPTH : 48.3586° N</span>
+        </div>
+        <div class="sounding-wave-box">
+          <svg viewBox="0 0 360 130" width="100%" height="130" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Grid lines -->
+            <line x1="0" y1="25" x2="360" y2="25" stroke="rgba(244,247,248,0.1)" stroke-width="1" />
+            <line x1="0" y1="65" x2="360" y2="65" stroke="rgba(244,247,248,0.18)" stroke-width="1" stroke-dasharray="3 3" />
+            <line x1="0" y1="105" x2="360" y2="105" stroke="rgba(244,247,248,0.1)" stroke-width="1" />
+            <!-- Bathymetric swell curve -->
+            <path d="M0 85 Q 45 35, 90 75 T 180 60 T 270 80 T 360 50" stroke="#f4f7f8" stroke-width="1.75" fill="none" opacity="0.75" />
+            <!-- Cortical / Acoustic high-frequency modulated signal -->
+            <path d="M0 65 C 15 65, 25 20, 38 95 C 50 30, 62 85, 78 52 C 95 25, 110 105, 128 45 C 145 75, 160 35, 180 68 C 200 100, 215 18, 232 82 C 248 40, 265 90, 285 55 C 305 30, 325 78, 360 62" stroke="#e0531f" stroke-width="2" fill="none" />
+            <!-- Sample nodes -->
+            <circle cx="38" cy="95" r="3" fill="#f4f7f8" />
+            <circle cx="128" cy="45" r="3" fill="#e0531f" />
+            <circle cx="232" cy="82" r="3" fill="#f4f7f8" />
+            <circle cx="285" cy="55" r="3" fill="#e0531f" />
+          </svg>
+        </div>
+        <div class="sounding-metrics">
+          <div class="metric-item">
+            <span class="metric-label">Core Pillars</span>
+            <span class="metric-val">03 Axes (Thrifty · Compression · Geometry)</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Research Crew</span>
+            <span class="metric-val">06 Faculty · 01 Postdoc · 14 PhD</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Modalities</span>
+            <span class="metric-val">Signals, Vision, Audio &amp; Brains</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-label">Home Port</span>
+            <span class="metric-val">Pointe de Bretagne · Brest</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Section 1 : The 3 Research Pillars -->
+  <section id="pillars">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">
+            <span>01 // SCIENTIFIC BEARINGS</span>
+          </div>
+          <h2 class="section-title">Three Core Research Pillars</h2>
+        </div>
+        <div class="section-coord">SOUNDING SECTOR A · REPRESENTATION LEARNING</div>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pillar 1 -->
+        <article class="pillar-card">
+          <div>
+            <div class="pillar-top">
+              <span class="pillar-index">PILLAR 01</span>
+              <span class="pillar-depth">LOW-DATA REGIME</span>
+            </div>
+            <h3>Thrifty AI</h3>
+            <p>
+              How to find efficient representations in the low-data regime (few-shot learning, zero-shot adaptation, vision-language models, transfer learning, foundation model adaptation).
+            </p>
+          </div>
+          <div class="pillar-wave">
+            <span>FEW-SHOT · VLM · TRANSFER</span>
+            <svg width="70" height="16" viewBox="0 0 70 16" fill="none">
+              <path d="M0 8 Q 9 1, 18 8 T 36 8 T 54 8 T 70 8" stroke="#e0531f" stroke-width="1.5" />
+            </svg>
+          </div>
+        </article>
+
+        <!-- Pillar 2 -->
+        <article class="pillar-card">
+          <div>
+            <div class="pillar-top">
+              <span class="pillar-index">PILLAR 02</span>
+              <span class="pillar-depth">FRUGAL COMPUTATION</span>
+            </div>
+            <h3>Compression of AI</h3>
+            <p>
+              How to find efficient representations to lower the computational and energy demands of AI systems (quantization, pruning, low-rank tensor factorization, zero-cost Neural Architecture Search, edge and embedded inference).
+            </p>
+          </div>
+          <div class="pillar-wave">
+            <span>QUANTIZATION · TENSORS · NAS</span>
+            <svg width="70" height="16" viewBox="0 0 70 16" fill="none">
+              <path d="M0 12 L 12 4 L 24 12 L 36 4 L 48 12 L 60 4 L 70 10" stroke="#0a2239" stroke-width="1.5" />
+            </svg>
+          </div>
+        </article>
+
+        <!-- Pillar 3 -->
+        <article class="pillar-card">
+          <div>
+            <div class="pillar-top">
+              <span class="pillar-index">PILLAR 03</span>
+              <span class="pillar-depth">LATENT TOPOLOGY</span>
+            </div>
+            <h3>Geometry and AI</h3>
+            <p>
+              How to leverage the geometry of latent spaces or input domains to better adapt and monitor AI systems (graph signal processing, Graph Neural Networks, manifold learning, Riemannian and hyperbolic representations).
+            </p>
+          </div>
+          <div class="pillar-wave">
+            <span>GRAPHS · MANIFOLDS · GNN</span>
+            <svg width="70" height="16" viewBox="0 0 70 16" fill="none">
+              <circle cx="10" cy="8" r="3" stroke="#e0531f" stroke-width="1.5" />
+              <line x1="13" y1="8" x2="32" y2="4" stroke="#0a2239" stroke-width="1.2" />
+              <circle cx="35" cy="4" r="3" stroke="#0a2239" stroke-width="1.5" />
+              <line x1="38" y1="5" x2="57" y2="11" stroke="#0a2239" stroke-width="1.2" />
+              <circle cx="60" cy="11" r="3" stroke="#e0531f" stroke-width="1.5" />
+            </svg>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2 : 8 Transverse Themes -->
+  <section id="themes" class="themes-section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">
+            <span>02 // BATHYMETRIC &amp; SIGNAL DOMAINS</span>
+          </div>
+          <h2 class="section-title">Transverse Research Themes</h2>
+        </div>
+        <div class="section-coord">08 INTERDISCIPLINARY CHANNELS</div>
+      </div>
+
+      <div class="themes-grid">
+        <div class="theme-box">
+          <span class="theme-code">CH-01 · ADAPTATION</span>
+          <h3 class="theme-name">Few-shot &amp; transfer</h3>
+          <p class="theme-desc">Rapid generalization across domains with minimal supervision and foundation priors.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-02 · HARDWARE</span>
+          <h3 class="theme-name">Efficient &amp; edge AI</h3>
+          <p class="theme-desc">Resource-constrained neural inference, model compression, and embedded deployment.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-03 · TOPOLOGY</span>
+          <h3 class="theme-name">Graphs &amp; geometry</h3>
+          <p class="theme-desc">Graph signal processing, non-Euclidean latent spaces, and relational learning.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-04 · RELIABILITY</span>
+          <h3 class="theme-name">Robustness</h3>
+          <p class="theme-desc">Out-of-distribution resilience, trustworthy representations, and stable learning.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-05 · CORTICAL WAVES</span>
+          <h3 class="theme-name">Neuroscience &amp; EEG</h3>
+          <p class="theme-desc">Foundation models for neuroimaging, brain-computer interfaces, cortical dynamics.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-06 · ACOUSTICS</span>
+          <h3 class="theme-name">Audio &amp; music</h3>
+          <p class="theme-desc">Structural music analysis, bioacoustics, auditory representations.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-07 · COMMUNICATIONS</span>
+          <h3 class="theme-name">Channel coding</h3>
+          <p class="theme-desc">Polar codes, error-correcting decoders, hardware transceivers.</p>
+        </div>
+
+        <div class="theme-box">
+          <span class="theme-code">CH-08 · SEARCH</span>
+          <h3 class="theme-name">Optimization</h3>
+          <p class="theme-desc">Combinatorial optimization, metaheuristics.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3 : Selected Publications -->
+  <section id="publications">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">
+            <span>03 // SCIENTIFIC LOGBOOK</span>
+          </div>
+          <h2 class="section-title">Selected Publications</h2>
+        </div>
+        <div class="section-coord">RECENT LANDMARK CONTRIBUTIONS</div>
+      </div>
+
+      <div class="pub-list">
+        <!-- Pub 1 -->
+        <article class="pub-card">
+          <div>
+            <div class="pub-meta">
+              <span class="pub-tag tag-beacon">Neuroscience &amp; EEG</span>
+              <span class="pub-tag">Foundation Models</span>
+            </div>
+            <h3 class="pub-title">REVE: A Foundation Model for EEG</h3>
+            <p class="pub-authors">
+              Yassine El Ouahidi, Jonathan Lys, Philipp Tholke, Nicolas Farrugia, Bastien Pasdeloup, Vincent Gripon, Karim Jerbi
+            </p>
+            <p class="pub-summary">
+              A 4D spatial-temporal foundation model pretrained on 60,000+ hours of EEG designed to adapt seamlessly to diverse clinical and cognitive tasks.
+            </p>
+          </div>
+        </article>
+
+        <!-- Pub 2 -->
+        <article class="pub-card">
+          <div>
+            <div class="pub-meta">
+              <span class="pub-tag tag-beacon">Few-shot &amp; transfer</span>
+              <span class="pub-tag">Vision-Language</span>
+            </div>
+            <h3 class="pub-title">ProKeR: A Kernel Perspective on Few-Shot Adaptation of Large Vision-Language Models</h3>
+            <p class="pub-authors">
+              Yassir Bendou, Amine Ouasfi, Vincent Gripon, Adnane Boukhayma
+            </p>
+            <p class="pub-summary">
+              Reformulating few-shot adaptation of CLIP-like models through proximal kernel ridge regression in feature space.
+            </p>
+          </div>
+        </article>
+
+        <!-- Pub 3 -->
+        <article class="pub-card">
+          <div>
+            <div class="pub-meta">
+              <span class="pub-tag tag-beacon">Compression of AI</span>
+              <span class="pub-tag">Efficient &amp; edge AI</span>
+            </div>
+            <h3 class="pub-title">TensLoRA: Tensor Alternatives for Low-Rank Adaptation</h3>
+            <p class="pub-authors">
+              Axel Marmoret, Reda Bensaid, Jonathan Lys, Vincent Gripon, Francois Leduc-Primeau
+            </p>
+            <p class="pub-summary">
+              Leveraging higher-order tensor factorizations across attention projections and layers to achieve superior parameter compression.
+            </p>
+          </div>
+        </article>
+
+        <!-- Pub 4 -->
+        <article class="pub-card">
+          <div>
+            <div class="pub-meta">
+              <span class="pub-tag tag-beacon">Efficient &amp; edge AI</span>
+              <span class="pub-tag">NAS</span>
+            </div>
+            <h3 class="pub-title">Insights From a Data- and Space-Agnostic Approach to Zero-Cost Proxies</h3>
+            <p class="pub-authors">
+              Timotee Ly-Manson, Mathieu Leonardon, Abdeldjalil Aissa-El-Bey
+            </p>
+            <p class="pub-summary">
+              Disentangling architectural topology from input data in zero-cost Neural Architecture Search proxies to enable fast hardware-aware design.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4 : Team Members -->
+  <section id="team">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="section-kicker">
+            <span>04 // RESEARCH CREW</span>
+          </div>
+          <h2 class="section-title">Team Members</h2>
+        </div>
+        <div class="section-coord">21 MEMBERS · BREST CAMPUS</div>
+      </div>
+
+      <!-- Permanent Researchers -->
+      <div class="crew-group">
+        <div class="crew-group-header">
+          <h3 class="crew-group-title">Permanent Researchers</h3>
+          <span class="crew-group-count">06</span>
+          <div class="crew-group-line"></div>
+        </div>
+
+        <div class="permanent-grid">
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/nicolas-farrugia.jpg" alt="Nicolas Farrugia" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Nicolas Farrugia</h4>
+              <p class="member-role">Full professor, HDR</p>
+              <div class="member-links">
+                <a href="https://nicofarr.github.io" target="_blank" rel="noopener" class="member-link">Website</a>
+                <a href="https://scholar.google.com/citations?user=IO4nLK4AAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/vincent-gripon.jpg" alt="Vincent Gripon" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Vincent Gripon</h4>
+              <p class="member-role">Full professor, HDR · <span class="lead-badge">Team lead</span></p>
+              <div class="member-links">
+                <a href="https://vincent-gripon.com" target="_blank" rel="noopener" class="member-link">Website</a>
+                <a href="https://scholar.google.com/citations?user=n3IKEqgAAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/giulia-lioi.jpg" alt="Giulia Lioi" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Giulia Lioi</h4>
+              <p class="member-role">Associate professor</p>
+              <div class="member-links">
+                <a href="https://scholar.google.com/citations?user=mx2AqLYAAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/mathieu-leonardon.jpg" alt="Mathieu Leonardon" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Mathieu Leonardon</h4>
+              <p class="member-role">Associate professor, HDR</p>
+              <div class="member-links">
+                <a href="https://www.mathieuleonardon.com" target="_blank" rel="noopener" class="member-link">Website</a>
+                <a href="https://scholar.google.com/citations?user=ZqWCKuwAAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/axel-marmoret.jpg" alt="Axel Marmoret" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Axel Marmoret</h4>
+              <p class="member-role">Associate professor</p>
+              <div class="member-links">
+                <a href="https://ax-le.github.io" target="_blank" rel="noopener" class="member-link">Website</a>
+                <a href="https://scholar.google.com/citations?user=2PRDe3oAAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/bastien-pasdeloup.jpg" alt="Bastien Pasdeloup" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Bastien Pasdeloup</h4>
+              <p class="member-role">Associate professor, HDR</p>
+              <div class="member-links">
+                <a href="https://bastienpasdeloup.github.io" target="_blank" rel="noopener" class="member-link">Website</a>
+                <a href="https://scholar.google.com/citations?user=dKOgoG4AAAAJ" target="_blank" rel="noopener" class="member-link">Scholar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Postdoctoral Researchers -->
+      <div class="crew-group">
+        <div class="crew-group-header">
+          <h3 class="crew-group-title">Postdoctoral Researchers</h3>
+          <span class="crew-group-count">01</span>
+          <div class="crew-group-line"></div>
+        </div>
+
+        <div class="permanent-grid">
+          <article class="member-card">
+            <div class="member-avatar">
+              <img src="assets/img/people/venkatesh-subramani.jpg" alt="Venkatesh Subramani" loading="lazy" />
+            </div>
+            <div class="member-info">
+              <h4 class="member-name">Venkatesh Subramani</h4>
+              <p class="member-role">Postdoctoral researcher</p>
+              <div class="member-links">
+                <a href="https://venkateshness.github.io" target="_blank" rel="noopener" class="member-link">Website</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- PhD Students -->
+      <div class="crew-group">
+        <div class="crew-group-header">
+          <h3 class="crew-group-title">PhD Students</h3>
+          <span class="crew-group-count">14</span>
+          <div class="crew-group-line"></div>
+        </div>
+
+        <div class="phd-grid">
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/ismail-amessegher.jpg" alt="Ismail Amessegher" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Ismail Amessegher</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/reda-bensaid.png" alt="Reda Bensaid" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Reda Bensaid</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/lucas-benoit.jpg" alt="Lucas Benoit" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Lucas Benoit</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/philippe-forest.jpg" alt="Philippe Forest" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Philippe Forest</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/baptiste-hilaire.jpg" alt="Baptiste Hilaire" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Baptiste Hilaire</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/kaiteng-jiang.jpg" alt="Kaiteng Jiang" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Kaiteng Jiang</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/tevchhorpoan-khieu.jpeg" alt="Tevchhorpoan Khieu" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Tevchhorpoan Khieu</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/lucie-jean-labadye.svg" alt="Lucie Jean-Labadye" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Lucie Jean-Labadye</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/elise-lagarde.jpeg" alt="Elise Lagarde" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Elise Lagarde</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/jonathan-lys.jpg" alt="Jonathan Lys" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Jonathan Lys</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/jeremy-morlier.svg" alt="Jeremy Morlier" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Jeremy Morlier</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/joshua-rivera.jpg" alt="Joshua Rivera" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Joshua Rivera</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/nolan-sisouphanthong.jpeg" alt="Nolan Sisouphanthong" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Nolan Sisouphanthong</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+
+          <div class="phd-card">
+            <div class="phd-avatar">
+              <img src="assets/img/people/alexandre-thouvenot.svg" alt="Alexandre Thouvenot" loading="lazy" />
+            </div>
+            <div>
+              <div class="phd-name">Alexandre Thouvenot</div>
+              <div class="phd-label">PhD Student</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer : Finistere Anchorage -->
+  <footer id="anchorage" class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">BRAIN : Broader Artificial Intelligence</div>
+          <p class="footer-desc">
+            Hosted on the Brest campus of IMT Atlantique overlooking the Iroise Sea, within CNRS Lab-STICC (UMR 6285) and the Mathematical and Electrical Engineering (MEE) department.
+          </p>
+          <div class="footer-coords-box">
+            48° 21' 31" N, 4° 34' 14" W : Technopôle Brest-Iroise<br />
+            655 Avenue du Technopôle, 29280 Plouzané · Brest, Bretagne, France
+          </div>
+        </div>
+
+        <div>
+          <div class="footer-heading">Research Axes</div>
+          <ul class="footer-list">
+            <li>01 · Thrifty AI (Few-shot, VLM, Foundation adaptation)</li>
+            <li>02 · Compression of AI (Quantization, Tensor LoRA, NAS)</li>
+            <li>03 · Geometry and AI (Graph Signal Processing, Manifolds)</li>
+            <li>Transverse : EEG, Audio &amp; Music, Channel Coding, Optimization</li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-heading">Institutional Affiliations</div>
+          <ul class="footer-list">
+            <li>IMT Atlantique · Campus de Brest</li>
+            <li>CNRS Lab-STICC (UMR 6285)</li>
+            <li>Department MEE (Mathematical and Electrical Engineering)</li>
+          </ul>
+          <div class="footer-logos">
+            <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique" class="imt-badge-light" />
+            <img src="assets/img/lab-sticc-white.png" alt="Lab-STICC UMR 6285" />
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>BRAIN.BZH · FINISTERE MARITIME &amp; CARTOGRAPHIC EDITION (PROTO 07)</span>
+        <span>IMT ATLANTIQUE &amp; CNRS LAB-STICC · BREST, FRANCE</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

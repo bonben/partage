@@ -1,0 +1,1621 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRAIN : Broader Artificial Intelligence | Academic Monograph & Research Directory</title>
+  <meta name="description" content="BRAIN is a research team of Lab-STICC (UMR CNRS 6285) hosted at IMT Atlantique in Brest, France, within the Mathematical and Electrical Engineering (MEE) department.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-vellum: #fbf9f3;
+      --bg-vellum-alt: #f4f0e6;
+      --bg-paper-inset: #f6f3ea;
+      --ink-primary: #1c1917;
+      --ink-secondary: #44403c;
+      --ink-muted: #78716c;
+      --accent-oxblood: #6b2121;
+      --accent-sepia: #7c2d12;
+      --rule-color: #292524;
+      --rule-light: #d6d0c2;
+      --rule-medium: #a8a090;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'EB Garamond', Georgia, serif;
+      --font-meta: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 18px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-vellum);
+      color: var(--ink-primary);
+    }
+
+    body {
+      font-family: var(--font-body);
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: var(--bg-vellum);
+      background-image: 
+        radial-gradient(rgba(124, 45, 18, 0.025) 1px, transparent 0),
+        linear-gradient(to bottom, rgba(244, 240, 230, 0.4) 0%, rgba(251, 249, 243, 0) 350px);
+      background-size: 28px 28px, 100% 100%;
+      padding: 0 1.25rem;
+    }
+
+    a {
+      color: var(--ink-primary);
+      text-decoration: none;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    a:hover {
+      color: var(--accent-oxblood);
+    }
+
+    /* Outer Monograph Page Frame */
+    .monograph-sheet {
+      max-width: 1180px;
+      margin: 2rem auto 4rem;
+      padding: 2.75rem 3.25rem 3.5rem;
+      border: 1px solid var(--rule-light);
+      outline: 1px solid var(--rule-light);
+      outline-offset: -6px;
+      background-color: var(--bg-vellum);
+      box-shadow: 0 12px 42px rgba(28, 25, 23, 0.04);
+      position: relative;
+    }
+
+    /* Classical Double Rules */
+    .double-rule-heavy {
+      border: 0;
+      height: 5px;
+      border-top: 2px solid var(--ink-primary);
+      border-bottom: 1px solid var(--ink-primary);
+      margin: 1.75rem 0;
+    }
+
+    .double-rule-fine {
+      border: 0;
+      height: 4px;
+      border-top: 1px solid var(--rule-medium);
+      border-bottom: 1px solid var(--rule-light);
+      margin: 1.5rem 0;
+    }
+
+    .single-rule {
+      border: 0;
+      border-top: 1px solid var(--rule-light);
+      margin: 2rem 0;
+    }
+
+    /* Running Head / Foliation Bar */
+    .running-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-meta);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--rule-light);
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .running-head .folio-mark {
+      color: var(--accent-oxblood);
+      font-weight: 600;
+    }
+
+    /* Solemn Academic Masthead */
+    .masthead {
+      text-align: center;
+      padding: 2.5rem 0 1.25rem;
+    }
+
+    .masthead-institutions {
+      font-family: var(--font-meta);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-oxblood);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .masthead-emblem {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .masthead-emblem::before,
+    .masthead-emblem::after {
+      content: "";
+      width: 64px;
+      height: 1px;
+      background-color: var(--rule-medium);
+    }
+
+    .masthead-emblem img {
+      height: 46px;
+      width: auto;
+      filter: sepia(0.25) contrast(1.08);
+    }
+
+    .masthead-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 6vw, 4.75rem);
+      font-weight: 600;
+      line-height: 1.02;
+      letter-spacing: 0.04em;
+      color: var(--ink-primary);
+      margin-bottom: 0.35rem;
+    }
+
+    .masthead-subtitle {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.35rem, 2.5vw, 1.95rem);
+      font-weight: 400;
+      color: var(--ink-secondary);
+      margin-bottom: 1.35rem;
+    }
+
+    .masthead-epigraph {
+      max-width: 780px;
+      margin: 0 auto 1.75rem;
+      font-family: var(--font-body);
+      font-size: 1.12rem;
+      color: var(--ink-primary);
+      line-height: 1.55;
+    }
+
+    .masthead-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2.5rem;
+      padding-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .masthead-logos img {
+      height: 32px;
+      width: auto;
+      opacity: 0.84;
+      filter: grayscale(100%) contrast(115%);
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .masthead-logos img:hover {
+      opacity: 1;
+      filter: grayscale(30%) contrast(105%);
+    }
+
+    /* Table of Contents / Navigation Strip */
+    .toc-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.4rem 2.25rem;
+      padding: 0.75rem 0;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .toc-bar a {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      padding: 0.15rem 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    .toc-bar a:hover {
+      border-bottom-color: var(--accent-oxblood);
+    }
+
+    .toc-bar .roman {
+      font-family: var(--font-display);
+      font-style: italic;
+      color: var(--accent-oxblood);
+      font-weight: 600;
+    }
+
+    /* Two-column Scholarly Grid (Marginalia + Main Column) */
+    .scholarly-grid {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 3rem;
+      align-items: start;
+      margin: 2.5rem 0;
+    }
+
+    .marginalia {
+      font-family: var(--font-body);
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: var(--ink-secondary);
+      border-right: 1px solid var(--rule-light);
+      padding-right: 1.5rem;
+    }
+
+    .marginal-note {
+      margin-bottom: 1.75rem;
+    }
+
+    .marginal-note:last-child {
+      margin-bottom: 0;
+    }
+
+    .marginal-label {
+      display: block;
+      font-family: var(--font-meta);
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-oxblood);
+      margin-bottom: 0.35rem;
+    }
+
+    .marginal-note p {
+      font-style: italic;
+      color: var(--ink-secondary);
+    }
+
+    .marginal-note .fact-value {
+      font-style: normal;
+      font-weight: 600;
+      color: var(--ink-primary);
+      display: block;
+      margin-top: 0.15rem;
+    }
+
+    /* Editorial Introduction & Drop Cap */
+    .editorial-lead {
+      font-size: 1.14rem;
+      line-height: 1.78;
+      color: var(--ink-primary);
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    .editorial-lead p + p {
+      margin-top: 1.15rem;
+      text-indent: 1.75em;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-family: var(--font-display);
+      font-size: 4.3rem;
+      line-height: 0.82;
+      padding-top: 0.08rem;
+      padding-right: 0.65rem;
+      padding-bottom: 0.1rem;
+      color: var(--accent-oxblood);
+      font-weight: 700;
+    }
+
+    .small-caps-lead {
+      font-variant: small-caps;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+    }
+
+    .editorial-pullquote {
+      margin-top: 1.75rem;
+      padding: 1.25rem 1.75rem;
+      background-color: var(--bg-paper-inset);
+      border-left: 3px solid var(--accent-oxblood);
+      border-top: 1px solid var(--rule-light);
+      border-right: 1px solid var(--rule-light);
+      border-bottom: 1px solid var(--rule-light);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1.3rem;
+      line-height: 1.45;
+      color: var(--ink-primary);
+    }
+
+    .editorial-pullquote cite {
+      display: block;
+      margin-top: 0.6rem;
+      font-family: var(--font-meta);
+      font-style: normal;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Section Headers with Roman Numerals */
+    .section-header {
+      margin: 3.5rem 0 2rem;
+    }
+
+    .section-header-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding-bottom: 0.55rem;
+      border-bottom: 2px solid var(--ink-primary);
+    }
+
+    .section-numeral {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--accent-oxblood);
+      letter-spacing: 0.06em;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.85rem, 3.2vw, 2.55rem);
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: 0.01em;
+      line-height: 1.15;
+    }
+
+    .section-rubric {
+      font-family: var(--font-meta);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .section-subrule {
+      height: 3px;
+      border-bottom: 1px solid var(--ink-primary);
+      margin-bottom: 0.85rem;
+    }
+
+    .section-deck {
+      font-family: var(--font-body);
+      font-style: italic;
+      color: var(--ink-secondary);
+      font-size: 1.05rem;
+      max-width: 760px;
+    }
+
+    /* Section I: Three Research Pillars */
+    .pillars-triptych {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid var(--rule-light);
+      border-bottom: 1px solid var(--rule-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .pillar-col {
+      padding: 1.85rem 1.75rem;
+      border-right: 1px solid var(--rule-light);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .pillar-col:first-child {
+      padding-left: 0.25rem;
+    }
+
+    .pillar-col:last-child {
+      border-right: none;
+      padding-right: 0.25rem;
+    }
+
+    .pillar-index {
+      font-family: var(--font-meta);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-oxblood);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .pillar-index::after {
+      content: "§";
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--rule-medium);
+    }
+
+    .pillar-name {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 600;
+      line-height: 1.18;
+      margin-bottom: 0.85rem;
+      color: var(--ink-primary);
+    }
+
+    .pillar-body {
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 1.25rem;
+    }
+
+    .pillar-keywords {
+      padding-top: 0.85rem;
+      border-top: 1px dotted var(--rule-medium);
+      font-family: var(--font-meta);
+      font-size: 0.66rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+      letter-spacing: 0.03em;
+    }
+
+    .pillar-keywords strong {
+      color: var(--ink-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Eight Transverse Themes Concordance */
+    .themes-concordance {
+      background-color: var(--bg-paper-inset);
+      border: 1px solid var(--rule-light);
+      padding: 1.85rem 2rem;
+    }
+
+    .concordance-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--rule-medium);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.35rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .concordance-header h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+    }
+
+    .concordance-header span {
+      font-family: var(--font-meta);
+      font-size: 0.64rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-oxblood);
+      font-weight: 600;
+    }
+
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.35rem 1.75rem;
+    }
+
+    .theme-entry {
+      border-left: 2px solid var(--rule-medium);
+      padding-left: 0.85rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .theme-entry:hover {
+      border-left-color: var(--accent-oxblood);
+    }
+
+    .theme-num {
+      font-family: var(--font-meta);
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: var(--accent-oxblood);
+      letter-spacing: 0.1em;
+      display: block;
+      margin-bottom: 0.15rem;
+    }
+
+    .theme-title {
+      font-family: var(--font-display);
+      font-size: 1.18rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.25;
+      margin-bottom: 0.25rem;
+    }
+
+    .theme-gloss {
+      font-size: 0.84rem;
+      line-height: 1.45;
+      color: var(--ink-secondary);
+      font-style: italic;
+    }
+
+    /* Section II: Selected Monographs & Papers */
+    .papers-ledger {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .paper-article {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 2.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule-light);
+      align-items: start;
+    }
+
+    .paper-article:first-child {
+      padding-top: 0.5rem;
+    }
+
+    .paper-marginalia {
+      font-family: var(--font-meta);
+      font-size: 0.68rem;
+      color: var(--ink-secondary);
+      border-right: 1px solid var(--rule-light);
+      padding-right: 1.25rem;
+    }
+
+    .paper-folio {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--accent-oxblood);
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .paper-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      margin-top: 0.65rem;
+    }
+
+    .paper-tag {
+      display: inline-block;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-primary);
+      background-color: var(--bg-vellum-alt);
+      border: 1px solid var(--rule-light);
+      padding: 0.22rem 0.5rem;
+      font-weight: 500;
+    }
+
+    .paper-main h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 600;
+      line-height: 1.24;
+      color: var(--ink-primary);
+      margin-bottom: 0.5rem;
+    }
+
+    .paper-authors {
+      font-family: var(--font-body);
+      font-variant: small-caps;
+      letter-spacing: 0.04em;
+      font-size: 0.98rem;
+      color: var(--accent-sepia);
+      margin-bottom: 0.85rem;
+    }
+
+    .paper-abstract {
+      font-size: 0.98rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+      text-align: justify;
+    }
+
+    .paper-abstract-label {
+      font-family: var(--font-meta);
+      font-size: 0.64rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--ink-primary);
+      margin-right: 0.5rem;
+    }
+
+    /* Section III: Faculty & Fellows */
+    .roster-subheading {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.25rem 0 1.5rem;
+    }
+
+    .roster-subheading h3 {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--ink-primary);
+      white-space: nowrap;
+    }
+
+    .roster-subheading .sub-count {
+      font-family: var(--font-meta);
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-oxblood);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .roster-subheading::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background-color: var(--rule-light);
+    }
+
+    /* Permanent Faculty Grid */
+    .faculty-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 2.25rem;
+    }
+
+    .scholar-card {
+      display: flex;
+      flex-direction: column;
+      background-color: var(--bg-vellum);
+      border: 1px solid var(--rule-light);
+      padding: 1.15rem;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .scholar-card:hover {
+      border-color: var(--rule-medium);
+      box-shadow: 0 6px 20px rgba(28, 25, 23, 0.05);
+    }
+
+    .portrait-plate {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 4.6;
+      padding: 6px;
+      background-color: var(--bg-paper-inset);
+      border: 1px solid var(--rule-medium);
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .portrait-plate img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: sepia(0.18) contrast(1.04) brightness(0.98);
+      transition: filter 0.35s ease, transform 0.35s ease;
+    }
+
+    .scholar-card:hover .portrait-plate img {
+      filter: sepia(0.05) contrast(1.02) brightness(1);
+    }
+
+    .scholar-rank {
+      font-family: var(--font-meta);
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-oxblood);
+      margin-bottom: 0.2rem;
+    }
+
+    .scholar-name {
+      font-family: var(--font-display);
+      font-size: 1.42rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.2;
+      margin-bottom: 0.65rem;
+    }
+
+    .scholar-links {
+      margin-top: auto;
+      padding-top: 0.65rem;
+      border-top: 1px dotted var(--rule-light);
+      display: flex;
+      gap: 1rem;
+      font-family: var(--font-meta);
+      font-size: 0.66rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scholar-links a {
+      color: var(--ink-secondary);
+      font-weight: 500;
+      border-bottom: 1px solid var(--rule-medium);
+      padding-bottom: 1px;
+    }
+
+    .scholar-links a:hover {
+      color: var(--accent-oxblood);
+      border-bottom-color: var(--accent-oxblood);
+    }
+
+    /* Postdoctoral Fellow Plate */
+    .postdoc-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem 2.25rem;
+    }
+
+    /* Doctoral Researchers (14 Fellows) Grid */
+    .doctoral-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.35rem 1.5rem;
+    }
+
+    .doctoral-card {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      padding: 0.75rem;
+      border: 1px solid var(--rule-light);
+      background-color: var(--bg-paper-inset);
+    }
+
+    .doctoral-avatar {
+      width: 58px;
+      height: 66px;
+      flex-shrink: 0;
+      padding: 3px;
+      background-color: var(--bg-vellum);
+      border: 1px solid var(--rule-medium);
+      overflow: hidden;
+    }
+
+    .doctoral-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: sepia(0.18) contrast(1.04);
+    }
+
+    .doctoral-meta {
+      min-width: 0;
+    }
+
+    .doctoral-name {
+      font-family: var(--font-display);
+      font-size: 1.12rem;
+      font-weight: 600;
+      color: var(--ink-primary);
+      line-height: 1.2;
+      margin-bottom: 0.15rem;
+    }
+
+    .doctoral-role {
+      font-family: var(--font-meta);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--ink-muted);
+    }
+
+    /* Colophon & Academic Imprint */
+    .colophon {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 2px solid var(--ink-primary);
+      position: relative;
+    }
+
+    .colophon::before {
+      content: "";
+      display: block;
+      border-top: 1px solid var(--ink-primary);
+      margin-top: -1.8rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .colophon-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .colophon-heading {
+      font-family: var(--font-meta);
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-oxblood);
+      margin-bottom: 0.75rem;
+    }
+
+    .colophon-text {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--ink-secondary);
+    }
+
+    .colophon-address {
+      font-style: normal;
+      font-size: 0.92rem;
+      line-height: 1.65;
+      color: var(--ink-secondary);
+    }
+
+    .colophon-address strong {
+      color: var(--ink-primary);
+      font-weight: 600;
+    }
+
+    .colophon-seals {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .colophon-seals img {
+      height: 28px;
+      width: auto;
+      filter: grayscale(100%) contrast(110%);
+      opacity: 0.85;
+    }
+
+    .colophon-imprint {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--rule-light);
+      font-family: var(--font-meta);
+      font-size: 0.64rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 1024px) {
+      .monograph-sheet {
+        padding: 2rem 2rem 2.75rem;
+      }
+
+      .scholarly-grid,
+      .paper-article {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .marginalia,
+      .paper-marginalia {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-light);
+        padding-right: 0;
+        padding-bottom: 1rem;
+      }
+
+      .marginalia {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+
+      .marginal-note {
+        margin-bottom: 0;
+      }
+
+      .pillars-triptych {
+        grid-template-columns: 1fr;
+      }
+
+      .pillar-col {
+        border-right: none;
+        border-bottom: 1px solid var(--rule-light);
+        padding: 1.5rem 0;
+      }
+
+      .pillar-col:last-child {
+        border-bottom: none;
+      }
+
+      .themes-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .faculty-grid,
+      .postdoc-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .doctoral-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .colophon-grid {
+        grid-template-columns: 1fr;
+        gap: 1.75rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      html {
+        font-size: 16px;
+      }
+
+      body {
+        padding: 0 0.5rem;
+      }
+
+      .monograph-sheet {
+        margin: 0.75rem auto 2rem;
+        padding: 1.35rem 1.15rem 2rem;
+      }
+
+      .marginalia {
+        grid-template-columns: 1fr;
+      }
+
+      .themes-grid,
+      .faculty-grid,
+      .postdoc-row,
+      .doctoral-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toc-bar {
+        gap: 0.5rem 1.25rem;
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <main class="monograph-sheet">
+    <!-- Running Header / Monograph Folio -->
+    <div class="running-head">
+      <span>Annales &amp; Research Monograph · Lab-STICC (UMR CNRS 6285)</span>
+      <span class="folio-mark">BRAIN · IMT Atlantique · Brest</span>
+      <span>Dept. of Mathematical &amp; Electrical Engineering (MEE)</span>
+    </div>
+
+    <!-- Solemn Academic Masthead -->
+    <header class="masthead">
+      <p class="masthead-institutions">IMT Atlantique · CNRS Lab-STICC (UMR 6285) · Technopole Brest-Iroise</p>
+      <div class="masthead-emblem">
+        <img src="assets/img/brain-logo.svg" alt="BRAIN Team Emblem">
+      </div>
+      <h1 class="masthead-title">BRAIN</h1>
+      <p class="masthead-subtitle">Broader Artificial Intelligence</p>
+      <p class="masthead-epigraph">
+        “We study representations that help intelligent systems learn, adapt, and make sense of complex data across signals, images, and brains.”
+      </p>
+      <div class="masthead-logos" aria-label="Institutional Affiliations">
+        <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique">
+        <img src="assets/img/lab-sticc.png" alt="CNRS Lab-STICC UMR 6285">
+      </div>
+    </header>
+
+    <hr class="double-rule-heavy">
+
+    <!-- Scholarly Contents Navigation -->
+    <nav class="toc-bar" aria-label="Monograph Sections">
+      <a href="#prolegomena"><span class="roman">Prolegomena.</span> On Representations</a>
+      <a href="#pillars"><span class="roman">I.</span> Research Pillars &amp; Themes</a>
+      <a href="#monographs"><span class="roman">II.</span> Selected Monographs &amp; Papers</a>
+      <a href="#faculty"><span class="roman">III.</span> Faculty &amp; Fellows</a>
+      <a href="#colophon"><span class="roman">IV.</span> Colophon</a>
+    </nav>
+
+    <hr class="double-rule-fine">
+
+    <!-- Editorial Introduction with Marginalia -->
+    <section id="prolegomena" class="scholarly-grid" aria-label="Editorial Introduction">
+      <aside class="marginalia">
+        <div class="marginal-note">
+          <span class="marginal-label">Folio Note · § 01</span>
+          <p>Seat of Inquiry</p>
+          <span class="fact-value">Campus de Brest, Technopole Brest-Iroise, Finistere, France</span>
+        </div>
+        <div class="marginal-note">
+          <span class="marginal-label">Affiliation · § 02</span>
+          <p>Joint Research Unit</p>
+          <span class="fact-value">CNRS Lab-STICC (UMR 6285) &amp; IMT Atlantique (MEE Dept.)</span>
+        </div>
+        <div class="marginal-note">
+          <span class="marginal-label">Corpus · § 03</span>
+          <p>Academic Roster</p>
+          <span class="fact-value">6 Permanent Faculty · 1 Postdoctoral Fellow · 14 Doctoral Researchers</span>
+        </div>
+      </aside>
+
+      <div class="editorial-lead">
+        <p class="dropcap">
+          <span class="small-caps-lead">BRAIN is a research team</span> of Lab-STICC (UMR CNRS 6285) hosted at IMT Atlantique in Brest, France, within the Mathematical and Electrical Engineering (MEE) department. We investigate fundamental and applied questions at the intersection of Artificial Intelligence, Deep Learning, Signal Processing, Computer Vision, Audio, and Computational Neuroscience.
+        </p>
+        <p>
+          At the heart of our scientific inquiry lies the question of <em>representation</em>: how formal structures, geometric manifolds, and compressed parameterizations govern the ability of artificial and biological systems to generalize under stringent constraints. Rather than treating scale as an end in itself, our work seeks principled mathematical foundations that render learning frugal in data, parsimonious in computation, and faithful to the intrinsic geometry of signals, neural recordings, and physical communications.
+        </p>
+        <blockquote class="editorial-pullquote">
+          “To understand intelligence across silicon and cortex is, first and foremost, to understand the geometry and parsimony of its internal representations.”
+          <cite>Programmatic Statement · BRAIN Research Monograph, Brest</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION I: RESEARCH PILLARS & THEMES -->
+    <section id="pillars" aria-labelledby="heading-pillars">
+      <div class="section-header">
+        <div class="section-header-top">
+          <div>
+            <span class="section-numeral">Section I.</span>
+            <h2 id="heading-pillars" class="section-title">Research Pillars &amp; Transverse Themes</h2>
+          </div>
+          <span class="section-rubric">Tripartite Program &amp; Eight Domains of Inquiry</span>
+        </div>
+        <div class="section-subrule"></div>
+        <p class="section-deck">
+          Our research agenda is structured around three foundational pillars addressing data frugality, computational compression, and latent geometry, articulated across eight specialized domains.
+        </p>
+      </div>
+
+      <!-- The 3 Pillars Triptych -->
+      <div class="pillars-triptych">
+        <article class="pillar-col">
+          <div>
+            <div class="pillar-index"><span>Pillar I · Low-Data Regime</span></div>
+            <h3 class="pillar-name">Thrifty AI</h3>
+            <p class="pillar-body">
+              How to find efficient representations in the low-data regime: designing learning principles that extract invariant structure from scarce supervision through few-shot learning, zero-shot adaptation, vision-language models, transfer learning, and foundation model adaptation.
+            </p>
+          </div>
+          <div class="pillar-keywords">
+            <strong>Core Methods:</strong> Few-shot learning · Zero-shot adaptation · Vision-language models · Transfer learning · Foundation model adaptation
+          </div>
+        </article>
+
+        <article class="pillar-col">
+          <div>
+            <div class="pillar-index"><span>Pillar II · Frugal Computation</span></div>
+            <h3 class="pillar-name">Compression of AI</h3>
+            <p class="pillar-body">
+              How to find efficient representations to lower the computational and energy demands of AI systems: advancing quantization, pruning, low-rank tensor factorization, zero-cost Neural Architecture Search, and edge and embedded inference for resource-constrained hardware.
+            </p>
+          </div>
+          <div class="pillar-keywords">
+            <strong>Core Methods:</strong> Quantization · Pruning · Low-rank tensor factorization · Zero-cost NAS · Edge &amp; embedded inference
+          </div>
+        </article>
+
+        <article class="pillar-col">
+          <div>
+            <div class="pillar-index"><span>Pillar III · Structural Spaces</span></div>
+            <h3 class="pillar-name">Geometry and AI</h3>
+            <p class="pillar-body">
+              How to leverage the geometry of latent spaces or input domains to better adapt and monitor AI systems: uniting graph signal processing, Graph Neural Networks, manifold learning, and Riemannian and hyperbolic representations.
+            </p>
+          </div>
+          <div class="pillar-keywords">
+            <strong>Core Methods:</strong> Graph signal processing · Graph Neural Networks · Manifold learning · Riemannian &amp; hyperbolic spaces
+          </div>
+        </article>
+      </div>
+
+      <!-- The 8 Transverse Themes -->
+      <div class="themes-concordance">
+        <div class="concordance-header">
+          <h3>Analytical Index of Transverse Themes</h3>
+          <span>Concordance · I to VIII</span>
+        </div>
+        <div class="themes-grid">
+          <div class="theme-entry">
+            <span class="theme-num">Theme 01</span>
+            <h4 class="theme-title">Few-shot &amp; transfer</h4>
+            <p class="theme-gloss">Rapid adaptation of foundation representations under scarce supervision and domain shift.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 02</span>
+            <h4 class="theme-title">Efficient &amp; edge AI</h4>
+            <p class="theme-gloss">Model compression, low-bit quantization, and hardware-aware neural architecture search.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 03</span>
+            <h4 class="theme-title">Graphs &amp; geometry</h4>
+            <p class="theme-gloss">Graph signal processing, non-Euclidean embeddings, and latent manifold geometry.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 04</span>
+            <h4 class="theme-title">Robustness</h4>
+            <p class="theme-gloss">Out-of-distribution monitoring, adversarial resilience, and reliable representation dynamics.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 05</span>
+            <h4 class="theme-title">Neuroscience &amp; EEG</h4>
+            <p class="theme-gloss">Foundation models for neuroimaging, brain-computer interfaces, cortical dynamics.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 06</span>
+            <h4 class="theme-title">Audio &amp; music</h4>
+            <p class="theme-gloss">Structural music analysis, bioacoustics, auditory representations.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 07</span>
+            <h4 class="theme-title">Channel coding</h4>
+            <p class="theme-gloss">Polar codes, error-correcting decoders, hardware transceivers.</p>
+          </div>
+          <div class="theme-entry">
+            <span class="theme-num">Theme 08</span>
+            <h4 class="theme-title">Optimization</h4>
+            <p class="theme-gloss">Combinatorial optimization, metaheuristics.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION II: SELECTED MONOGRAPHS & PAPERS -->
+    <section id="monographs" aria-labelledby="heading-monographs">
+      <div class="section-header">
+        <div class="section-header-top">
+          <div>
+            <span class="section-numeral">Section II.</span>
+            <h2 id="heading-monographs" class="section-title">Selected Monographs &amp; Papers</h2>
+          </div>
+          <span class="section-rubric">Bibliographical Record &amp; Reference Contributions</span>
+        </div>
+        <div class="section-subrule"></div>
+        <p class="section-deck">
+          Representative works illustrating our contributions across neural foundation modeling, kernel adaptation in vision-language spaces, tensorized low-rank compression, and zero-cost architectural proxies.
+        </p>
+      </div>
+
+      <div class="papers-ledger">
+        <!-- Publication 1 -->
+        <article class="paper-article">
+          <div class="paper-marginalia">
+            <span class="paper-folio">Monograph No. I</span>
+            <span>Ref. BRAIN-EEG-4D</span>
+            <div class="paper-tags">
+              <span class="paper-tag">Neuroscience &amp; EEG</span>
+              <span class="paper-tag">Foundation Models</span>
+            </div>
+          </div>
+          <div class="paper-main">
+            <h3>REVE: A Foundation Model for EEG</h3>
+            <p class="paper-authors">
+              Yassine El Ouahidi, Jonathan Lys, Philipp Tholke, Nicolas Farrugia, Bastien Pasdeloup, Vincent Gripon, Karim Jerbi
+            </p>
+            <p class="paper-abstract">
+              <span class="paper-abstract-label">Abstract.</span>
+              A 4D spatial-temporal foundation model pretrained on 60,000+ hours of EEG designed to adapt seamlessly to diverse clinical and cognitive tasks.
+            </p>
+          </div>
+        </article>
+
+        <!-- Publication 2 -->
+        <article class="paper-article">
+          <div class="paper-marginalia">
+            <span class="paper-folio">Monograph No. II</span>
+            <span>Ref. BRAIN-VLM-KR</span>
+            <div class="paper-tags">
+              <span class="paper-tag">Few-shot &amp; transfer</span>
+              <span class="paper-tag">Vision-Language</span>
+            </div>
+          </div>
+          <div class="paper-main">
+            <h3>ProKeR: A Kernel Perspective on Few-Shot Adaptation of Large Vision-Language Models</h3>
+            <p class="paper-authors">
+              Yassir Bendou, Amine Ouasfi, Vincent Gripon, Adnane Boukhayma
+            </p>
+            <p class="paper-abstract">
+              <span class="paper-abstract-label">Abstract.</span>
+              Reformulating few-shot adaptation of CLIP-like models through proximal kernel ridge regression in feature space.
+            </p>
+          </div>
+        </article>
+
+        <!-- Publication 3 -->
+        <article class="paper-article">
+          <div class="paper-marginalia">
+            <span class="paper-folio">Monograph No. III</span>
+            <span>Ref. BRAIN-TENS-LR</span>
+            <div class="paper-tags">
+              <span class="paper-tag">Compression of AI</span>
+              <span class="paper-tag">Efficient &amp; edge AI</span>
+            </div>
+          </div>
+          <div class="paper-main">
+            <h3>TensLoRA: Tensor Alternatives for Low-Rank Adaptation</h3>
+            <p class="paper-authors">
+              Axel Marmoret, Reda Bensaid, Jonathan Lys, Vincent Gripon, Francois Leduc-Primeau
+            </p>
+            <p class="paper-abstract">
+              <span class="paper-abstract-label">Abstract.</span>
+              Leveraging higher-order tensor factorizations across attention projections and layers to achieve superior parameter compression.
+            </p>
+          </div>
+        </article>
+
+        <!-- Publication 4 -->
+        <article class="paper-article">
+          <div class="paper-marginalia">
+            <span class="paper-folio">Monograph No. IV</span>
+            <span>Ref. BRAIN-NAS-ZCP</span>
+            <div class="paper-tags">
+              <span class="paper-tag">Efficient &amp; edge AI</span>
+              <span class="paper-tag">NAS</span>
+            </div>
+          </div>
+          <div class="paper-main">
+            <h3>Insights From a Data- and Space-Agnostic Approach to Zero-Cost Proxies</h3>
+            <p class="paper-authors">
+              Timotee Ly-Manson, Mathieu Leonardon, Abdeldjalil Aissa-El-Bey
+            </p>
+            <p class="paper-abstract">
+              <span class="paper-abstract-label">Abstract.</span>
+              Disentangling architectural topology from input data in zero-cost Neural Architecture Search proxies to enable fast hardware-aware design.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION III: FACULTY & FELLOWS -->
+    <section id="faculty" aria-labelledby="heading-faculty">
+      <div class="section-header">
+        <div class="section-header-top">
+          <div>
+            <span class="section-numeral">Section III.</span>
+            <h2 id="heading-faculty" class="section-title">Faculty &amp; Fellows</h2>
+          </div>
+          <span class="section-rubric">Directory of Scholars · Brest Campus</span>
+        </div>
+        <div class="section-subrule"></div>
+        <p class="section-deck">
+          Permanent professors, postdoctoral fellows, and doctoral candidates conducting research within the BRAIN team at IMT Atlantique and CNRS Lab-STICC.
+        </p>
+      </div>
+
+      <!-- Permanent Researchers -->
+      <div class="roster-subheading">
+        <h3>Permanent Researchers</h3>
+        <span class="sub-count">VI Faculty Members</span>
+      </div>
+
+      <div class="faculty-grid">
+        <!-- Vincent Gripon -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/vincent-gripon.jpg" alt="Portrait of Vincent Gripon" loading="lazy">
+          </div>
+          <span class="scholar-rank">Full professor, HDR · Team lead</span>
+          <h4 class="scholar-name">Vincent Gripon</h4>
+          <div class="scholar-links">
+            <a href="https://vincent-gripon.com" target="_blank" rel="noopener">Website</a>
+            <a href="https://scholar.google.com/citations?user=n3IKEqgAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+
+        <!-- Nicolas Farrugia -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/nicolas-farrugia.jpg" alt="Portrait of Nicolas Farrugia" loading="lazy">
+          </div>
+          <span class="scholar-rank">Full professor, HDR</span>
+          <h4 class="scholar-name">Nicolas Farrugia</h4>
+          <div class="scholar-links">
+            <a href="https://nicofarr.github.io" target="_blank" rel="noopener">Website</a>
+            <a href="https://scholar.google.com/citations?user=IO4nLK4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+
+        <!-- Giulia Lioi -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/giulia-lioi.jpg" alt="Portrait of Giulia Lioi" loading="lazy">
+          </div>
+          <span class="scholar-rank">Associate professor</span>
+          <h4 class="scholar-name">Giulia Lioi</h4>
+          <div class="scholar-links">
+            <a href="https://scholar.google.com/citations?user=mx2AqLYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+
+        <!-- Mathieu Leonardon -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/mathieu-leonardon.jpg" alt="Portrait of Mathieu Leonardon" loading="lazy">
+          </div>
+          <span class="scholar-rank">Associate professor, HDR</span>
+          <h4 class="scholar-name">Mathieu Leonardon</h4>
+          <div class="scholar-links">
+            <a href="https://www.mathieuleonardon.com" target="_blank" rel="noopener">Website</a>
+            <a href="https://scholar.google.com/citations?user=ZqWCKuwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+
+        <!-- Axel Marmoret -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/axel-marmoret.jpg" alt="Portrait of Axel Marmoret" loading="lazy">
+          </div>
+          <span class="scholar-rank">Associate professor</span>
+          <h4 class="scholar-name">Axel Marmoret</h4>
+          <div class="scholar-links">
+            <a href="https://ax-le.github.io" target="_blank" rel="noopener">Website</a>
+            <a href="https://scholar.google.com/citations?user=2PRDe3oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+
+        <!-- Bastien Pasdeloup -->
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/bastien-pasdeloup.jpg" alt="Portrait of Bastien Pasdeloup" loading="lazy">
+          </div>
+          <span class="scholar-rank">Associate professor, HDR</span>
+          <h4 class="scholar-name">Bastien Pasdeloup</h4>
+          <div class="scholar-links">
+            <a href="https://bastienpasdeloup.github.io" target="_blank" rel="noopener">Website</a>
+            <a href="https://scholar.google.com/citations?user=dKOgoG4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- Postdoctoral Researchers -->
+      <div class="roster-subheading">
+        <h3>Postdoctoral Researchers</h3>
+        <span class="sub-count">I Research Fellow</span>
+      </div>
+
+      <div class="postdoc-row">
+        <article class="scholar-card">
+          <div class="portrait-plate">
+            <img src="assets/img/people/venkatesh-subramani.jpg" alt="Portrait of Venkatesh Subramani" loading="lazy">
+          </div>
+          <span class="scholar-rank">Postdoctoral researcher</span>
+          <h4 class="scholar-name">Venkatesh Subramani</h4>
+          <div class="scholar-links">
+            <a href="https://venkateshness.github.io" target="_blank" rel="noopener">Website</a>
+          </div>
+        </article>
+      </div>
+
+      <!-- PhD Students -->
+      <div class="roster-subheading">
+        <h3>Doctoral Researchers (PhD Candidates)</h3>
+        <span class="sub-count">XIV Doctoral Fellows</span>
+      </div>
+
+      <div class="doctoral-grid">
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/ismail-amessegher.jpg" alt="Portrait of Ismail Amessegher" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Ismail Amessegher</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/reda-bensaid.png" alt="Portrait of Reda Bensaid" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Reda Bensaid</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/lucas-benoit.jpg" alt="Portrait of Lucas Benoit" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Lucas Benoit</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/philippe-forest.jpg" alt="Portrait of Philippe Forest" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Philippe Forest</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/baptiste-hilaire.jpg" alt="Portrait of Baptiste Hilaire" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Baptiste Hilaire</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/kaiteng-jiang.jpg" alt="Portrait of Kaiteng Jiang" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Kaiteng Jiang</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/tevchhorpoan-khieu.jpeg" alt="Portrait of Tevchhorpoan Khieu" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Tevchhorpoan Khieu</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/lucie-jean-labadye.svg" alt="Portrait of Lucie Jean-Labadye" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Lucie Jean-Labadye</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/elise-lagarde.jpeg" alt="Portrait of Elise Lagarde" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Elise Lagarde</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/jonathan-lys.jpg" alt="Portrait of Jonathan Lys" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Jonathan Lys</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/jeremy-morlier.svg" alt="Portrait of Jeremy Morlier" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Jeremy Morlier</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/joshua-rivera.jpg" alt="Portrait of Joshua Rivera" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Joshua Rivera</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/nolan-sisouphanthong.jpeg" alt="Portrait of Nolan Sisouphanthong" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Nolan Sisouphanthong</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+
+        <article class="doctoral-card">
+          <div class="doctoral-avatar">
+            <img src="assets/img/people/alexandre-thouvenot.svg" alt="Portrait of Alexandre Thouvenot" loading="lazy">
+          </div>
+          <div class="doctoral-meta">
+            <h4 class="doctoral-name">Alexandre Thouvenot</h4>
+            <span class="doctoral-role">PhD Candidate</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION IV: COLOPHON & ADDRESS -->
+    <footer id="colophon" class="colophon">
+      <div class="colophon-grid">
+        <div>
+          <h3 class="colophon-heading">IV. Colophon &amp; Institutional Note</h3>
+          <p class="colophon-text">
+            Set in <em>Cormorant Garamond</em> and <em>EB Garamond</em> on warm vellum sheets. This monograph presents the scientific program, publications, and scholarly roster of the <strong>BRAIN (Broader Artificial Intelligence)</strong> research team, operating jointly within CNRS Lab-STICC (UMR 6285) and the Mathematical and Electrical Engineering (MEE) department of IMT Atlantique.
+          </p>
+          <div class="colophon-seals">
+            <img src="assets/img/brain-logo.svg" alt="BRAIN Logo">
+            <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique Logo">
+            <img src="assets/img/lab-sticc.png" alt="Lab-STICC Logo">
+          </div>
+        </div>
+
+        <div>
+          <h3 class="colophon-heading">Seat &amp; Postal Address</h3>
+          <address class="colophon-address">
+            <strong>BRAIN Research Team</strong><br>
+            IMT Atlantique · Campus de Brest<br>
+            Departement MEE (Mathematical &amp; Electrical Engineering)<br>
+            CNRS Lab-STICC (UMR 6285)<br>
+            Technopole Brest-Iroise, CS 83818<br>
+            29238 Brest Cedex 3, Bretagne, France
+          </address>
+        </div>
+
+        <div>
+          <h3 class="colophon-heading">Academic Concordance</h3>
+          <p class="colophon-text">
+            Canonical Portal: <a href="https://brain.bzh">brain.bzh</a><br>
+            Research Unit: CNRS UMR 6285 (Lab-STICC)<br>
+            Host Institution: IMT Atlantique, Brest<br>
+            Department: Mathematical and Electrical Engineering (MEE)
+          </p>
+        </div>
+      </div>
+
+      <div class="colophon-imprint">
+        <span>BRAIN : Broader Artificial Intelligence · Brest, Bretagne, France</span>
+        <span>Edition Prototype II · Classic Scholar &amp; Editorial Monograph</span>
+      </div>
+    </footer>
+  </main>
+
+</body>
+</html>

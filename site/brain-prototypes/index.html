@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BRAIN Website Redesign : 10 Prototypes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #111317;
+      --panel: #181b20;
+      --border: #262b33;
+      --text: #e4e7ec;
+      --muted: #98a2b3;
+      --accent: #3b82f6;
+      --accent-soft: rgba(59, 130, 246, 0.14);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Top Control Bar */
+    .topbar {
+      background: var(--panel);
+      border-bottom: 1px solid var(--border);
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-shrink: 0;
+      z-index: 20;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+    .brand-badge {
+      background: #2563eb;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Prototype Pills Bar */
+    .proto-strip {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 2px 0;
+    }
+    .proto-strip::-webkit-scrollbar { display: none; }
+    .proto-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .proto-btn:hover {
+      color: var(--text);
+      border-color: #3f4756;
+      background: rgba(255,255,255,0.03);
+    }
+    .proto-btn.active {
+      background: var(--accent-soft);
+      color: #60a5fa;
+      border-color: var(--accent);
+      font-weight: 600;
+    }
+    .proto-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      opacity: 0.75;
+    }
+
+    /* Right Controls */
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+    .btn-group {
+      display: flex;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      padding: 5px 9px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: inherit;
+    }
+    .icon-btn:hover { color: var(--text); }
+    .icon-btn.active {
+      background: var(--border);
+      color: #fff;
+      font-weight: 500;
+    }
+    .ext-link {
+      background: #2563eb;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 6px 11px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+    .ext-link:hover { background: #1d4ed8; }
+
+    /* Sub-bar with active theme description */
+    .infobar {
+      background: #14171c;
+      border-bottom: 1px solid var(--border);
+      padding: 6px 16px;
+      font-size: 12.5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .infobar strong { color: var(--text); }
+    .nav-arrows {
+      display: flex;
+      gap: 6px;
+    }
+    .nav-arrows button {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    .nav-arrows button:hover { border-color: #4b5563; }
+
+    /* Main Stage */
+    .stage {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      background: #0b0d10;
+      overflow: hidden;
+      position: relative;
+    }
+    .iframe-wrap {
+      width: 100%;
+      height: 100%;
+      transition: width 0.25s ease;
+      background: #fff;
+      box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    }
+    .iframe-wrap.viewport-tablet { width: 768px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    .iframe-wrap.viewport-mobile { width: 390px; border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* Overview Grid Modal / Mode */
+    .catalog {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      overflow-y: auto;
+      padding: 32px 24px;
+      z-index: 10;
+    }
+    .catalog.open { display: block; }
+    .catalog-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .catalog-header {
+      margin-bottom: 24px;
+    }
+    .catalog-header h1 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .catalog-header p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .card-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #60a5fa;
+      background: var(--accent-soft);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    .card-tag {
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 99px;
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+    .card p {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .card-actions button, .card-actions a {
+      flex: 1;
+      text-align: center;
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-preview {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+    }
+    .btn-preview:hover { background: #2563eb; }
+    .btn-tab {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-tab:hover { border-color: #4b5563; }
+
+    @media (max-width: 900px) {
+      .brand span:not(.brand-badge) { display: none; }
+      .infobar-desc { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-badge">BRAIN</span>
+      <span>10 Prototypes</span>
+    </div>
+
+    <nav class="proto-strip" id="protoStrip"></nav>
+
+    <div class="actions">
+      <button class="icon-btn" id="btnCatalog" onclick="toggleCatalog()" title="Voir la grille des 10 propositions">
+        Grille (10)
+      </button>
+      <div class="btn-group" title="Taille d'ecran">
+        <button class="icon-btn active" onclick="setViewport('desktop', this)">Desktop</button>
+        <button class="icon-btn" onclick="setViewport('tablet', this)">768px</button>
+        <button class="icon-btn" onclick="setViewport('mobile', this)">390px</button>
+      </div>
+      <a class="ext-link" id="openTabLink" href="proto-01.html" target="_blank" rel="noopener">
+        Plein ecran ↗
+      </a>
+    </div>
+  </header>
+
+  <div class="infobar">
+    <div>
+      <strong id="activeTitle">01. Swiss Academic Grid</strong>
+      <span class="infobar-desc" id="activeDesc"> : Grille helvetique rigoureuse, typographie sans-serif nette, filets 1px, fond papier clair.</span>
+    </div>
+    <div class="nav-arrows">
+      <button onclick="stepProto(-1)">← Precedent</button>
+      <button onclick="stepProto(1)">Suivant →</button>
+    </div>
+  </div>
+
+  <main class="stage">
+    <div class="iframe-wrap" id="iframeWrap">
+      <iframe id="viewer" src="proto-01.html" title="Apercu du prototype"></iframe>
+    </div>
+
+    <section class="catalog" id="catalogView">
+      <div class="catalog-inner">
+        <div class="catalog-header">
+          <h1>10 Directions Graphiques pour BRAIN (brain.bzh)</h1>
+          <p>Exploration de 10 identites visuelles distinctes pour sortir de l'esthetique generique et donner au laboratoire une image authentique.</p>
+        </div>
+        <div class="grid" id="catalogGrid"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const PROTOS = [
+      {
+        id: "01",
+        file: "proto-01.html",
+        short: "Swiss Grid",
+        title: "Swiss International & Modernist Grid",
+        tag: "EPFL / ETH Style",
+        desc: "Grille helvetique rigoureuse, filets fins 1px, typographie neo-grotesque nette, fond craie et accent rouge cobalt."
+      },
+      {
+        id: "02",
+        file: "proto-02.html",
+        short: "Editorial Serif",
+        title: "Classic Scholar & Monograph",
+        tag: "Oxford / IAS Style",
+        desc: "Elegance academique intemporelle, grands titres serif editoriaux, papier ivoire chaud, mise en page de monographie scientifique."
+      },
+      {
+        id: "03",
+        file: "proto-03.html",
+        short: "Minimal Lab",
+        title: "Bell Labs & Minimalist Research Note",
+        tag: "Unix / Karpathy Style",
+        desc: "Esthetique brute et ultra-lisible de cahier de recherche informatique : accents monospace, zero artifice, haute densite d'information."
+      },
+      {
+        id: "04",
+        file: "proto-04.html",
+        short: "Institution CNRS",
+        title: "French Scientific Institution",
+        tag: "CNRS / Grand Etablissement",
+        desc: "Sobriete institutionnelle francaise, bleu marine profond et ocre, structure claire par axes et tutelles IMT Atlantique / Lab-STICC."
+      },
+      {
+        id: "05",
+        file: "proto-05.html",
+        short: "Nordic Serene",
+        title: "Scandinavian Humanist & Organic",
+        tag: "Aalto / Karolinska Style",
+        desc: "Palette naturelle (sauge, lin, ardoise), respiration genereuse, typographie humaniste chaleureuse centrée sur l'humain et la science."
+      },
+      {
+        id: "06",
+        file: "proto-06.html",
+        short: "Premier CS Lab",
+        title: "Modern Computer Science Lab",
+        tag: "BAIR / CSAIL Style",
+        desc: "Portail de laboratoire d'IA de premier plan : cartes de publications avec badges Code/arXiv/HAL, filtres par piliers et trombinoscope clair."
+      },
+      {
+        id: "07",
+        file: "proto-07.html",
+        short: "Brest Atlantic",
+        title: "Brest & Finistere Maritime Identity",
+        tag: "Granit & Iroise",
+        desc: "Ancrage territorial brestois : bleu abyssal de la mer d'Iroise, gris granit, blanc ecume et touche orange balise maritime."
+      },
+      {
+        id: "08",
+        file: "proto-08.html",
+        short: "Science Magazine",
+        title: "Scientific Journalism & Feature Review",
+        tag: "Quanta / Nature Style",
+        desc: "Mise en scene editoriale de grand magazine scientifique : focus sur les percées (REVE 60 000h EEG, TensLoRA), typographie expressive."
+      },
+      {
+        id: "09",
+        file: "proto-09.html",
+        short: "Compact Matrix",
+        title: "High-Density Research Index & Directory",
+        tag: "Dashboard / Systems",
+        desc: "Vue compacte multi-colonnes sans defilement superflu : filtrage instantané des chercheurs, des 8 themes et des articles."
+      },
+      {
+        id: "10",
+        file: "proto-10.html",
+        short: "Dark Slate",
+        title: "Architectural Dark Slate Precision",
+        tag: "Dieter Rams Dark",
+        desc: "Mode sombre architectural sobre (anthracite mat et ambre doux, sans aucun neon), contraste maîtrisé et precision technique."
+      }
+    ];
+
+    let currentIndex = 0;
+    const strip = document.getElementById('protoStrip');
+    const grid = document.getElementById('catalogGrid');
+    const viewer = document.getElementById('viewer');
+    const activeTitle = document.getElementById('activeTitle');
+    const activeDesc = document.getElementById('activeDesc');
+    const openTabLink = document.getElementById('openTabLink');
+    const catalogView = document.getElementById('catalogView');
+    const btnCatalog = document.getElementById('btnCatalog');
+
+    function init() {
+      PROTOS.forEach((p, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'proto-btn' + (idx === 0 ? ' active' : '');
+        btn.innerHTML = `<span class="proto-num">${p.id}</span><span>${p.short}</span>`;
+        btn.onclick = () => selectProto(idx);
+        strip.appendChild(btn);
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div>
+            <div class="card-top">
+              <span class="card-num">PROTOTYPE ${p.id}</span>
+              <span class="card-tag">${p.tag}</span>
+            </div>
+            <h3>${p.title}</h3>
+            <p>${p.desc}</p>
+          </div>
+          <div class="card-actions">
+            <button class="btn-preview" onclick="selectProto(${idx})">Previsualiser</button>
+            <a class="btn-tab" href="${p.file}" target="_blank" rel="noopener">Ouvrir ↗</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      const hash = window.location.hash.replace('#', '');
+      const found = PROTOS.findIndex(p => p.id === hash || p.file.includes(hash));
+      if (found >= 0) selectProto(found);
+    }
+
+    function selectProto(idx) {
+      currentIndex = idx;
+      const p = PROTOS[idx];
+      viewer.src = p.file;
+      activeTitle.textContent = `${p.id}. ${p.title}`;
+      activeDesc.textContent = ` : ${p.desc}`;
+      openTabLink.href = p.file;
+      window.location.hash = p.id;
+
+      document.querySelectorAll('.proto-btn').forEach((b, i) => {
+        b.classList.toggle('active', i === idx);
+      });
+
+      if (catalogView.classList.contains('open')) {
+        toggleCatalog(false);
+      }
+    }
+
+    function stepProto(delta) {
+      const next = (currentIndex + delta + PROTOS.length) % PROTOS.length;
+      selectProto(next);
+    }
+
+    function toggleCatalog(force) {
+      const isOpen = typeof force === 'boolean' ? force : !catalogView.classList.contains('open');
+      catalogView.classList.toggle('open', isOpen);
+      btnCatalog.classList.toggle('active', isOpen);
+    }
+
+    function setViewport(mode, btn) {
+      const wrap = document.getElementById('iframeWrap');
+      wrap.className = 'iframe-wrap viewport-' + mode;
+      btn.parentElement.querySelectorAll('.icon-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') stepProto(1);
+      if (e.key === 'ArrowLeft') stepProto(-1);
+      if (e.key === 'Escape' && catalogView.classList.contains('open')) toggleCatalog(false);
+    });
+
+    init();
+  </script>
+</body>
+</html>
