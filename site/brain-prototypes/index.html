@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
-  <title>BRAIN Website Redesign : 10 Prototypes</title>
+  <title>BRAIN Prototype 05 : 50 Variations Chromatiques</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -15,8 +15,8 @@
       --border: #262b33;
       --text: #e4e7ec;
       --muted: #98a2b3;
-      --accent: #3b82f6;
-      --accent-soft: rgba(59, 130, 246, 0.14);
+      --accent: #c96a4b;
+      --accent-soft: rgba(201, 106, 75, 0.16);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -29,7 +29,6 @@
       overflow: hidden;
     }
 
-    /* Top Control Bar */
     .topbar {
       background: var(--panel);
       border-bottom: 1px solid var(--border);
@@ -46,11 +45,11 @@
       align-items: center;
       gap: 10px;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13.5px;
       white-space: nowrap;
     }
     .brand-badge {
-      background: #2563eb;
+      background: #9E3B24;
       color: #fff;
       font-family: 'JetBrains Mono', monospace;
       font-size: 11px;
@@ -59,23 +58,25 @@
       font-weight: 500;
     }
 
-    /* Prototype Pills Bar */
     .proto-strip {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 5px;
       overflow-x: auto;
-      scrollbar-width: none;
-      padding: 2px 0;
+      scrollbar-width: thin;
+      padding: 3px 0;
+      flex: 1;
     }
-    .proto-strip::-webkit-scrollbar { display: none; }
+    .proto-strip::-webkit-scrollbar { height: 4px; }
+    .proto-strip::-webkit-scrollbar-thumb { background: #2e3440; border-radius: 2px; }
+
     .proto-btn {
       background: transparent;
       border: 1px solid var(--border);
       color: var(--muted);
-      padding: 5px 10px;
+      padding: 4px 9px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 11.5px;
       font-weight: 500;
       cursor: pointer;
       white-space: nowrap;
@@ -91,17 +92,28 @@
     }
     .proto-btn.active {
       background: var(--accent-soft);
-      color: #60a5fa;
+      color: #f3d5ca;
       border-color: var(--accent);
       font-weight: 600;
     }
     .proto-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      opacity: 0.75;
+      font-size: 10.5px;
+      opacity: 0.8;
+    }
+    .swatches {
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.25);
+      display: inline-block;
     }
 
-    /* Right Controls */
     .actions {
       display: flex;
       align-items: center;
@@ -119,7 +131,7 @@
       background: transparent;
       border: none;
       color: var(--muted);
-      padding: 5px 9px;
+      padding: 5px 10px;
       font-size: 12px;
       cursor: pointer;
       transition: all 0.15s;
@@ -131,8 +143,22 @@
       color: #fff;
       font-weight: 500;
     }
+    .btn-grid-toggle {
+      background: #232830;
+      border: 1px solid #384152;
+      color: #fff;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .btn-grid-toggle.active {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
     .ext-link {
-      background: #2563eb;
+      background: #9E3B24;
       color: #fff;
       text-decoration: none;
       font-size: 12px;
@@ -142,11 +168,9 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      transition: background 0.15s;
     }
-    .ext-link:hover { background: #1d4ed8; }
+    .ext-link:hover { background: #84301c; }
 
-    /* Sub-bar with active theme description */
     .infobar {
       background: #14171c;
       border-bottom: 1px solid var(--border);
@@ -157,24 +181,41 @@
       justify-content: space-between;
       color: var(--muted);
       flex-shrink: 0;
+      gap: 12px;
     }
-    .infobar strong { color: var(--text); }
+    .info-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .info-left strong { color: var(--text); }
+    .palette-codes {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: #cbd5e1;
+      background: rgba(255,255,255,0.05);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
     .nav-arrows {
       display: flex;
       gap: 6px;
+      flex-shrink: 0;
     }
     .nav-arrows button {
       background: var(--panel);
       border: 1px solid var(--border);
       color: var(--text);
       border-radius: 4px;
-      padding: 2px 8px;
+      padding: 2px 9px;
       font-size: 12px;
       cursor: pointer;
     }
     .nav-arrows button:hover { border-color: #4b5563; }
 
-    /* Main Stage */
     .stage {
       flex: 1;
       display: flex;
@@ -200,106 +241,142 @@
       display: block;
     }
 
-    /* Overview Grid Modal / Mode */
     .catalog {
       display: none;
       position: absolute;
       inset: 0;
       background: var(--bg);
       overflow-y: auto;
-      padding: 32px 24px;
+      padding: 28px 24px 48px;
       z-index: 10;
     }
     .catalog.open { display: block; }
     .catalog-inner {
-      max-width: 1280px;
+      max-width: 1360px;
       margin: 0 auto;
     }
     .catalog-header {
-      margin-bottom: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 22px;
     }
     .catalog-header h1 {
-      font-size: 22px;
+      font-size: 21px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
     }
     .catalog-header p {
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13.5px;
     }
+    .family-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .fam-btn {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .fam-btn:hover { color: var(--text); }
+    .fam-btn.active {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 14px;
     }
     .card {
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 18px;
+      border-radius: 9px;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 14px;
       transition: border-color 0.15s, transform 0.15s;
     }
     .card:hover {
       border-color: var(--accent);
       transform: translateY(-2px);
     }
+    .card-swatch-bar {
+      height: 44px;
+      display: flex;
+      border-bottom: 1px solid var(--border);
+    }
+    .swatch-bg { flex: 3; display: flex; align-items: center; padding-left: 12px; font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+    .swatch-ink { flex: 1.2; }
+    .swatch-acc { flex: 1.2; }
+    .card-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
     .card-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 8px;
     }
     .card-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: #60a5fa;
+      font-size: 11px;
+      color: #f3d5ca;
       background: var(--accent-soft);
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 4px;
     }
     .card-tag {
       font-size: 11px;
       color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 2px 7px;
-      border-radius: 99px;
     }
     .card h3 {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
-      margin-bottom: 6px;
       color: #fff;
     }
     .card p {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--muted);
-      line-height: 1.5;
+      line-height: 1.45;
     }
     .card-actions {
       display: flex;
       gap: 8px;
-      margin-top: 4px;
+      margin-top: auto;
+      padding-top: 6px;
     }
     .card-actions button, .card-actions a {
       flex: 1;
       text-align: center;
-      padding: 7px 10px;
-      border-radius: 6px;
-      font-size: 12.5px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 12px;
       font-weight: 500;
       cursor: pointer;
       text-decoration: none;
     }
     .btn-preview {
-      background: var(--accent);
+      background: #9E3B24;
       color: #fff;
       border: none;
     }
-    .btn-preview:hover { background: #2563eb; }
+    .btn-preview:hover { background: #84301c; }
     .btn-tab {
       background: transparent;
       color: var(--text);
@@ -317,31 +394,32 @@
 
   <header class="topbar">
     <div class="brand">
-      <span class="brand-badge">BRAIN</span>
-      <span>10 Prototypes</span>
+      <span class="brand-badge">PROTO 05</span>
+      <span>50 Variations</span>
     </div>
 
     <nav class="proto-strip" id="protoStrip"></nav>
 
     <div class="actions">
-      <button class="icon-btn" id="btnCatalog" onclick="toggleCatalog()" title="Voir la grille des 10 propositions">
-        Grille (10)
+      <button class="btn-grid-toggle" id="btnCatalog" onclick="toggleCatalog()">
+        Nuancier (50)
       </button>
       <div class="btn-group" title="Taille d'ecran">
         <button class="icon-btn active" onclick="setViewport('desktop', this)">Desktop</button>
         <button class="icon-btn" onclick="setViewport('tablet', this)">768px</button>
         <button class="icon-btn" onclick="setViewport('mobile', this)">390px</button>
       </div>
-      <a class="ext-link" id="openTabLink" href="proto-01.html" target="_blank" rel="noopener">
+      <a class="ext-link" id="openTabLink" href="var-01.html" target="_blank" rel="noopener">
         Plein ecran ↗
       </a>
     </div>
   </header>
 
   <div class="infobar">
-    <div>
-      <strong id="activeTitle">01. Swiss Academic Grid</strong>
-      <span class="infobar-desc" id="activeDesc"> : Grille helvetique rigoureuse, typographie sans-serif nette, filets 1px, fond papier clair.</span>
+    <div class="info-left">
+      <strong id="activeTitle">01. Venetian Classic</strong>
+      <span class="palette-codes" id="activeCodes">#F6F3EC · #1E1B18 · #9E3B24</span>
+      <span class="infobar-desc" id="activeDesc">Sable chaud, encre sepia et terre de Sienne venitienne (reference Proto 05).</span>
     </div>
     <div class="nav-arrows">
       <button onclick="stepProto(-1)">← Precedent</button>
@@ -351,14 +429,24 @@
 
   <main class="stage">
     <div class="iframe-wrap" id="iframeWrap">
-      <iframe id="viewer" src="proto-01.html" title="Apercu du prototype"></iframe>
+      <iframe id="viewer" src="var-01.html" title="Apercu de la variation"></iframe>
     </div>
 
     <section class="catalog" id="catalogView">
       <div class="catalog-inner">
         <div class="catalog-header">
-          <h1>10 Directions Graphiques pour BRAIN (brain.bzh)</h1>
-          <p>Exploration de 10 identites visuelles distinctes pour sortir de l'esthetique generique et donner au laboratoire une image authentique.</p>
+          <div>
+            <h1>Nuancier des 50 Variations autour du Prototype 05</h1>
+            <p>Exploration chromatique et typographique sur la base editoriale du Prototype 05. Utilisez les fleches ← / → pour naviguer rapidement.</p>
+          </div>
+          <div class="family-filters" id="familyFilters">
+            <button class="fam-btn active" onclick="filterFamily('all', this)">Toutes (50)</button>
+            <button class="fam-btn" onclick="filterFamily('Terres & Classiques', this)">Terres & Classiques (1-10)</button>
+            <button class="fam-btn" onclick="filterFamily('Bleus & Atlantique', this)">Bleus & Atlantique (11-20)</button>
+            <button class="fam-btn" onclick="filterFamily('Botaniques & Foret', this)">Botaniques & Foret (21-30)</button>
+            <button class="fam-btn" onclick="filterFamily('Mineraux & Editoriaux', this)">Mineraux & Editoriaux (31-40)</button>
+            <button class="fam-btn" onclick="filterFamily('Nocturnes & Bicolores', this)">Nocturnes & Bicolores (41-50)</button>
+          </div>
         </div>
         <div class="grid" id="catalogGrid"></div>
       </div>
@@ -366,143 +454,157 @@
   </main>
 
   <script>
-    const PROTOS = [
-      {
-        id: "01",
-        file: "proto-01.html",
-        short: "Pure Editorial",
-        title: "Pure Editorial & Invisible Grid",
-        tag: "Stripe Press / Readymag",
-        desc: "Zero carte, zero badge : le texte respire directement sur un papier albâtre chaud avec une grille asymetrique a deux colonnes."
-      },
-      {
-        id: "02",
-        file: "proto-02.html",
-        short: "Navy & Velin",
-        title: "Quiet Institutional Elegance (Refined 04)",
-        tag: "Bleu Marine & Epure",
-        desc: "L'esprit institutionnel du prototype 04 totalement depouille de ses boites, compteurs et badges. Calme, statutaire et intemporel."
-      },
-      {
-        id: "03",
-        file: "proto-03.html",
-        short: "Atelier Stone",
-        title: "Architectural Minimalist Studio",
-        tag: "Zumthor / Atelier",
-        desc: "Inspiration cabinet d'architecture contemporain : pierre claire, grands blancs, filets horizontaux ultra-fins et portraits sobres."
-      },
-      {
-        id: "04",
-        file: "proto-04.html",
-        short: "Left-Nav Monograph",
-        title: "Bookish Left-Margin Monograph",
-        tag: "Butterick / Distill",
-        desc: "Sommaire fixe tres discret a gauche et colonne de lecture unique admirablement composee a droite, comme un livre imprime."
-      },
-      {
-        id: "05",
-        file: "proto-05.html",
-        short: "Venetian Ink",
-        title: "Warm Sand & Venetian Terracotta",
-        tag: "Villa Medici / ENS",
-        desc: "Papier sable chaud, encre noire et accent rouge venitien uniquement dans la typographie (`Instrument Serif` + `Inter`)."
-      },
-      {
-        id: "06",
-        file: "proto-06.html",
-        short: "Poetic Wave",
-        title: "Poetic Signal & Subtle Geometry",
-        tag: "Canvas Filaire & Silence",
-        desc: "Mise en page epuree accompagnee d'une fine onde mathematique monochrome en arriere-plan du titre, sans aucun gadget."
-      },
-      {
-        id: "07",
-        file: "proto-07.html",
-        short: "Sticky Chapters",
-        title: "Split-Screen Sticky Chapters",
-        tag: "50/50 Editorial Flow",
-        desc: "Les grands titres de chapitre restent poses a gauche pendant que le contenu defile librement a droite sans aucune bordure de carte."
-      },
-      {
-        id: "08",
-        file: "proto-08.html",
-        short: "High-Contrast Ink",
-        title: "Stark Monochrome & Scale Contrast",
-        tag: "Noir & Blanc Pur",
-        desc: "Contraste franc noir sur blanc pur, jeu d'echelle typographique audacieux entre grands titres et texte courant ciselé."
-      },
-      {
-        id: "09",
-        file: "proto-09.html",
-        short: "Pine & Cream",
-        title: "Deep Pine Sanctuary & Soft Cream",
-        tag: "Vert Sapin & Creme",
-        desc: "Atmosphere feutree de bibliotheque scientifique : vert pin profond, typographie creme et `Fraunces` italique tout en retenue."
-      },
-      {
-        id: "10",
-        file: "proto-10.html",
-        short: "Midnight Velvet",
-        title: "Midnight Velvet & Champagne Typography",
-        tag: "Nocturne Editorial",
-        desc: "Un mode sombre litteraire et non technologique : toile bleu nuit continue sans cartes ni cadres, texte ivoire et accents or sourd."
-      }
+    const VARIATIONS = [
+      // 1-10: Terres & Classiques
+      { id: "01", file: "var-01.html", title: "Venetian Classic (Reference 05)", family: "Terres & Classiques", bg: "#F6F3EC", ink: "#1E1B18", acc: "#9E3B24", desc: "Papier sable chaud, encre sepia sombre et rouge venitien / terre de Sienne." },
+      { id: "02", file: "var-02.html", title: "Pompeian Fresco & Travertine", family: "Terres & Classiques", bg: "#F4EFE6", ink: "#1C1715", acc: "#B03A2E", desc: "Pierre de travertin, charbon volcanique et rouge fresque antique." },
+      { id: "03", file: "var-03.html", title: "Burnt Sienna & Parchment", family: "Terres & Classiques", bg: "#F9F5EB", ink: "#231C16", acc: "#B85D19", desc: "Parchemin clair lumineux, encre bistre et terre de Sienne brulee." },
+      { id: "04", file: "var-04.html", title: "Florentine Golden Ochre", family: "Terres & Classiques", bg: "#F7F3E8", ink: "#1F1C17", acc: "#B57416", desc: "Creme florentine, noyer sombre et ocre dore toscan." },
+      { id: "05", file: "var-05.html", title: "Renaissance Carmine & Ivory", family: "Terres & Classiques", bg: "#FAF8F4", ink: "#1A1819", acc: "#8C1D40", desc: "Ivoire pur, ebene profond et carmin humaniste." },
+      { id: "06", file: "var-06.html", title: "Academic Oxblood & Raw Linen", family: "Terres & Classiques", bg: "#F2EDE4", ink: "#191515", acc: "#6B1D1D", desc: "Toile de lin brut, encre espresso et rouge sang-de-boeuf universitaire." },
+      { id: "07", file: "var-07.html", title: "Baltic Amber & Smooth Vellum", family: "Terres & Classiques", bg: "#FBF8F1", ink: "#211D18", acc: "#A65E18", desc: "Velin lisse, encre ferro-gallique et ambre de la Baltique." },
+      { id: "08", file: "var-08.html", title: "Corten Rust & Limestone", family: "Terres & Classiques", bg: "#EFECE6", ink: "#1D1E1C", acc: "#A84227", desc: "Calcaire gris-beige, basalte et acier Corten patine." },
+      { id: "09", file: "var-09.html", title: "Bordeaux Wine & Alabaster", family: "Terres & Classiques", bg: "#F8F6F2", ink: "#1B191B", acc: "#722F37", desc: "Albatre chaud, noir prune et lie-de-vin bordelais." },
+      { id: "10", file: "var-10.html", title: "Aged Copper & Oatmeal", family: "Terres & Classiques", bg: "#F3EEE5", ink: "#1E1A17", acc: "#9C5233", desc: "Papier avoine, encre tourbe et cuivre ancien." },
+
+      // 11-20: Bleus & Atlantique
+      { id: "11", file: "var-11.html", title: "Iroise Sea & Dune Sand", family: "Bleus & Atlantique", bg: "#F6F4EE", ink: "#131E29", acc: "#1F5E7A", desc: "Sable des dunes bretonnes, marine profond et bleu mer d'Iroise." },
+      { id: "12", file: "var-12.html", title: "Prussian Blue & Vellum", family: "Bleus & Atlantique", bg: "#F8F6F0", ink: "#101B2B", acc: "#1B4965", desc: "Velin ancien et bleu de Prusse scientifique classique." },
+      { id: "13", file: "var-13.html", title: "Ultramarine & Fine Chalk", family: "Bleus & Atlantique", bg: "#F9F8F6", ink: "#141824", acc: "#2038C9", desc: "Craie fine, noir indigo et touche bleu outremer." },
+      { id: "14", file: "var-14.html", title: "Aegean Petrol & Warm Cream", family: "Bleus & Atlantique", bg: "#F5F2EA", ink: "#16222B", acc: "#2A6F82", desc: "Creme chaude et bleu petrole egeen." },
+      { id: "15", file: "var-15.html", title: "Royal Cobalt & Pale Granite", family: "Bleus & Atlantique", bg: "#F1F0EC", ink: "#151B26", acc: "#1D4ED8", desc: "Granit clair, encre ardoise et bleu cobalt." },
+      { id: "16", file: "var-16.html", title: "Naval Ink & Lighthouse Vermilion", family: "Bleus & Atlantique", bg: "#F6F5F0", ink: "#0E1D33", acc: "#C94227", desc: "Toile a voile, encre marine nationale et vermillon de phare." },
+      { id: "17", file: "var-17.html", title: "Celadon Paper & Deep Lagoon", family: "Bleus & Atlantique", bg: "#F2F5F3", ink: "#122329", acc: "#1E6B7B", desc: "Papier celadon tres pale, encre abyssale et bleu lagune." },
+      { id: "18", file: "var-18.html", title: "Nordic Slate Blue & Pearl", family: "Bleus & Atlantique", bg: "#F7F8FA", ink: "#1A212D", acc: "#3B5B8C", desc: "Papier perle frais, gris-bleu acier et bleu ardoise nordique." },
+      { id: "19", file: "var-19.html", title: "Finistere Storm & Atlantic Swell", family: "Bleus & Atlantique", bg: "#ECEEF0", ink: "#141A21", acc: "#255C7D", desc: "Gris brume du Finistere, granit mouille et houle atlantique." },
+      { id: "20", file: "var-20.html", title: "Delft Blue & Porcelain", family: "Bleus & Atlantique", bg: "#FAFBFD", ink: "#111C30", acc: "#1E4E8C", desc: "Blanc porcelaine et bleu de Delft historique." },
+
+      // 21-30: Botaniques & Foret
+      { id: "21", file: "var-21.html", title: "Cypress & Warm Sand", family: "Botaniques & Foret", bg: "#F5F2EA", ink: "#16211B", acc: "#2E5A44", desc: "Sable chaud, encre cypres et vert botanique." },
+      { id: "22", file: "var-22.html", title: "Boreal Pine & Soft Ivory", family: "Botaniques & Foret", bg: "#FAF8F3", ink: "#11221B", acc: "#1E4D3B", desc: "Ivoire doux et vert sapin boreal profond." },
+      { id: "23", file: "var-23.html", title: "Tuscan Olive & Parchment", family: "Botaniques & Foret", bg: "#F7F4EB", ink: "#1F2118", acc: "#5C6B28", desc: "Parchemin chaud et vert olivier de Toscane." },
+      { id: "24", file: "var-24.html", title: "Emerald Herbarium", family: "Botaniques & Foret", bg: "#F6F7F4", ink: "#14211D", acc: "#146C53", desc: "Papier d'herbier presse et vert malachite / emeraude." },
+      { id: "25", file: "var-25.html", title: "Stone Lichen & Peat Moss", family: "Botaniques & Foret", bg: "#F1EFE9", ink: "#1C1F1A", acc: "#4A6B53", desc: "Lichen sur pierre, encre tourbe et vert mousse." },
+      { id: "26", file: "var-26.html", title: "Pale Sage & Terracotta Duo", family: "Botaniques & Foret", bg: "#F3F4EF", ink: "#1B211E", acc: "#9E4129", desc: "Fond sauge tres clair, encre foret et accent terracotta." },
+      { id: "27", file: "var-27.html", title: "Copper Verdigris & Cream", family: "Botaniques & Foret", bg: "#F8F5EE", ink: "#162221", acc: "#2A7B72", desc: "Creme ancienne, bronze oxyde et vert-de-gris patine." },
+      { id: "28", file: "var-28.html", title: "Bay Laurel & Warm Limestone", family: "Botaniques & Foret", bg: "#EFEEE8", ink: "#1A201B", acc: "#3B6348", desc: "Pierre calcaire et vert feuille de laurier." },
+      { id: "29", file: "var-29.html", title: "Cedar Ink & Green Tea Paper", family: "Botaniques & Foret", bg: "#F4EFE4", ink: "#1E1B16", acc: "#3D5E3A", desc: "Papier the vert japonais, encre cedre et vert aiguille." },
+      { id: "30", file: "var-30.html", title: "Kelp & Bleached Driftwood", family: "Botaniques & Foret", bg: "#F3F1EB", ink: "#18201E", acc: "#2F5E56", desc: "Bois flotte blanchi et vert varech." },
+
+      // 31-40: Mineraux & Editoriaux
+      { id: "31", file: "var-31.html", title: "Lead Press & Cotton Rag", family: "Mineraux & Editoriaux", bg: "#F7F6F2", ink: "#141413", acc: "#4A4946", desc: "Papier chiffon pur coton et encre typographique au plomb monochrome." },
+      { id: "32", file: "var-32.html", title: "Warm Charcoal & Brushed Bronze", family: "Mineraux & Editoriaux", bg: "#F5F3EE", ink: "#1A1917", acc: "#7D6340", desc: "Papier creme, fusain et bronze brosse." },
+      { id: "33", file: "var-33.html", title: "Byzantine Aubergine & Alabaster", family: "Mineraux & Editoriaux", bg: "#F9F7F5", ink: "#1D171F", acc: "#632B5B", desc: "Albatre doux et pourpre aubergine byzantin." },
+      { id: "34", file: "var-34.html", title: "Iron Gall Manuscript & Vellum", family: "Mineraux & Editoriaux", bg: "#F6F1E6", ink: "#211B17", acc: "#6E473B", desc: "Velin de manuscrit ancien et encre ferro-gallique brunie." },
+      { id: "35", file: "var-35.html", title: "Basalt & Cool Platinum", family: "Mineraux & Editoriaux", bg: "#F2F3F5", ink: "#121417", acc: "#374151", desc: "Platine froid, noir basalte et gris acier contemporain." },
+      { id: "36", file: "var-36.html", title: "Academic Violet & Warm Ivory", family: "Mineraux & Editoriaux", bg: "#FAF9F5", ink: "#171521", acc: "#4C358C", desc: "Ivoire chaud et violet palmes academiques." },
+      { id: "37", file: "var-37.html", title: "Carbon Ink & Vermilion Thread", family: "Mineraux & Editoriaux", bg: "#F4F4F2", ink: "#111111", acc: "#D13423", desc: "Gris papier journal fin, noir carbone et filet vermillon." },
+      { id: "38", file: "var-38.html", title: "Raw Silk & Roasted Chestnut", family: "Mineraux & Editoriaux", bg: "#EFE9DE", ink: "#211813", acc: "#7A4928", desc: "Soie grege non blanchie, espresso et chataigne." },
+      { id: "39", file: "var-39.html", title: "Aizome Indigo & Washi Paper", family: "Mineraux & Editoriaux", bg: "#F8F7F2", ink: "#121824", acc: "#2B4C7E", desc: "Papier washi japonais et teinture indigo naturelle Aizome." },
+      { id: "40", file: "var-40.html", title: "Tyrian Mulberry & Classic Sand", family: "Mineraux & Editoriaux", bg: "#F6F3EC", ink: "#1C161C", acc: "#7A2048", desc: "Sable classique du Proto 05 avec pourpre de Tyr." },
+
+      // 41-50: Nocturnes & Bicolores
+      { id: "41", file: "var-41.html", title: "Venetian Nocturne (Inverted 05)", family: "Nocturnes & Bicolores", bg: "#171412", ink: "#F2ECE1", acc: "#D96B4E", desc: "Version nocturne du Proto 05 : fond sepia sombre, texte sable et terracotta lumineux." },
+      { id: "42", file: "var-42.html", title: "Midnight Navy & Antique Gold", family: "Nocturnes & Bicolores", bg: "#0D1724", ink: "#F4F1EA", acc: "#D4A857", desc: "Bleu marine nocturne, texte velin et or ancien." },
+      { id: "43", file: "var-43.html", title: "Deep Cypress Night & Soft Sage", family: "Nocturnes & Bicolores", bg: "#101C17", ink: "#EFECE4", acc: "#6FA888", desc: "Foret nocturne profonde, texte albatre et sauge doux." },
+      { id: "44", file: "var-44.html", title: "Roasted Espresso & Warm Clay", family: "Nocturnes & Bicolores", bg: "#1C1613", ink: "#F5EFE6", acc: "#C96A4B", desc: "Fond grain de cafe torrefie, creme et argile cuite." },
+      { id: "45", file: "var-45.html", title: "Abyssal Iroise & Horizon Blue", family: "Nocturnes & Bicolores", bg: "#0E1A22", ink: "#EDF2F4", acc: "#56A3BC", desc: "Mer d'Iroise de nuit, ecume claire et bleu horizon." },
+      { id: "46", file: "var-46.html", title: "Oxford Library Dusk & Rose Copper", family: "Nocturnes & Bicolores", bg: "#1A1416", ink: "#F6F2EC", acc: "#C7826B", desc: "Acajou/oxblood tres sombre, parchemin et cuivre rose." },
+      { id: "47", file: "var-47.html", title: "Matte Obsidian & Champagne", family: "Nocturnes & Bicolores", bg: "#131314", ink: "#F3F0E8", acc: "#C5A880", desc: "Noir obsidienne mat, ivoire chaud et champagne." },
+      { id: "48", file: "var-48.html", title: "Dual-Tone Venetian Red Hero", family: "Nocturnes & Bicolores", bg: "#F6F3EC", ink: "#1E1B18", acc: "#7A2B1B", desc: "En-tete et Hero sur aplat rouge venitien profond (#7A2B1B), suite sur papier sable." },
+      { id: "49", file: "var-49.html", title: "Dual-Tone Naval Hero & Sand", family: "Nocturnes & Bicolores", bg: "#F6F3EC", ink: "#131E29", acc: "#0F2033", desc: "En-tete et Hero sur aplat bleu marine (#0F2033), suite sur papier sable." },
+      { id: "50", file: "var-50.html", title: "Dual-Tone Boreal Pine Hero & Sand", family: "Nocturnes & Bicolores", bg: "#F6F3EC", ink: "#16211B", acc: "#142820", desc: "En-tete et Hero sur aplat vert sapin (#142820), suite sur papier sable." }
     ];
 
     let currentIndex = 0;
+    let activeFamily = 'all';
     const strip = document.getElementById('protoStrip');
     const grid = document.getElementById('catalogGrid');
     const viewer = document.getElementById('viewer');
     const activeTitle = document.getElementById('activeTitle');
+    const activeCodes = document.getElementById('activeCodes');
     const activeDesc = document.getElementById('activeDesc');
     const openTabLink = document.getElementById('openTabLink');
     const catalogView = document.getElementById('catalogView');
     const btnCatalog = document.getElementById('btnCatalog');
 
     function init() {
-      PROTOS.forEach((p, idx) => {
+      VARIATIONS.forEach((v, idx) => {
         const btn = document.createElement('button');
         btn.className = 'proto-btn' + (idx === 0 ? ' active' : '');
-        btn.innerHTML = `<span class="proto-num">${p.id}</span><span>${p.short}</span>`;
+        btn.innerHTML = `
+          <span class="proto-num">${v.id}</span>
+          <span class="swatches">
+            <span class="dot" style="background:${v.bg}"></span>
+            <span class="dot" style="background:${v.acc}"></span>
+          </span>
+        `;
+        btn.title = `${v.id}. ${v.title}`;
         btn.onclick = () => selectProto(idx);
         strip.appendChild(btn);
+      });
 
+      renderGrid();
+
+      const hash = window.location.hash.replace('#', '');
+      const found = VARIATIONS.findIndex(v => v.id === hash || v.file.includes(hash));
+      if (found >= 0) selectProto(found);
+    }
+
+    function renderGrid() {
+      grid.innerHTML = '';
+      VARIATIONS.forEach((v, idx) => {
+        if (activeFamily !== 'all' && v.family !== activeFamily) return;
+        const isDarkBg = parseInt(v.bg.slice(1,3), 16) < 80;
         const card = document.createElement('div');
         card.className = 'card';
         card.innerHTML = `
-          <div>
-            <div class="card-top">
-              <span class="card-num">PROTOTYPE ${p.id}</span>
-              <span class="card-tag">${p.tag}</span>
-            </div>
-            <h3>${p.title}</h3>
-            <p>${p.desc}</p>
+          <div class="card-swatch-bar">
+            <div class="swatch-bg" style="background:${v.bg}; color:${v.ink}">${v.bg}</div>
+            <div class="swatch-ink" style="background:${v.ink}" title="Encre ${v.ink}"></div>
+            <div class="swatch-acc" style="background:${v.acc}" title="Accent ${v.acc}"></div>
           </div>
-          <div class="card-actions">
-            <button class="btn-preview" onclick="selectProto(${idx})">Previsualiser</button>
-            <a class="btn-tab" href="${p.file}" target="_blank" rel="noopener">Ouvrir ↗</a>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="card-num">VAR ${v.id}</span>
+              <span class="card-tag">${v.family}</span>
+            </div>
+            <h3>${v.title}</h3>
+            <p>${v.desc}</p>
+            <div class="card-actions">
+              <button class="btn-preview" onclick="selectProto(${idx})">Previsualiser</button>
+              <a class="btn-tab" href="${v.file}" target="_blank" rel="noopener">Ouvrir ↗</a>
+            </div>
           </div>
         `;
         grid.appendChild(card);
       });
+    }
 
-      const hash = window.location.hash.replace('#', '');
-      const found = PROTOS.findIndex(p => p.id === hash || p.file.includes(hash));
-      if (found >= 0) selectProto(found);
+    function filterFamily(fam, btn) {
+      activeFamily = fam;
+      document.querySelectorAll('.fam-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderGrid();
     }
 
     function selectProto(idx) {
       currentIndex = idx;
-      const p = PROTOS[idx];
-      viewer.src = p.file;
-      activeTitle.textContent = `${p.id}. ${p.title}`;
-      activeDesc.textContent = ` : ${p.desc}`;
-      openTabLink.href = p.file;
-      window.location.hash = p.id;
+      const v = VARIATIONS[idx];
+      viewer.src = v.file;
+      activeTitle.textContent = `${v.id}. ${v.title}`;
+      activeCodes.textContent = `${v.bg} · ${v.ink} · ${v.acc}`;
+      activeDesc.textContent = v.desc;
+      openTabLink.href = v.file;
+      window.location.hash = v.id;
 
-      document.querySelectorAll('.proto-btn').forEach((b, i) => {
+      const btns = document.querySelectorAll('.proto-btn');
+      btns.forEach((b, i) => {
         b.classList.toggle('active', i === idx);
       });
+      if (btns[idx]) {
+        btns[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
 
       if (catalogView.classList.contains('open')) {
         toggleCatalog(false);
@@ -510,7 +612,7 @@
     }
 
     function stepProto(delta) {
-      const next = (currentIndex + delta + PROTOS.length) % PROTOS.length;
+      const next = (currentIndex + delta + VARIATIONS.length) % VARIATIONS.length;
       selectProto(next);
     }
 
