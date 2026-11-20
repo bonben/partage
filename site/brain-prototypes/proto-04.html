@@ -1,35 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>BRAIN : Broader Artificial Intelligence · IMT Atlantique &amp; CNRS Lab-STICC (UMR 6285)</title>
-  <meta name="description" content="BRAIN is a joint research team of CNRS Lab-STICC (UMR 6285) and IMT Atlantique (MEE Department) in Brest, France, investigating representations in Artificial Intelligence, Signal Processing, and Computational Neuroscience.">
+  <title>BRAIN : Broader Artificial Intelligence</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --navy-deep: #0b1f3a;
-      --navy-mid: #122c52;
-      --blue-cnrs: #1a4b8c;
-      --blue-light: #e6eef8;
-      --gold-ochre: #c59b27;
-      --gold-soft: #f7f1de;
-      --bg-white: #ffffff;
-      --bg-pearl: #f3f5f8;
-      --border-rule: #d5dce6;
-      --border-strong: #b4c0d0;
-      --text-main: #182334;
-      --text-muted: #4a5a70;
-      --text-subtle: #6c7c93;
-      --font-serif: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
-      --font-sans: 'Public Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      --max-width: 1220px;
+      --paper: #FDFCF9;
+      --ink: #181818;
+      --ink-muted: #55524d;
+      --ink-faint: #858078;
+      --link: #1e3a5f;
+      --rule: #e4dfd5;
+      --font-serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -37,1631 +28,637 @@
 
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
+      background-color: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: 18px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     body {
-      font-family: var(--font-sans);
-      color: var(--text-main);
-      background-color: var(--bg-white);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
+      background-color: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
     }
 
-    a {
-      color: var(--blue-cnrs);
-      text-decoration: none;
-      transition: color 0.15s ease, border-color 0.15s ease;
-    }
-
-    a:hover {
-      color: var(--navy-deep);
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      max-width: var(--max-width);
+    .page-layout {
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 0 2rem;
-    }
-
-    /* Bandeau superieur des tutelles */
-    .tutelles-bar {
-      background-color: var(--navy-deep);
-      color: #dce4f0;
-      font-size: 0.78rem;
-      border-bottom: 3px solid var(--gold-ochre);
-    }
-
-    .tutelles-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0.55rem 0;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-    }
-
-    .tutelles-list {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      letter-spacing: 0.02em;
-    }
-
-    .tutelles-badge {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #ffffff;
-      font-weight: 600;
-      padding: 0.15rem 0.55rem;
-      border-left: 2px solid var(--gold-ochre);
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .tutelles-sep {
-      color: var(--gold-ochre);
-      font-weight: 700;
-    }
-
-    .tutelles-loc {
-      font-weight: 500;
-      color: #b8c7dc;
-      font-size: 0.76rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-
-    /* En-tete institutionnel */
-    .site-header {
-      background-color: var(--bg-white);
-      border-bottom: 1px solid var(--border-rule);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 1px 4px rgba(11, 31, 58, 0.05);
-    }
-
-    .header-main {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1.15rem 0;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .brand-block {
-      display: flex;
-      align-items: center;
-      gap: 1.1rem;
-    }
-
-    .brand-logo-wrap {
-      width: 52px;
-      height: 52px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--border-rule);
-      background-color: var(--bg-pearl);
-      padding: 0.35rem;
-      flex-shrink: 0;
-    }
-
-    .brand-logo-wrap img {
-      max-height: 40px;
-      width: auto;
-    }
-
-    .brand-titles {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-overline {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--blue-cnrs);
-      font-weight: 700;
-      margin-bottom: 0.1rem;
-    }
-
-    .brand-name {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-    }
-
-    .brand-sub {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 1.5rem;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--navy-deep);
-      font-size: 0.88rem;
-      font-weight: 600;
-      padding: 0.35rem 0;
-      border-bottom: 2px solid transparent;
-      letter-spacing: 0.01em;
-    }
-
-    .nav-links a:hover {
-      color: var(--blue-cnrs);
-      border-bottom-color: var(--gold-ochre);
-    }
-
-    .header-tutelles-logos {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding-left: 1.25rem;
-      border-left: 1px solid var(--border-rule);
-    }
-
-    .header-tutelles-logos img {
-      height: 32px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    /* Section Hero Institutionnelle */
-    .hero {
-      background-color: var(--navy-deep);
-      color: #ffffff;
-      border-bottom: 4px solid var(--blue-cnrs);
-      position: relative;
-    }
-
-    .hero-grid {
+      padding: 4.5rem 2.5rem 7rem;
       display: grid;
-      grid-template-columns: 1.55fr 1fr;
-      gap: 3rem;
-      padding: 4rem 0 3.75rem;
+      grid-template-columns: 220px minmax(0, 740px);
+      column-gap: 4.5rem;
       align-items: start;
     }
 
-    .hero-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      color: var(--gold-ochre);
-      font-weight: 700;
-      margin-bottom: 1.1rem;
-    }
-
-    .hero-kicker::before {
-      content: "";
-      display: inline-block;
-      width: 24px;
-      height: 2px;
-      background-color: var(--gold-ochre);
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: 2.35rem;
-      line-height: 1.28;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 1.35rem;
-    }
-
-    .hero-lead {
-      font-size: 1.06rem;
-      line-height: 1.72;
-      color: #d6e0ee;
-      margin-bottom: 2rem;
-      max-width: 66ch;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .btn-primary {
-      display: inline-block;
-      background-color: var(--gold-ochre);
-      color: var(--navy-deep);
-      font-weight: 700;
-      font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.75rem 1.4rem;
-      border: 1px solid var(--gold-ochre);
-    }
-
-    .btn-primary:hover {
-      background-color: #d7ad34;
-      color: var(--navy-deep);
-    }
-
-    .btn-secondary {
-      display: inline-block;
-      background-color: transparent;
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 0.86rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 0.75rem 1.4rem;
-      border: 1px solid rgba(255, 255, 255, 0.35);
-    }
-
-    .btn-secondary:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      color: #ffffff;
-      border-color: #ffffff;
-    }
-
-    /* Encadre de synthese institutionnelle dans le Hero */
-    .hero-dossier {
-      background-color: var(--navy-mid);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-top: 3px solid var(--gold-ochre);
-      padding: 1.75rem;
-    }
-
-    .dossier-header {
-      font-family: var(--font-serif);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #ffffff;
-      padding-bottom: 0.85rem;
-      margin-bottom: 1.1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .dossier-code {
-      font-family: var(--font-sans);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      background-color: rgba(197, 155, 39, 0.2);
-      color: #f2cf66;
-      padding: 0.2rem 0.5rem;
-      font-weight: 700;
-    }
-
-    .dossier-list {
-      list-style: none;
+    /* Left Margin Navigation */
+    .left-margin {
+      position: sticky;
+      top: 4.5rem;
+      min-height: calc(100vh - 9rem);
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
-      font-size: 0.86rem;
-    }
-
-    .dossier-list li {
-      display: grid;
-      grid-template-columns: 125px 1fr;
-      gap: 0.75rem;
-      align-items: baseline;
-    }
-
-    .dossier-label {
-      color: #9ab0cd;
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-weight: 600;
-    }
-
-    .dossier-value {
-      color: #ffffff;
-      font-weight: 500;
-    }
-
-    .dossier-logos {
-      margin-top: 1.4rem;
-      padding-top: 1.15rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .dossier-logos img {
-      max-height: 34px;
-      width: auto;
-    }
-
-    .dossier-imt-box {
-      background-color: #ffffff;
-      padding: 0.25rem 0.55rem;
-      border-radius: 2px;
-    }
-
-    /* Bandeau des Chiffres Cles */
-    .key-figures {
-      background-color: var(--bg-pearl);
-      border-bottom: 1px solid var(--border-rule);
-    }
-
-    .figures-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-left: 1px solid var(--border-rule);
-    }
-
-    .figure-item {
-      padding: 1.65rem 1.75rem;
-      border-right: 1px solid var(--border-rule);
-      background-color: var(--bg-pearl);
-    }
-
-    .figure-number {
-      font-family: var(--font-serif);
-      font-size: 2.1rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.1;
-      margin-bottom: 0.35rem;
-      display: flex;
-      align-items: baseline;
-      gap: 0.35rem;
-    }
-
-    .figure-number span {
-      font-size: 0.9rem;
       font-family: var(--font-sans);
-      color: var(--blue-cnrs);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
     }
 
-    .figure-label {
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--text-main);
-      margin-bottom: 0.15rem;
-    }
-
-    .figure-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-    }
-
-    /* Structure commune des sections */
-    .section {
-      padding: 4.5rem 0;
-      border-bottom: 1px solid var(--border-rule);
-    }
-
-    .section-pearl {
-      background-color: var(--bg-pearl);
-    }
-
-    .section-header {
+    .brand-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--ink);
       margin-bottom: 2.75rem;
-      padding-bottom: 1.25rem;
-      border-bottom: 2px solid var(--navy-deep);
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1rem;
     }
 
-    .section-header-left {
-      max-width: 720px;
-    }
-
-    .section-num {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--blue-cnrs);
-      font-weight: 700;
-      margin-bottom: 0.4rem;
+    .brand-logo {
+      height: 36px;
+      width: auto;
       display: block;
     }
 
-    .section-title {
-      font-family: var(--font-serif);
-      font-size: 1.85rem;
-      color: var(--navy-deep);
-      font-weight: 700;
-      line-height: 1.25;
+    .margin-nav ul {
+      list-style: none;
     }
 
-    .section-subtitle {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      margin-top: 0.5rem;
+    .margin-nav li + li {
+      margin-top: 0.65rem;
     }
 
-    .section-meta {
+    .margin-nav a {
       font-size: 0.78rem;
-      color: var(--text-subtle);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-weight: 600;
-    }
-
-    /* Section Axes Scientifiques (3 Piliers) */
-    .pillars-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.75rem;
-      margin-bottom: 3rem;
-    }
-
-    .pillar-card {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-rule);
-      border-top: 4px solid var(--blue-cnrs);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1.85rem;
-    }
-
-    .pillar-card:nth-child(2) {
-      border-top-color: var(--navy-deep);
-    }
-
-    .pillar-card:nth-child(3) {
-      border-top-color: var(--gold-ochre);
-    }
-
-    .pillar-index {
-      display: inline-block;
-      font-size: 0.73rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--blue-cnrs);
-      background-color: var(--blue-light);
-      padding: 0.2rem 0.55rem;
-      margin-bottom: 1rem;
-    }
-
-    .pillar-title {
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      color: var(--navy-deep);
-      margin-bottom: 0.85rem;
-      font-weight: 700;
-    }
-
-    .pillar-desc {
-      font-size: 0.93rem;
-      color: var(--text-main);
-      margin-bottom: 1.35rem;
-      line-height: 1.65;
-    }
-
-    .pillar-synthesis {
-      background-color: var(--bg-pearl);
-      border-left: 3px solid var(--gold-ochre);
-      padding: 0.9rem 1rem;
-      margin-top: auto;
-    }
-
-    .pillar-synthesis-title {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--navy-deep);
-      font-weight: 700;
-      margin-bottom: 0.35rem;
-    }
-
-    .pillar-synthesis-items {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-    }
-
-    /* Encadre des 8 thematiques transverses */
-    .themes-box {
-      background-color: var(--bg-pearl);
-      border: 1px solid var(--border-strong);
-      padding: 2rem;
-    }
-
-    .themes-box-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid var(--border-rule);
-    }
-
-    .themes-box-title {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      color: var(--navy-deep);
-      font-weight: 700;
-    }
-
-    .themes-box-note {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .themes-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-
-    .theme-item {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-rule);
-      padding: 1rem 1.1rem;
-    }
-
-    .theme-name {
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      margin-bottom: 0.3rem;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-    }
-
-    .theme-name::before {
-      content: "";
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      background-color: var(--gold-ochre);
-      flex-shrink: 0;
-    }
-
-    .theme-detail {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* Section Publications de premier plan */
-    .pub-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .pub-card {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-rule);
-      border-left: 4px solid var(--navy-deep);
-      padding: 1.6rem 1.85rem;
-      display: grid;
-      grid-template-columns: 70px 1fr;
-      gap: 1.25rem;
-      align-items: start;
-    }
-
-    .pub-ref {
-      font-family: var(--font-serif);
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--blue-cnrs);
-      background-color: var(--blue-light);
-      border: 1px solid #c9daf0;
-      text-align: center;
-      padding: 0.45rem 0.3rem;
-    }
-
-    .pub-body {
-      display: flex;
-      flex-direction: column;
-      gap: 0.45rem;
-    }
-
-    .pub-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .pub-badge {
-      font-size: 0.72rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 0.15rem 0.55rem;
-      background-color: var(--gold-soft);
-      color: var(--navy-deep);
-      border: 1px solid #e2d19c;
-    }
-
-    .pub-title {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.35;
-    }
-
-    .pub-authors {
-      font-size: 0.88rem;
-      color: var(--blue-cnrs);
-      font-weight: 500;
-    }
-
-    .pub-summary {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-      margin-top: 0.2rem;
-    }
-
-    /* Section Annuaire Officiel des Membres */
-    .directory-group {
-      margin-bottom: 3rem;
-    }
-
-    .directory-group:last-child {
-      margin-bottom: 0;
-    }
-
-    .group-banner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: var(--navy-deep);
-      color: #ffffff;
-      padding: 0.65rem 1.15rem;
-      margin-bottom: 1.5rem;
-      border-left: 4px solid var(--gold-ochre);
-    }
-
-    .group-title {
-      font-family: var(--font-serif);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-    }
-
-    .group-count {
-      font-size: 0.76rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #d6e0ee;
-      font-weight: 600;
-    }
-
-    /* Chercheurs permanents : cartes statutaires detaillees */
-    .faculty-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .faculty-card {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-rule);
-      padding: 1.25rem;
-      display: flex;
-      gap: 1.1rem;
-      align-items: flex-start;
-    }
-
-    .member-photo {
-      width: 78px;
-      height: 94px;
-      object-fit: cover;
-      border: 1px solid var(--border-strong);
-      background-color: var(--bg-pearl);
-      flex-shrink: 0;
-    }
-
-    .faculty-info {
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-      flex: 1;
-    }
-
-    .faculty-role-badge {
-      display: inline-block;
-      align-self: flex-start;
-      font-size: 0.68rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      background-color: var(--gold-soft);
-      color: var(--navy-deep);
-      border: 1px solid var(--gold-ochre);
-      padding: 0.1rem 0.45rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .faculty-name {
-      font-family: var(--font-serif);
-      font-size: 1.04rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.3;
-      margin-bottom: 0.25rem;
-    }
-
-    .faculty-status {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
       line-height: 1.4;
+      letter-spacing: 0.01em;
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color 0.15s ease;
     }
 
-    .member-links {
+    .margin-nav a:hover,
+    .margin-nav a:focus {
+      color: var(--link);
+    }
+
+    .margin-affiliations {
+      padding-top: 3rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: auto;
-    }
-
-    .member-link {
-      font-size: 0.74rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: var(--blue-cnrs);
-      background-color: var(--bg-pearl);
-      border: 1px solid var(--border-rule);
-      padding: 0.2rem 0.55rem;
-    }
-
-    .member-link:hover {
-      background-color: var(--blue-cnrs);
-      color: #ffffff;
-      border-color: var(--blue-cnrs);
-    }
-
-    /* Post-doctorants & Doctorants */
-    .phd-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      flex-direction: column;
+      align-items: flex-start;
       gap: 1.15rem;
     }
 
-    .phd-card {
-      background-color: var(--bg-white);
-      border: 1px solid var(--border-rule);
-      padding: 0.95rem 1rem;
+    .margin-affiliations img {
+      max-width: 118px;
+      max-height: 32px;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      opacity: 0.78;
+      filter: grayscale(100%) contrast(105%);
+      transition: opacity 0.2s ease, filter 0.2s ease;
+    }
+
+    .margin-affiliations img:hover {
+      opacity: 1;
+      filter: grayscale(0%);
+    }
+
+    /* Main Reading Column */
+    .monograph {
+      max-width: 740px;
+      width: 100%;
+    }
+
+    section {
+      scroll-margin-top: 4rem;
+    }
+
+    section + section {
+      margin-top: 4.5rem;
+      padding-top: 3.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    /* About / Opening Title Page */
+    .book-title {
+      font-family: var(--font-serif);
+      font-size: 2.75rem;
+      font-weight: 500;
+      line-height: 1.12;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .book-subtitle {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.35rem;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-bottom: 2.25rem;
+    }
+
+    .lead-paragraph {
+      font-size: 1.38rem;
+      line-height: 1.55;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .prose-paragraph {
+      font-size: 1rem;
+      line-height: 1.75;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    /* Section Headings */
+    h2 {
+      font-family: var(--font-serif);
+      font-size: 1.85rem;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: var(--ink);
+      margin-bottom: 2rem;
+    }
+
+    h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+
+    /* Research Axes */
+    .research-axis + .research-axis {
+      margin-top: 2.25rem;
+    }
+
+    .research-axis p {
+      color: var(--ink);
+      line-height: 1.72;
+    }
+
+    /* Selected Publications */
+    .publication-list {
+      list-style: none;
+    }
+
+    .publication-entry + .publication-entry {
+      margin-top: 2.25rem;
+    }
+
+    .publication-title {
+      font-size: 1.18rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--ink);
+      margin-bottom: 0.2rem;
+    }
+
+    .publication-authors {
+      font-style: italic;
+      color: var(--ink-muted);
+      font-size: 0.98rem;
+      line-height: 1.55;
+      margin-bottom: 0.35rem;
+    }
+
+    .publication-summary {
+      font-size: 0.98rem;
+      line-height: 1.68;
+      color: var(--ink);
+    }
+
+    /* People */
+    .people-group + .people-group {
+      margin-top: 3rem;
+    }
+
+    .people-group-heading {
+      font-family: var(--font-serif);
+      font-size: 1.3rem;
+      font-weight: 500;
+      font-style: italic;
+      color: var(--ink-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .faculty-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.65rem;
+    }
+
+    .person-row {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      column-gap: 1.25rem;
+      align-items: center;
+    }
+
+    .person-portrait {
+      width: 58px;
+      height: 58px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(18%);
+      transition: filter 0.2s ease;
+    }
+
+    .person-row:hover .person-portrait {
+      filter: grayscale(0%);
+    }
+
+    .person-info {
+      line-height: 1.45;
+    }
+
+    .person-name {
+      font-weight: 600;
+      font-size: 1.08rem;
+      color: var(--ink);
+    }
+
+    .person-role {
+      color: var(--ink-muted);
+      font-size: 0.96rem;
+    }
+
+    .person-links {
+      margin-top: 0.15rem;
+      font-family: var(--font-sans);
+      font-size: 0.74rem;
+      color: var(--ink-faint);
+    }
+
+    .person-links a {
+      color: var(--link);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s ease;
+    }
+
+    .person-links a:hover {
+      border-bottom-color: var(--link);
+    }
+
+    .link-sep {
+      margin: 0 0.35rem;
+      color: var(--ink-faint);
+    }
+
+    /* PhD Students Directory */
+    .phd-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 2.5rem;
+      row-gap: 1rem;
+    }
+
+    .phd-entry {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 0.85rem;
     }
 
-    .phd-photo {
-      width: 54px;
-      height: 54px;
+    .phd-portrait {
+      width: 38px;
+      height: 38px;
       object-fit: cover;
-      border: 1px solid var(--border-strong);
-      background-color: var(--bg-pearl);
       flex-shrink: 0;
-    }
-
-    .phd-info {
-      min-width: 0;
+      filter: grayscale(18%);
     }
 
     .phd-name {
-      font-family: var(--font-serif);
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--navy-deep);
-      line-height: 1.3;
-      margin-bottom: 0.15rem;
+      font-size: 1rem;
+      color: var(--ink);
+      line-height: 1.35;
     }
 
-    .phd-role {
-      font-size: 0.76rem;
-      color: var(--text-muted);
+    /* Colophon Footer */
+    .colophon {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-muted);
     }
 
-    /* Pied de page institutionnel */
-    .site-footer {
-      background-color: var(--navy-deep);
-      color: #d0dceb;
-      border-top: 4px solid var(--gold-ochre);
-      padding: 3.5rem 0 2rem;
-      font-size: 0.86rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr 1fr;
-      gap: 2.5rem;
-      padding-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    .footer-title {
-      font-family: var(--font-serif);
-      font-size: 1.05rem;
-      color: #ffffff;
-      font-weight: 700;
-      margin-bottom: 0.9rem;
-    }
-
-    .footer-desc {
-      color: #b4c4d8;
-      line-height: 1.65;
-      margin-bottom: 1.25rem;
-    }
-
-    .footer-logos {
-      display: flex;
-      align-items: center;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-logos img {
-      max-height: 36px;
-      width: auto;
-    }
-
-    .footer-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      color: #b4c4d8;
-    }
-
-    .footer-list a {
-      color: #d0dceb;
-    }
-
-    .footer-list a:hover {
-      color: var(--gold-ochre);
-    }
-
-    .footer-bottom {
-      padding-top: 1.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      font-size: 0.78rem;
-      color: #8fa3be;
-    }
-
-    /* Responsive */
-    @media (max-width: 1040px) {
-      .hero-grid {
+    @media (max-width: 860px) {
+      .page-layout {
         grid-template-columns: 1fr;
-        gap: 2.25rem;
+        padding: 2.5rem 1.5rem 5rem;
+        row-gap: 3rem;
       }
-      .figures-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .figure-item {
-        border-bottom: 1px solid var(--border-rule);
-      }
-      .pillars-grid {
-        grid-template-columns: 1fr;
-      }
-      .themes-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .faculty-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .phd-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
 
-    @media (max-width: 680px) {
-      .container {
-        padding: 0 1.25rem;
+      .left-margin {
+        position: static;
+        min-height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding-bottom: 1.75rem;
+        border-bottom: 1px solid var(--rule);
       }
-      .header-tutelles-logos {
-        display: none;
+
+      .brand-link {
+        margin-bottom: 0;
       }
-      .hero-title {
-        font-size: 1.75rem;
+
+      .margin-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
       }
-      .figures-grid {
-        grid-template-columns: 1fr;
+
+      .margin-nav li + li {
+        margin-top: 0;
       }
-      .themes-grid {
-        grid-template-columns: 1fr;
+
+      .margin-affiliations {
+        width: 100%;
+        padding-top: 0.5rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 1.5rem;
       }
-      .pub-card {
-        grid-template-columns: 1fr;
-      }
-      .pub-ref {
-        justify-self: start;
-        padding: 0.25rem 0.65rem;
-      }
-      .faculty-grid {
-        grid-template-columns: 1fr;
-      }
+
       .phd-grid {
         grid-template-columns: 1fr;
-      }
-      .dossier-list li {
-        grid-template-columns: 1fr;
-        gap: 0.2rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Bandeau superieur institutionnel des tutelles -->
-  <div class="tutelles-bar" role="region" aria-label="Institutional affiliations">
-    <div class="container tutelles-inner">
-      <div class="tutelles-list">
-        <span class="tutelles-badge">Tutelles &amp; Rattachement</span>
-        <span><strong>IMT Atlantique</strong> (Campus de Brest)</span>
-        <span class="tutelles-sep">·</span>
-        <span><strong>CNRS Lab-STICC</strong> (UMR 6285)</span>
-        <span class="tutelles-sep">·</span>
-        <span>Département <strong>MEE</strong> (Mathematical and Electrical Engineering)</span>
-      </div>
-      <div class="tutelles-loc">
-        Technopôle Brest-Iroise · Brest, Bretagne, France
-      </div>
-    </div>
-  </div>
-
-  <!-- En-tete principal -->
-  <header class="site-header">
-    <div class="container header-main">
-      <a href="#top" class="brand-block">
-        <div class="brand-logo-wrap">
-          <img src="assets/img/brain-logo.svg" alt="BRAIN research team emblem">
-        </div>
-        <div class="brand-titles">
-          <span class="brand-overline">Unité Mixte de Recherche CNRS 6285 · Lab-STICC</span>
-          <span class="brand-name">BRAIN : Broader Artificial Intelligence</span>
-          <span class="brand-sub">IMT Atlantique · Département Mathematical and Electrical Engineering</span>
-        </div>
-      </a>
-
-      <div class="header-right">
-        <nav aria-label="Primary navigation">
-          <ul class="nav-links">
-            <li><a href="#presentation">Presentation</a></li>
-            <li><a href="#axes">Research Pillars</a></li>
-            <li><a href="#thematiques">Cross-Cutting Themes</a></li>
+  <div class="page-layout">
+    <aside class="left-margin" aria-label="Margin navigation">
+      <div>
+        <a href="#about" class="brand-link" aria-label="BRAIN Home">
+          <img src="assets/img/brain-logo.svg" alt="BRAIN" class="brand-logo">
+        </a>
+        <nav class="margin-nav">
+          <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#research">Research</a></li>
             <li><a href="#publications">Publications</a></li>
-            <li><a href="#annuaire">Directory</a></li>
+            <li><a href="#people">People</a></li>
           </ul>
         </nav>
-        <div class="header-tutelles-logos" aria-label="Institutional logos">
-          <img src="assets/img/imt-atlantique.svg" alt="Logo IMT Atlantique">
-          <img src="assets/img/lab-sticc.png" alt="Logo CNRS Lab-STICC UMR 6285">
-        </div>
       </div>
-    </div>
-  </header>
 
-  <main id="top">
-    <!-- Hero institutionnel -->
-    <section class="hero" id="presentation">
-      <div class="container hero-grid">
-        <div>
-          <div class="hero-kicker">Academic Research Team · Public Scientific Institution</div>
-          <h1 class="hero-title">
-            We study representations that help intelligent systems learn, adapt, and make sense of complex data across signals, images, and brains.
-          </h1>
-          <p class="hero-lead">
-            BRAIN is a research team of Lab-STICC (UMR CNRS 6285) hosted at IMT Atlantique in Brest, France, within the Mathematical and Electrical Engineering (MEE) department. We investigate fundamental and applied questions at the intersection of Artificial Intelligence, Deep Learning, Signal Processing, Computer Vision, Audio, and Computational Neuroscience.
+      <div class="margin-affiliations">
+        <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique">
+        <img src="assets/img/lab-sticc.png" alt="CNRS Lab-STICC">
+      </div>
+    </aside>
+
+    <main class="monograph">
+      <section id="about">
+        <h1 class="book-title">BRAIN</h1>
+        <p class="book-subtitle">Broader Artificial Intelligence</p>
+        <p class="lead-paragraph">
+          We study representations that help intelligent systems learn, adapt, and make sense of complex data across signals, images, and brains.
+        </p>
+        <p class="prose-paragraph">
+          BRAIN is a research team of CNRS Lab-STICC (UMR 6285) hosted at IMT Atlantique in Brest, France, within the Mathematical and Electrical Engineering department. We investigate questions at the intersection of artificial intelligence, deep learning, signal processing, computer vision, audio, and computational neuroscience.
+        </p>
+      </section>
+
+      <section id="research">
+        <h2>Research</h2>
+
+        <div class="research-axis">
+          <h3>Thrifty AI</h3>
+          <p>
+            Finding efficient representations in the low-data regime, covering few-shot learning, zero-shot adaptation, transfer learning, and foundation models across vision, language, and audio.
           </p>
-          <div class="hero-actions">
-            <a href="#axes" class="btn-primary">Scientific Program &amp; Pillars</a>
-            <a href="#annuaire" class="btn-secondary">Official Team Directory</a>
-          </div>
         </div>
 
-        <aside class="hero-dossier" aria-label="Institutional unit summary">
-          <div class="dossier-header">
-            <span>Fiche d'Unité Scientifique</span>
-            <span class="dossier-code">UMR CNRS 6285</span>
-          </div>
-          <ul class="dossier-list">
-            <li>
-              <span class="dossier-label">Intitulé</span>
-              <span class="dossier-value">BRAIN (Broader Artificial Intelligence)</span>
-            </li>
-            <li>
-              <span class="dossier-label">Établissement</span>
-              <span class="dossier-value">IMT Atlantique · Campus de Brest</span>
-            </li>
-            <li>
-              <span class="dossier-label">Laboratoire</span>
-              <span class="dossier-value">CNRS Lab-STICC (UMR 6285)</span>
-            </li>
-            <li>
-              <span class="dossier-label">Département</span>
-              <span class="dossier-value">MEE (Mathematical and Electrical Engineering)</span>
-            </li>
-            <li>
-              <span class="dossier-label">Responsable</span>
-              <span class="dossier-value">Pr. Vincent Gripon (Full Professor, HDR)</span>
-            </li>
-            <li>
-              <span class="dossier-label">Implantation</span>
-              <span class="dossier-value">Technopôle Brest-Iroise, Brest, Bretagne, France</span>
-            </li>
-          </ul>
-          <div class="dossier-logos">
-            <div class="dossier-imt-box">
-              <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique">
-            </div>
-            <img src="assets/img/lab-sticc-white.png" alt="Lab-STICC UMR CNRS 6285">
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- Bandeau des chiffres cles -->
-    <section class="key-figures" aria-label="Key figures of the BRAIN team">
-      <div class="container">
-        <div class="figures-grid">
-          <div class="figure-item">
-            <div class="figure-number">6 <span>Faculty</span></div>
-            <div class="figure-label">Permanent Researchers</div>
-            <div class="figure-desc">Full &amp; Associate Professors (4 HDR)</div>
-          </div>
-          <div class="figure-item">
-            <div class="figure-number">1 <span>Fellow</span></div>
-            <div class="figure-label">Postdoctoral Researcher</div>
-            <div class="figure-desc">Advanced thematic research program</div>
-          </div>
-          <div class="figure-item">
-            <div class="figure-number">14+ <span>Doctoral</span></div>
-            <div class="figure-label">PhD Candidates</div>
-            <div class="figure-desc">Doctoral training at IMT Atlantique &amp; Lab-STICC</div>
-          </div>
-          <div class="figure-item">
-            <div class="figure-number">3 <span>Pillars</span></div>
-            <div class="figure-label">Major Scientific Axes</div>
-            <div class="figure-desc">Articulated across 8 transverse domains</div>
-          </div>
+        <div class="research-axis">
+          <h3>Compression of AI</h3>
+          <p>
+            Lowering the computational and energy footprint of intelligent systems through quantization, pruning, low-rank tensor factorizations, zero-cost architecture search, and embedded hardware implementation.
+          </p>
         </div>
-      </div>
-    </section>
 
-    <!-- Section 1 : Axes Scientifiques & Encadres de synthese -->
-    <section class="section" id="axes">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-left">
-            <span class="section-num">Section I · Scientific Strategy</span>
-            <h2 class="section-title">Structured Research Pillars</h2>
-            <p class="section-subtitle">
-              Our scientific program is organized around three core methodological pillars addressing data sobriety, computational efficiency, and non-Euclidean structure in modern machine learning.
+        <div class="research-axis">
+          <h3>Geometry and AI</h3>
+          <p>
+            Leveraging the intrinsic geometry of latent spaces and input domains through graph signal processing, graph neural networks, manifold learning, and non-Euclidean representations.
+          </p>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Selected Publications</h2>
+
+        <ul class="publication-list">
+          <li class="publication-entry">
+            <div class="publication-title">REVE: A Foundation Model for EEG</div>
+            <div class="publication-authors">Yassine El Ouahidi, Jonathan Lys, Philipp Tholke, Nicolas Farrugia, Bastien Pasdeloup, Vincent Gripon, Karim Jerbi.</div>
+            <p class="publication-summary">
+              A 4D spatial-temporal foundation model pretrained on over 60,000 hours of EEG signals, adaptable across diverse clinical and cognitive paradigms.
             </p>
-          </div>
-          <div class="section-meta">Lab-STICC · MEE Department</div>
-        </div>
+          </li>
 
-        <div class="pillars-grid">
-          <!-- Pilier 1 -->
-          <article class="pillar-card">
-            <div>
-              <span class="pillar-index">Pillar 01 · Low-Data Regime</span>
-              <h3 class="pillar-title">Thrifty AI</h3>
-              <p class="pillar-desc">
-                How to find efficient representations in the low-data regime (few-shot learning, zero-shot adaptation, vision-language models, transfer learning, foundation model adaptation).
-              </p>
-            </div>
-            <div class="pillar-synthesis">
-              <div class="pillar-synthesis-title">Synthesis &amp; Key Methods</div>
-              <div class="pillar-synthesis-items">
-                Few-shot learning · Zero-shot adaptation · Vision-language models · Transfer learning · Foundation model adaptation
-              </div>
-            </div>
-          </article>
-
-          <!-- Pilier 2 -->
-          <article class="pillar-card">
-            <div>
-              <span class="pillar-index">Pillar 02 · Frugal &amp; Embedded</span>
-              <h3 class="pillar-title">Compression of AI</h3>
-              <p class="pillar-desc">
-                How to find efficient representations to lower the computational and energy demands of AI systems (quantization, pruning, low-rank tensor factorization, zero-cost Neural Architecture Search, edge and embedded inference).
-              </p>
-            </div>
-            <div class="pillar-synthesis">
-              <div class="pillar-synthesis-title">Synthesis &amp; Key Methods</div>
-              <div class="pillar-synthesis-items">
-                Quantization &amp; pruning · Low-rank tensor factorization · Zero-cost NAS · Edge and embedded inference
-              </div>
-            </div>
-          </article>
-
-          <!-- Pilier 3 -->
-          <article class="pillar-card">
-            <div>
-              <span class="pillar-index">Pillar 03 · Latent Spaces &amp; Graphs</span>
-              <h3 class="pillar-title">Geometry and AI</h3>
-              <p class="pillar-desc">
-                How to leverage the geometry of latent spaces or input domains to better adapt and monitor AI systems (graph signal processing, Graph Neural Networks, manifold learning, Riemannian and hyperbolic representations).
-              </p>
-            </div>
-            <div class="pillar-synthesis">
-              <div class="pillar-synthesis-title">Synthesis &amp; Key Methods</div>
-              <div class="pillar-synthesis-items">
-                Graph signal processing · Graph Neural Networks · Manifold learning · Riemannian &amp; hyperbolic spaces
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <!-- Encadre des 8 thematiques transverses -->
-        <div class="themes-box" id="thematiques">
-          <div class="themes-box-header">
-            <h3 class="themes-box-title">Transverse Scientific Themes &amp; Application Domains</h3>
-            <span class="themes-box-note">8 interdisciplinary research areas connecting theoretical AI with physical signals and neuroscience</span>
-          </div>
-          <div class="themes-grid">
-            <div class="theme-item">
-              <div class="theme-name">Few-shot &amp; transfer</div>
-              <div class="theme-detail">Rapid adaptation of foundation and multimodal representations under scarce supervision.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Efficient &amp; edge AI</div>
-              <div class="theme-detail">Hardware-aware compression, low-power neural inference, and architectural search.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Graphs &amp; geometry</div>
-              <div class="theme-detail">Graph signal processing, topological structure, and non-Euclidean latent manifolds.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Robustness</div>
-              <div class="theme-detail">Reliability, generalization monitoring, and stability under distribution shift.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Neuroscience &amp; EEG</div>
-              <div class="theme-detail">Foundation models for neuroimaging, brain-computer interfaces, cortical dynamics.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Audio &amp; music</div>
-              <div class="theme-detail">Structural music analysis, bioacoustics, auditory representations.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Channel coding</div>
-              <div class="theme-detail">Polar codes, error-correcting decoders, hardware transceivers.</div>
-            </div>
-            <div class="theme-item">
-              <div class="theme-name">Optimization</div>
-              <div class="theme-detail">Combinatorial optimization, metaheuristics.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 2 : Publications de premier plan -->
-    <section class="section section-pearl" id="publications">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-left">
-            <span class="section-num">Section II · Scientific Output</span>
-            <h2 class="section-title">Selected Publications</h2>
-            <p class="section-subtitle">
-              Representative contributions illustrating the team's work on neuroimaging foundation models, vision-language kernel adaptation, tensorized low-rank compression, and zero-cost neural architecture search.
+          <li class="publication-entry">
+            <div class="publication-title">ProKeR: A Kernel Perspective on Few-Shot Adaptation of Large Vision-Language Models</div>
+            <div class="publication-authors">Yassir Bendou, Amine Ouasfi, Vincent Gripon, Adnane Boukhayma.</div>
+            <p class="publication-summary">
+              Reformulating few-shot adaptation of vision-language models through proximal kernel ridge regression in feature space.
             </p>
-          </div>
-          <div class="section-meta">Peer-Reviewed Highlights</div>
-        </div>
+          </li>
 
-        <div class="pub-list">
-          <!-- Publication 1 -->
-          <article class="pub-card">
-            <div class="pub-ref">PUB · 01</div>
-            <div class="pub-body">
-              <div class="pub-tags">
-                <span class="pub-badge">Neuroscience &amp; EEG</span>
-                <span class="pub-badge">Foundation Models</span>
-              </div>
-              <h3 class="pub-title">REVE: A Foundation Model for EEG</h3>
-              <div class="pub-authors">
-                Yassine El Ouahidi, Jonathan Lys, Philipp Thölke, Nicolas Farrugia, Bastien Pasdeloup, Vincent Gripon, Karim Jerbi
-              </div>
-              <p class="pub-summary">
-                A 4D spatial-temporal foundation model pretrained on 60,000+ hours of EEG designed to adapt seamlessly to diverse clinical and cognitive tasks.
-              </p>
-            </div>
-          </article>
-
-          <!-- Publication 2 -->
-          <article class="pub-card">
-            <div class="pub-ref">PUB · 02</div>
-            <div class="pub-body">
-              <div class="pub-tags">
-                <span class="pub-badge">Few-shot &amp; transfer</span>
-                <span class="pub-badge">Vision-Language</span>
-              </div>
-              <h3 class="pub-title">ProKeR: A Kernel Perspective on Few-Shot Adaptation of Large Vision-Language Models</h3>
-              <div class="pub-authors">
-                Yassir Bendou, Amine Ouasfi, Vincent Gripon, Adnane Boukhayma
-              </div>
-              <p class="pub-summary">
-                Reformulating few-shot adaptation of CLIP-like models through proximal kernel ridge regression in feature space.
-              </p>
-            </div>
-          </article>
-
-          <!-- Publication 3 -->
-          <article class="pub-card">
-            <div class="pub-ref">PUB · 03</div>
-            <div class="pub-body">
-              <div class="pub-tags">
-                <span class="pub-badge">Compression of AI</span>
-                <span class="pub-badge">Efficient &amp; edge AI</span>
-              </div>
-              <h3 class="pub-title">TensLoRA: Tensor Alternatives for Low-Rank Adaptation</h3>
-              <div class="pub-authors">
-                Axel Marmoret, Reda Bensaid, Jonathan Lys, Vincent Gripon, François Leduc-Primeau
-              </div>
-              <p class="pub-summary">
-                Leveraging higher-order tensor factorizations across attention projections and layers to achieve superior parameter compression.
-              </p>
-            </div>
-          </article>
-
-          <!-- Publication 4 -->
-          <article class="pub-card">
-            <div class="pub-ref">PUB · 04</div>
-            <div class="pub-body">
-              <div class="pub-tags">
-                <span class="pub-badge">Efficient &amp; edge AI</span>
-                <span class="pub-badge">NAS</span>
-              </div>
-              <h3 class="pub-title">Insights From a Data- and Space-Agnostic Approach to Zero-Cost Proxies</h3>
-              <div class="pub-authors">
-                Timotée Ly-Manson, Mathieu Léonardon, Abdeldjalil Aïssa-El-Bey
-              </div>
-              <p class="pub-summary">
-                Disentangling architectural topology from input data in zero-cost Neural Architecture Search proxies to enable fast hardware-aware design.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3 : Annuaire Officiel des Membres -->
-    <section class="section" id="annuaire">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-header-left">
-            <span class="section-num">Section III · Official Personnel Directory</span>
-            <h2 class="section-title">Members of the Research Team</h2>
-            <p class="section-subtitle">
-              Full statutory directory of permanent faculty members, postdoctoral fellows, and doctoral candidates affiliated with BRAIN at IMT Atlantique and CNRS Lab-STICC.
+          <li class="publication-entry">
+            <div class="publication-title">TensLoRA: Tensor Alternatives for Low-Rank Adaptation</div>
+            <div class="publication-authors">Axel Marmoret, Reda Bensaid, Jonathan Lys, Vincent Gripon, Francois Leduc-Primeau.</div>
+            <p class="publication-summary">
+              Higher-order tensor factorizations across attention projections and layers for parameter-efficient fine-tuning.
             </p>
-          </div>
-          <div class="section-meta">21 Active Members · Brest Campus</div>
-        </div>
+          </li>
 
-        <!-- Chercheurs Permanents -->
-        <div class="directory-group">
-          <div class="group-banner">
-            <h3 class="group-title">Permanent Researchers (Enseignants-Chercheurs Permanents)</h3>
-            <span class="group-count">6 Statutory Members</span>
-          </div>
+          <li class="publication-entry">
+            <div class="publication-title">Insights From a Data- and Space-Agnostic Approach to Zero-Cost Proxies</div>
+            <div class="publication-authors">Timotee Ly-Manson, Mathieu Leonardon, Abdeldjalil Aissa-El-Bey.</div>
+            <p class="publication-summary">
+              Disentangling architectural topology from input data in zero-cost neural architecture search proxies.
+            </p>
+          </li>
+        </ul>
+      </section>
 
-          <div class="faculty-grid">
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/vincent-gripon.jpg" alt="Portrait of Vincent Gripon">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Team Lead</span>
-                <h4 class="faculty-name">Vincent Gripon</h4>
-                <div class="faculty-status">Full professor, HDR · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://vincent-gripon.com" target="_blank" rel="noopener">Website</a>
-                  <a class="member-link" href="https://scholar.google.com/citations?user=n3IKEqgAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+      <section id="people">
+        <h2>People</h2>
+
+        <div class="people-group">
+          <h3 class="people-group-heading">Faculty / Permanent researchers</h3>
+          <div class="faculty-list">
+            <div class="person-row">
+              <img src="assets/img/people/nicolas-farrugia.jpg" alt="Nicolas Farrugia" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Nicolas Farrugia</span>, <span class="person-role">Full professor, HDR</span></div>
+                <div class="person-links">
+                  <a href="https://nicofarr.github.io" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=IO4nLK4AAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/nicolas-farrugia.jpg" alt="Portrait of Nicolas Farrugia">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Full Professor</span>
-                <h4 class="faculty-name">Nicolas Farrugia</h4>
-                <div class="faculty-status">Full professor, HDR · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://nicofarr.github.io" target="_blank" rel="noopener">Website</a>
-                  <a class="member-link" href="https://scholar.google.com/citations?user=IO4nLK4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="person-row">
+              <img src="assets/img/people/vincent-gripon.jpg" alt="Vincent Gripon" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Vincent Gripon</span>, <span class="person-role">Full professor, HDR, Team lead</span></div>
+                <div class="person-links">
+                  <a href="https://vincent-gripon.com" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=n3IKEqgAAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/giulia-lioi.jpg" alt="Portrait of Giulia Lioi">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Associate Professor</span>
-                <h4 class="faculty-name">Giulia Lioi</h4>
-                <div class="faculty-status">Associate professor · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://scholar.google.com/citations?user=mx2AqLYAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="person-row">
+              <img src="assets/img/people/giulia-lioi.jpg" alt="Giulia Lioi" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Giulia Lioi</span>, <span class="person-role">Associate professor</span></div>
+                <div class="person-links">
+                  <a href="https://scholar.google.com/citations?user=mx2AqLYAAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/mathieu-leonardon.jpg" alt="Portrait of Mathieu Léonardon">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Associate Professor · HDR</span>
-                <h4 class="faculty-name">Mathieu Léonardon</h4>
-                <div class="faculty-status">Associate professor, HDR · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://www.mathieuleonardon.com" target="_blank" rel="noopener">Website</a>
-                  <a class="member-link" href="https://scholar.google.com/citations?user=ZqWCKuwAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="person-row">
+              <img src="assets/img/people/mathieu-leonardon.jpg" alt="Mathieu Leonardon" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Mathieu Leonardon</span>, <span class="person-role">Associate professor, HDR</span></div>
+                <div class="person-links">
+                  <a href="https://www.mathieuleonardon.com" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=ZqWCKuwAAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/axel-marmoret.jpg" alt="Portrait of Axel Marmoret">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Associate Professor</span>
-                <h4 class="faculty-name">Axel Marmoret</h4>
-                <div class="faculty-status">Associate professor · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://ax-le.github.io" target="_blank" rel="noopener">Website</a>
-                  <a class="member-link" href="https://scholar.google.com/citations?user=2PRDe3oAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="person-row">
+              <img src="assets/img/people/axel-marmoret.jpg" alt="Axel Marmoret" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Axel Marmoret</span>, <span class="person-role">Associate professor</span></div>
+                <div class="person-links">
+                  <a href="https://ax-le.github.io" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=2PRDe3oAAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
+            </div>
 
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/bastien-pasdeloup.jpg" alt="Portrait of Bastien Pasdeloup">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Associate Professor · HDR</span>
-                <h4 class="faculty-name">Bastien Pasdeloup</h4>
-                <div class="faculty-status">Associate professor, HDR · IMT Atlantique &amp; Lab-STICC</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://bastienpasdeloup.github.io" target="_blank" rel="noopener">Website</a>
-                  <a class="member-link" href="https://scholar.google.com/citations?user=dKOgoG4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+            <div class="person-row">
+              <img src="assets/img/people/bastien-pasdeloup.jpg" alt="Bastien Pasdeloup" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Bastien Pasdeloup</span>, <span class="person-role">Associate professor, HDR</span></div>
+                <div class="person-links">
+                  <a href="https://bastienpasdeloup.github.io" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=dKOgoG4AAAAJ" target="_blank" rel="noopener">Scholar</a>
                 </div>
               </div>
-            </article>
-          </div>
-        </div>
-
-        <!-- Chercheurs Post-doctorants -->
-        <div class="directory-group">
-          <div class="group-banner">
-            <h3 class="group-title">Postdoctoral Researchers (Chercheurs Post-Doctorants)</h3>
-            <span class="group-count">1 Member</span>
-          </div>
-
-          <div class="faculty-grid">
-            <article class="faculty-card">
-              <img class="member-photo" src="assets/img/people/venkatesh-subramani.jpg" alt="Portrait of Venkatesh Subramani">
-              <div class="faculty-info">
-                <span class="faculty-role-badge">Postdoctoral Fellow</span>
-                <h4 class="faculty-name">Venkatesh Subramani</h4>
-                <div class="faculty-status">Postdoctoral researcher · BRAIN Team</div>
-                <div class="member-links">
-                  <a class="member-link" href="https://venkateshness.github.io" target="_blank" rel="noopener">Website</a>
-                </div>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
 
-        <!-- Doctorants -->
-        <div class="directory-group">
-          <div class="group-banner">
-            <h3 class="group-title">PhD Students (Doctorants)</h3>
-            <span class="group-count">14 Doctoral Candidates</span>
+        <div class="people-group">
+          <h3 class="people-group-heading">Postdoctoral researcher</h3>
+          <div class="faculty-list">
+            <div class="person-row">
+              <img src="assets/img/people/venkatesh-subramani.jpg" alt="Venkatesh Subramani" class="person-portrait" loading="lazy">
+              <div class="person-info">
+                <div><span class="person-name">Venkatesh Subramani</span></div>
+                <div class="person-links">
+                  <a href="https://venkateshness.github.io" target="_blank" rel="noopener">Website</a>
+                  <span class="link-sep">&middot;</span>
+                  <a href="https://scholar.google.com/citations?user=4aZ_rOIAAAAJ" target="_blank" rel="noopener">Scholar</a>
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
 
+        <div class="people-group">
+          <h3 class="people-group-heading">PhD students</h3>
           <div class="phd-grid">
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/ismail-amessegher.jpg" alt="Portrait of Ismaïl Amessegher">
-              <div class="phd-info">
-                <h4 class="phd-name">Ismaïl Amessegher</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/reda-bensaid.png" alt="Portrait of Reda Bensaid">
-              <div class="phd-info">
-                <h4 class="phd-name">Reda Bensaid</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/lucas-benoit.jpg" alt="Portrait of Lucas Benoit">
-              <div class="phd-info">
-                <h4 class="phd-name">Lucas Benoit</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/philippe-forest.jpg" alt="Portrait of Philippe Forest">
-              <div class="phd-info">
-                <h4 class="phd-name">Philippe Forest</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/baptiste-hilaire.jpg" alt="Portrait of Baptiste Hilaire">
-              <div class="phd-info">
-                <h4 class="phd-name">Baptiste Hilaire</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/kaiteng-jiang.jpg" alt="Portrait of Kaiteng Jiang">
-              <div class="phd-info">
-                <h4 class="phd-name">Kaiteng Jiang</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/tevchhorpoan-khieu.jpeg" alt="Portrait of Tevchhorpoan Khieu">
-              <div class="phd-info">
-                <h4 class="phd-name">Tevchhorpoan Khieu</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/lucie-jean-labadye.svg" alt="Avatar of Lucie Jean-Labadye">
-              <div class="phd-info">
-                <h4 class="phd-name">Lucie Jean-Labadye</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/elise-lagarde.jpeg" alt="Portrait of Élise Lagarde">
-              <div class="phd-info">
-                <h4 class="phd-name">Élise Lagarde</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/jonathan-lys.jpg" alt="Portrait of Jonathan Lys">
-              <div class="phd-info">
-                <h4 class="phd-name">Jonathan Lys</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/jeremy-morlier.svg" alt="Avatar of Jérémy Morlier">
-              <div class="phd-info">
-                <h4 class="phd-name">Jérémy Morlier</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/joshua-rivera.jpg" alt="Portrait of Joshua Rivera">
-              <div class="phd-info">
-                <h4 class="phd-name">Joshua Rivera</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/nolan-sisouphanthong.jpeg" alt="Portrait of Nolan Sisouphanthong">
-              <div class="phd-info">
-                <h4 class="phd-name">Nolan Sisouphanthong</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-
-            <article class="phd-card">
-              <img class="phd-photo" src="assets/img/people/alexandre-thouvenot.svg" alt="Avatar of Alexandre Thouvenot">
-              <div class="phd-info">
-                <h4 class="phd-name">Alexandre Thouvenot</h4>
-                <div class="phd-role">PhD Student</div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Pied de page institutionnel -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div>
-          <h3 class="footer-title">BRAIN : Broader Artificial Intelligence</h3>
-          <p class="footer-desc">
-            Joint research team of CNRS Lab-STICC (UMR 6285) hosted at IMT Atlantique within the Mathematical and Electrical Engineering (MEE) department on the Brest campus.
-          </p>
-          <div class="footer-logos">
-            <div class="dossier-imt-box">
-              <img src="assets/img/imt-atlantique.svg" alt="IMT Atlantique">
+            <div class="phd-entry">
+              <img src="assets/img/people/ismail-amessegher.jpg" alt="Ismail Amessegher" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Ismail Amessegher</span>
             </div>
-            <img src="assets/img/lab-sticc-white.png" alt="CNRS Lab-STICC UMR 6285">
+            <div class="phd-entry">
+              <img src="assets/img/people/reda-bensaid.png" alt="Reda Bensaid" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Reda Bensaid</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/lucas-benoit.jpg" alt="Lucas Benoit" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Lucas Benoit</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/philippe-forest.jpg" alt="Philippe Forest" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Philippe Forest</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/baptiste-hilaire.jpg" alt="Baptiste Hilaire" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Baptiste Hilaire</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/kaiteng-jiang.jpg" alt="Kaiteng Jiang" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Kaiteng Jiang</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/tevchhorpoan-khieu.jpeg" alt="Tevchhorpoan Khieu" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Tevchhorpoan Khieu</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/lucie-jean-labadye.svg" alt="Lucie Jean-Labadye" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Lucie Jean-Labadye</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/elise-lagarde.jpeg" alt="Elise Lagarde" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Elise Lagarde</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/jonathan-lys.jpg" alt="Jonathan Lys" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Jonathan Lys</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/jeremy-morlier.svg" alt="Jeremy Morlier" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Jeremy Morlier</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/joshua-rivera.jpg" alt="Joshua Rivera" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Joshua Rivera</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/nolan-sisouphanthong.jpeg" alt="Nolan Sisouphanthong" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Nolan Sisouphanthong</span>
+            </div>
+            <div class="phd-entry">
+              <img src="assets/img/people/alexandre-thouvenot.svg" alt="Alexandre Thouvenot" class="phd-portrait" loading="lazy">
+              <span class="phd-name">Alexandre Thouvenot</span>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div>
-          <h3 class="footer-title">Institutional Affiliations</h3>
-          <ul class="footer-list">
-            <li><strong>IMT Atlantique</strong> · Institut Mines-Télécom</li>
-            <li><strong>CNRS Lab-STICC</strong> · UMR 6285</li>
-            <li><strong>MEE Department</strong> · Mathematical and Electrical Engineering</li>
-            <li>Campus de Brest, Technopôle Brest-Iroise</li>
-            <li>29238 Brest Cedex 3, Bretagne, France</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 class="footer-title">Quick Navigation</h3>
-          <ul class="footer-list">
-            <li><a href="#presentation">Unit Presentation &amp; Mandate</a></li>
-            <li><a href="#axes">Research Pillars (Thrifty, Compression, Geometry)</a></li>
-            <li><a href="#thematiques">Cross-Cutting Scientific Themes</a></li>
-            <li><a href="#publications">Selected Scientific Publications</a></li>
-            <li><a href="#annuaire">Official Directory of Members</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <span>BRAIN Research Team (brain.bzh) · IMT Atlantique &amp; CNRS Lab-STICC (UMR 6285)</span>
-        <span>Prototype 04 · Institution Scientifique Française &amp; Grand Établissement</span>
-      </div>
-    </div>
-  </footer>
+      <footer class="colophon">
+        BRAIN research team, CNRS Lab-STICC (UMR 6285), IMT Atlantique, Brest, France.
+      </footer>
+    </main>
+  </div>
 
 </body>
 </html>
